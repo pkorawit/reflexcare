@@ -1,0 +1,47 @@
+.page {
+    font-family: 'Mitr', sans-serif;
+  }
+
+ons-input .text-input, ons-icon {
+    color:white;
+    font-family: 'Mitr', sans-serif;
+    font-size: 18px;
+}
+
+.button{
+    font-family: 'Mitr', sans-serif;
+    font-size: 18px;
+}
+
+#logo{
+    font-family: 'Mitr', sans-serif;
+    color: white;
+    font-size: 23pt;
+    text-align: center; 
+    margin: 30px;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+}  
+
+#home .page__background { 
+    background-image: url("../img/bg1.jpg");
+    opacity:1.0; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+#login_panel{
+    text-align: center;
+    margin: 30px;
+
+    /* background-color:whitesmoke;
+    margin: 30px;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5); */
+}
