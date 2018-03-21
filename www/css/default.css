@@ -1,88 +1,127 @@
 /* kanit-200 - latin_thai */
+
 @font-face {
     font-family: 'Kanit';
     font-style: normal;
     font-weight: 200;
-    src: url('../fonts/kanit-v3-latin_thai-200.eot'); /* IE9 Compat Modes */
-    src: local('Kanit ExtraLight'), local('Kanit-ExtraLight'),
-         url('../fonts/kanit-v3-latin_thai-200.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/kanit-v3-latin_thai-200.woff2') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-200.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-200.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/kanit-v3-latin_thai-200.svg#Kanit') format('svg'); /* Legacy iOS */
-  }
-  /* kanit-300 - latin_thai */
-  @font-face {
+    src: url('../fonts/kanit-v3-latin_thai-200.eot');
+    /* IE9 Compat Modes */
+    src: local('Kanit ExtraLight'), local('Kanit-ExtraLight'), url('../fonts/kanit-v3-latin_thai-200.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kanit-v3-latin_thai-200.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-200.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-200.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/kanit-v3-latin_thai-200.svg#Kanit') format('svg');
+    /* Legacy iOS */
+}
+
+/* kanit-300 - latin_thai */
+
+@font-face {
     font-family: 'Kanit-300';
     font-style: normal;
     font-weight: 300;
-    src: url('../fonts/kanit-v3-latin_thai-300.eot'); /* IE9 Compat Modes */
-    src: local('Kanit Light'), local('Kanit-Light'),
-         url('../fonts/kanit-v3-latin_thai-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/kanit-v3-latin_thai-300.woff2') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-300.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-300.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/kanit-v3-latin_thai-300.svg#Kanit') format('svg'); /* Legacy iOS */
-  }
-  /* kanit-regular - latin_thai */
-  @font-face {
+    src: url('../fonts/kanit-v3-latin_thai-300.eot');
+    /* IE9 Compat Modes */
+    src: local('Kanit Light'), local('Kanit-Light'), url('../fonts/kanit-v3-latin_thai-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kanit-v3-latin_thai-300.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-300.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-300.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/kanit-v3-latin_thai-300.svg#Kanit') format('svg');
+    /* Legacy iOS */
+}
+
+/* kanit-regular - latin_thai */
+
+@font-face {
     font-family: 'Kanit-400';
     font-style: normal;
     font-weight: 400;
-    src: url('../fonts/kanit-v3-latin_thai-regular.eot'); /* IE9 Compat Modes */
-    src: local('Kanit Regular'), local('Kanit-Regular'),
-         url('../fonts/kanit-v3-latin_thai-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-         url('../fonts/kanit-v3-latin_thai-regular.woff2') format('woff2'), /* Super Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-regular.woff') format('woff'), /* Modern Browsers */
-         url('../fonts/kanit-v3-latin_thai-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-         url('../fonts/kanit-v3-latin_thai-regular.svg#Kanit') format('svg'); /* Legacy iOS */
-  }
+    src: url('../fonts/kanit-v3-latin_thai-regular.eot');
+    /* IE9 Compat Modes */
+    src: local('Kanit Regular'), local('Kanit-Regular'), url('../fonts/kanit-v3-latin_thai-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/kanit-v3-latin_thai-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/kanit-v3-latin_thai-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/kanit-v3-latin_thai-regular.svg#Kanit') format('svg');
+    /* Legacy iOS */
+}
 
+div {
+    /*border: solid 1px black;*/
+}
 
 .page {
-    font-family: 'Kanit', sans-serif;
-  }
+    font-family: 'Kanit-300', sans-serif;
+    background-color: white;
+}
 
-ons-input .text-input, ons-icon {
-    color:white;
+ons-input .text-input {
+    color: white;
     font-family: 'Kanit-300', sans-serif;
     font-size: 18px;
 }
 
-.button{
+.button {
     font-family: 'Kanit', sans-serif;
     font-size: 18px;
 }
 
-#logo{
+#logo {
     font-family: 'Kanit-300', sans-serif;
     color: white;
     font-size: 23pt;
-    text-align: center; 
+    text-align: center;
     margin: 30px;
     top: 50%;
     left: 50%;
     overflow: hidden;
-}  
+}
 
-#home .page__background { 
+#login .page__background {
     background-image: url("../img/bg1.jpg");
-    opacity:1.0; 
+    opacity: 1.0;
     background-size: cover;
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
 }
 
-#login_panel{
+#home .page__background {
+    background-image: url("../img/bg3.jpg");
+    opacity: 1.0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+#welcome .page__background {
+    background-color: white;
+}
+
+#login_panel {
     text-align: center;
     margin: 30px;
+    color: white;
+}
 
-    /* background-color:whitesmoke;
-    margin: 30px;
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5); */
+.avatar {
+    margin: 10px auto;
+    text-align: center;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    background-image: url("../img/woman.png");
+    display: inline-block;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.text-center {
+    text-align: center;
+    margin: auto;
 }

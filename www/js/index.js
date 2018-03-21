@@ -5,7 +5,7 @@ ons.ready(function () {
 
     console.log('OnsenUI + Cordova is ready');
     setInterval(function(){ 
-        console.log('Go to home page');
-        window.location.replace('home.html');
+        console.log('Go to login page');
+        window.location.replace('login.html');
     }, 3000);
 });

@@ -2,9 +2,9 @@
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ReflexCare</name>
     <description>
-        A smart health solution
+        A Smart Health Care Solution
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="dev@reflexcare.org" href="http://reflexcare.org">
         ReflexCare Team
     </author>
     <content src="index.html" />

@@ -1,0 +1,18 @@
+<ons-page id="me">
+    <ons-toolbar>
+        <div class="left">
+            <ons-back-button>Me</ons-back-button>
+        </div>
+        <div class="center"></div>
+    </ons-toolbar>
+
+    <p>This is the second page.</p>
+    <script>
+        document.addEventListener('init', function (event) {
+            var page = event.target;
+            if (page.id === 'me') {
+                page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+            }
+        });
+    </script>
+</ons-page>
