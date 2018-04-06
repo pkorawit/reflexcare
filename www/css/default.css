@@ -300,6 +300,21 @@ canvas {
     margin-bottom: 15px;
 }
 
+.profiles{
+    width: 90px;
+    height: 90px;
+    background-image: url("../UI/aoi.jpg");
+    display: inline-block;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0 1px 5px rgba(0,0,0,.3);
+    margin-left: 20px;
+    margin-right: 20px
+}
+
+
 @media only screen and (max-width: 768px) {
     /*Mobile Screen*/
     
