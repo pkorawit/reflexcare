@@ -1,6 +1,33 @@
 ons.platform.select('android');
+/*
+    ons.ready(function(){
+    if(ons.platform.isIPad()){
+        console.log(ons.platform.isIPad());
+        var test = document.getElementById('inner').innerHTML=
 
-
+                    "<ons-col "+"class="+"'center'"+ "width="+"'33.33%'"+">"+
+                        "<div>"+
+                            "<canvas "+"style="+"'width:100%'"+"id="+"'metabolismFit'"+"></canvas>"+                       "<!-- metabolismFit Gauge -->"+
+                        "</div>"+
+                        "<div>Metabolism fit</div>"+
+                        "</div>"+
+                    "</ons-col>"+
+                    "<ons-col "+"class="+"'center'"+ " width="+"'33.33%'"+" class="+"'center'"+">"+
+                        "<div>"+
+                            "<canvas "+"style="+"'width:100%'"+" id="+"'heartFit'"+"></canvas>"+                            "<!-- Heart Fit Gauge -->"+
+                        "</div>"+
+                        "<div>Heart fit</div>"+
+                    "</ons-col>"+
+                    "<ons-col "+"class="+"'center'"+ " width="+"'33.33%'"+">"+
+                        "<div>"+
+                            "<canvas "+"style="+"'width:100%'"+" id="+"'motionFit'"+"></canvas>"+                           "<!-- motionFit Gauge -->"+
+                        "</div>"+
+                        "<div>Motion fit</div>"+
+                    "</ons-col>"
+        ;
+    }
+    })
+*/
 document.addEventListener('init', function (event) {
     var page = event.target;
     var myNavigator = document.getElementById('mainNavigator');
