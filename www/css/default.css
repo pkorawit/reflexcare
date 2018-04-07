@@ -314,6 +314,10 @@ canvas {
     margin-right: 20px
 }
 
+.transparent-Bottom-Toolbar{
+    background-color: #ffffff44;
+}
+
 
 @media only screen and (max-width: 768px) {
     /*Mobile Screen*/

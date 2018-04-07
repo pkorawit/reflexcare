@@ -4,7 +4,7 @@ ons.ready(function () {
     var myChart = new Chart(ctx, {
         type: 'radar',
         data: {            //Top          //Right       //Left
-            labels: ["Metabolism fit", "heart fit", "Motion fit"],
+            labels: ["Metabolism fit", "Heart fit", "Motion fit"],
             datasets: [{
                       //top,right,left  
                 data: [2, 5, 3],

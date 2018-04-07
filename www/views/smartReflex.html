@@ -1,95 +1,105 @@
-   <!-- INDEX -->
-
-        <ons-page id="index">
-            <ons-toolbar id="toolsbar">     <!--Nav Bar-->
-                <div class="toolbar__left center">
-                    <div class="arrow"></div>
+<ons-page id="index">
+    <ons-toolbar id="toolsbar">        <!--Nav Bar-->
+        <div class="toolbar__left center">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
+        <div class="toolbar__right avatar">
+            <div class="thumbnail"></div>
+        </div>
+    </ons-toolbar>    <!--Nav Bar-->
+    <ons-row>        <!--Cover-->
+        <ons-col>
+            <div class="welcomeCover"></div>
+            <div class="profile"></div>
+        </ons-col>
+    </ons-row>    <!--Nav Bar-->
+    <div class="contents">
+        <ons-row class="right" style="margin-bottom:10px;margin-top:7px">            <!--Content-->
+            <ons-col></ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Step</div>
+                <div>9,080</div>
+            </ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Distance</div>
+                <div>1002 m.</div>
+            </ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Heart rate</div>
+                <div>98</div>
+            </ons-col>
+            <ons-col width="15px"></ons-col>
+        </ons-row>
+        <ons-row>
+            <canvas id="myChart" width="250" height="250"></canvas>            <!-- Radar Chart -->
+        </ons-row>
+        <ons-row id="inner">
+            <ons-col class="center">
+                <div>
+                    <canvas id="heartFit"></canvas>                    <!-- Heart Fit Gauge -->
                 </div>
-                <div class="toolbar__center welcomeHeader">SMART REFLEX</div> 
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
+                <div class="">Heart fit</div>
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col class="center">
+                <div>
+                    <canvas id="metabolismFit"></canvas>                    <!-- metabolismFit Gauge -->
                 </div>
-            </ons-toolbar>          <!--Nav Bar-->
-            <ons-row>               <!--Cover-->
-                <ons-col>
-                    <div class="welcomeCover"></div>
-                    <div class="profile"></div>
-                </ons-col>
-            </ons-row>          <!--Nav Bar-->
-        <div class="contents">
-            <ons-row class="right" style="margin-bottom:10px;margin-top:7px">           <!--Content-->
-                <ons-col></ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Step</div>
-                    <div>9,080</div>
-                </ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Distance</div>
-                    <div>1002 m.</div>
-                </ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Heart rate</div>
-                    <div>98</div>
-                </ons-col>
-                <ons-col width="15px"></ons-col>
-            </ons-row>  
-                <ons-row>
-                    <canvas id="myChart" width="250" height="250"></canvas> <!-- Radar Chart -->
-                </ons-row>
-                <ons-row id="inner">
-                    <ons-col class="center">
-                        <div>
-                            <canvas id="heartFit"></canvas> <!-- Heart Fit Gauge -->
-                        </div>
-                        <div class="">Heart fit</div>
-                    </ons-col>
-                </ons-row>
-                <ons-row>
-                    <ons-col class="center">
-                        <div>
-                            <canvas id="metabolismFit"></canvas>    <!-- metabolismFit Gauge -->                            
-                        </div>
-                        <div class="">Metabolism fit</div>
-                    </ons-col>
-                </ons-row>
-                <ons-row>
-                    <ons-col class="center">
-                        <div>
-                            <canvas id="motionFit"></canvas> <!-- motionFit Gauge -->   
-                        </div>
-                        <div class="">Motion fit</div>
-                    </ons-col>
-                </ons-row>
-                <ons-row class="center">
-                    <ons-col><hr style="border: 1px solid #e53d3d;"></ons-col>
-                    <ons-col width="20%" style="color: #e53d3d;">คำแนะนำ</ons-col>
-                    <ons-col><hr style="border: 1px solid #e53d3d;"></ons-col>
-                </ons-row>
-                <ons-row>
-                    <ons-col style="color: #e53d3d;" class="center">
-                        xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                    </ons-col>
-                </ons-row>
-                <ons-row>
-                    <ons-col>
-                        <hr style="border: 1px solid #e53d3d;">
-                    </ons-col>
-                </ons-row>
-             <!--Content-->
-        </div>     
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">     <!--Bottom-->
+                <div class="">Metabolism fit</div>
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col class="center">
+                <div>
+                    <canvas id="motionFit"></canvas>                    <!-- motionFit Gauge -->
+                </div>
+                <div class="">Motion fit</div>
+            </ons-col>
+        </ons-row>
+        <ons-row class="center">
+            <ons-col>
+                <hr style="border: 1px solid #e53d3d;">
+            </ons-col>
+            <ons-col width="20%" style="color: #e53d3d;">คำแนะนำ</ons-col>
+            <ons-col>
+                <hr style="border: 1px solid #e53d3d;">
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col style="color: #e53d3d;" class="center">
+                xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col>
+                <hr style="border: 1px solid #e53d3d;">
+            </ons-col>
+        </ons-row>        <!--Content-->
+    </div>
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">        <!--Bottom-->
+        <ons-row>
+            <ons-col width="25%">
                 <div id="smartPush" style="margin:auto">
                     <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
                 </div>
+            </ons-col>
+            <ons-col width="25%">
                 <div id="personalPush" style="margin:auto">
                     <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
                 </div>
+            </ons-col>
+            <ons-col width="25%">
                 <div id="moreDevicePush" style="margin:auto">
                     <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
                 </div>
-                <div id="indexPush" style="margin:auto">
+            </ons-col>
+            <ons-col width="25%">
+                <div id="indexPush" style="margin:auto" class="transparent-Bottom-Toolbar">
                     <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
                 </div>
-            </ons-bottom-toolbar>       <!--Bottom-->
-        </ons-page>
-
+            </ons-col>
+        </ons-row>
+    </ons-bottom-toolbar>    <!--Bottom-->
+</ons-page>
