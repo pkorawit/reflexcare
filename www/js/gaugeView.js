@@ -86,6 +86,11 @@ function lineChart() {
 
 document.addEventListener('init', function (event) {
     var page = event.target;
+    console.log(page.id);
+    if (page.matches('#gaugeView')) {
+        $('#heartbtn').addClass("gaugeViewButtonSelected");
+        $('#dailybtn').addClass("gaugeViewButtonSelected")
+    }
     $('#heartbtn').click(function () {
         document.getElementById('gaugeCarousel').setActiveIndex(0);
         $('#heartbtn').addClass("gaugeViewButtonSelected");
@@ -104,10 +109,6 @@ document.addEventListener('init', function (event) {
         $('#metabtn').removeClass("gaugeViewButtonSelected");
         $('#heartbtn').removeClass("gaugeViewButtonSelected");
     })
-    if (page.matches('#gaugeView')) {
-        $('#heartbtn').addClass("gaugeViewButtonSelected");
-        $('#dailybtn').addClass("gaugeViewButtonSelected")
-    }
     $('#dailybtn').click(function(){
         document.getElementById('lineChartCarousel').setActiveIndex(0);
         $('#dailybtn').addClass("gaugeViewButtonSelected");
@@ -141,7 +142,4 @@ document.addEventListener('init', function (event) {
         
     })
     
-})
-ons.ready(function () {         
-    lineChart();
 })
