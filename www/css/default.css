@@ -212,13 +212,8 @@ placholder{
 
 .thumbnail {
     width: 30px;
-    height: 30px;
-    background-image: url("../img/woman.png");
-    display: inline-block;
+    height: 30px;  
     border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
 }
 
 .arrow{
@@ -256,12 +251,7 @@ placholder{
 .profile{
     width: 70px;
     height: 70px;
-    background-image: url("../UI/aoi.jpg");
-    display: inline-block;
-    border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    border-radius: 50%;   
     top: 22px;
     left: 31px;
     position: absolute;

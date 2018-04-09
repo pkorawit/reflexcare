@@ -1,17 +1,17 @@
 <ons-page id="gaugeView">
         <ons-toolbar id="toolsbar">        <!--Nav Bar-->
-            <div class="toolbar__left center">
+            <div id="backGauge" class="toolbar__left center">
                 <ons-back-button></ons-back-button>
             </div>
             <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
             <div class="toolbar__right avatar">
-                <div class="thumbnail"></div>
+                    <div id="thumbnailGauge"></div>
             </div>
         </ons-toolbar>    <!--Nav Bar-->
         <ons-row>        <!--Cover-->
             <ons-col>
                 <div class="welcomeCover"></div>
-                <div class="profile"></div>
+                <div id="profileGauge"></div>
             </ons-col>
         </ons-row>    <!--Nav Bar-->
         <div class="contents">
@@ -39,7 +39,7 @@
                                 <ons-row id="inner">
                                     <ons-col class="center">
                                         <div>
-                                            <canvas id="heartFit"></canvas>
+                                            <canvas id="heartFitView"></canvas>
                                             <!-- Heart Fit Gauge -->
                                         </div>
                                         <div class="color">Heart fit</div>
@@ -52,7 +52,7 @@
                                 <ons-row>
                                     <ons-col class="center">
                                         <div>
-                                            <canvas id="metabolismFit"></canvas>
+                                            <canvas id="metabolismFitView"></canvas>
                                             <!-- metabolismFit Gauge -->
                                         </div>
                                         <div class="color">Metabolism fit</div>
@@ -65,7 +65,7 @@
                                 <ons-row>
                                     <ons-col class="center">
                                         <div>
-                                            <canvas id="motionFit"></canvas>
+                                            <canvas id="motionFitView"></canvas>
                                             <!-- motionFit Gauge -->
                                         </div>
                                         <div class="color">Motion fit</div>
