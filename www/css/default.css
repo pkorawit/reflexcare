@@ -67,7 +67,8 @@ body{
 }
 
 .toolbar.toolbar--material+.page__background+.page__content{
-        top: 56px
+        top: 56px;
+        bottom: 58px
 }
 
 .welcomeCover{
@@ -269,7 +270,7 @@ placholder{
 }
 
 .right{
-    text-align: right;
+
 }
 
 .Sukhumvit-font{
@@ -329,7 +330,8 @@ canvas {
     border-radius: 50%;
     width: 72px;
     height: 72px;
-    margin: 10px
+    margin: 10px;
+    margin-bottom: 0px;
 }
 
 .marginAuto{
@@ -353,6 +355,23 @@ canvas {
     color: #f0f0f0;
 }
 
+.cardPadding5px{
+    padding: 5px
+}
+
+.cardDevice{
+    margin: auto;
+    font-size: 15px;
+}
+
+.careText{
+    font-size: 14px
+}
+
+.page--material, .page--material__background{
+    background-color: #e7e4e4fd;
+}
+
 
 @media only screen and (max-width: 360px) {
     /*Mobile Screen*/
@@ -374,12 +393,23 @@ canvas {
         border-radius: 50%;
         width: 62px;
         height: 62px;
-        margin: 10px
+        margin: 10px;
+        margin-bottom: 0px;
     }
     
     .buttonText{
         font-size: 13px
     }
+
+    .cardDevice{
+        margin: auto;
+        font-size: 12px;
+    }
+
+    .careText{
+        font-size: 13px
+    }
+    
     
 
 }

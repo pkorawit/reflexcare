@@ -30,7 +30,6 @@ ons.ready(function () {
                 for (let index = 0; index < data.names.length; index++) {
                     var rendered = Mustache.render(template, data.names[index]);
                     $('#family').append(rendered);
-                    console.log($('#family'))
                 }
             });
         }

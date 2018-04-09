@@ -9,7 +9,7 @@ document.addEventListener('click', function(event){
     var id = event.target.id;
     var navigator = document.getElementById('mainNavigator');
     $('ons-card').click(function(){
-        navigator.popPage('views/smartReflex.html', {data: {id:id}})
+        navigator.popPage('views/smartReflexPush.html', {data: {id:id}})
         console.log(id)
     })
 })
