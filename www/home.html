@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="lib/OnsenUI/css/onsen-css-components.min.css">
     <script src="lib/OnsenUI/js/onsenui.min.js"></script>
     <script src="lib/jQuery/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="lib/Gauge/gauge.js"></script>
     <link rel="stylesheet" type="text/css" href="css/default.css">
     <title>ReflexCare</title>
 </head>
 
 <body>
-    <ons-navigator swipeable id="mainNavigator" page="views/welcome.html"></ons-navigator>
 
+
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
+
+    
     <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
 </body>
 

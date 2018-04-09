@@ -1,0 +1,140 @@
+
+
+<ons-page id="personal">
+    <ons-toolbar id="toolsbar">
+        <div class="toolbar__left center">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="toolbar__center welcomeHeader">PERSONAL INFO</div>
+        <div class="toolbar__right avatar">
+            <div class="thumbnail"></div>
+        </div>
+    </ons-toolbar>
+    <ons-row>
+        <ons-col>
+
+        </ons-col>
+    </ons-row>
+    <ons-row>
+
+    </ons-row>
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
+        <ons-row>
+            <ons-col width="25%">
+                <div id="smartPush" style="margin:auto">
+                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="personalPush" style="margin:auto" class="transparent-Bottom-Toolbar">
+                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="moreDevicePush" style="margin:auto">
+                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="indexPush" style="margin:auto">
+                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
+                </div>
+            </ons-col>
+        </ons-row>
+    </ons-bottom-toolbar>
+
+
+
+    <ons-row>
+        <ons-col></ons-col>
+        <ons-col>
+            <div class="logo">
+                <img class="logoSize" src="img\camera.png" alt="">
+            </div>
+        </ons-col>
+        <ons-col></ons-col>
+    </ons-row>
+
+    <ons-row>
+        <ons-col>
+            <div class="center">
+                <div class="text-Shadow headerText text-Spacing">PERSONAL INFO</div>
+
+            </div>
+        </ons-col>
+    </ons-row>
+
+
+    <ons-row style="margin-top:10px">
+        <ons-col width="10%"></ons-col>
+        <ons-col width="80%">
+
+            <div class="card">
+                <h2 class="card__title">ข้อมูลพื้นฐาน</h2>
+                <div class="card__content">
+
+                    <p>ชื่อ</p>
+                    <div class="center">
+                        <ons-input id="firstname" placeholder="First name"></ons-input>
+                    </div>
+                    <p>นามสกุล</p>
+                    <div class="center">
+                        <ons-input id="lastname" placeholder="Last name"></ons-input>
+                    </div>
+                    <p>วัน|เดือน|ปีเกิด</p>
+                    <form action="" name="someform">
+                        <select id="daydropdown"></select>
+                        <select id="monthdropdown"></select>
+                        <select id="yeardropdown"></select>
+                    </form>
+
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="check-1"></ons-checkbox>
+                        </label>
+                        <label for="check-1">
+                            <p>ผู้ชาย</p>
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item tappable>
+                        <label class="left">
+                            <ons-checkbox input-id="check-2"></ons-checkbox>
+                        </label>
+                        <label for="check-2">
+                            <p>ผู้หญิง</p>
+                        </label>
+                    </ons-list-item>
+                    <div class="center">
+                        <div>
+                            <p>น้ำหนัก ส่วนสูง รอบเอว</p>
+                        </div>
+
+                        <form action="" name="someform">
+                            <select id="weightdropdown"></select>
+                            <select id="heighdropdown"></select>
+                            <select id="waistlinedropdown"></select>
+                        </form>
+                    </div>
+
+
+
+
+                </div>
+                
+            </div>
+            <ons-col style="margin-top:30px">
+            <div class="center">
+                <ons-button class="b1" id="finish" >เสร็จสิ้น</ons-button>
+                <ons-button class="b2" id="datacare">ข้อมูลสุขภาพเชิงลึก</ons-button>
+            </div>
+
+        </ons-col>
+        <ons-col style="margin-top:30px">
+    </ons-row>
+
+
+
+
+
+
+</ons-page>
