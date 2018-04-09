@@ -4,6 +4,16 @@ var myChart;
 var gauge;
 var gauge2;
 var gauge3;
+
+document.addEventListener('click', function(event){
+    var id = event.target.id;
+    var navigator = document.getElementById('mainNavigator');
+    $('ons-card').click(function(){
+        navigator.popPage('views/smartReflex.html', {data: {id:id}})
+        console.log(id)
+    })
+})
+
 function chartBuilder(){
     var ctx = document.getElementById("myChart").getContext('2d');
     myChart = new Chart(ctx, {
@@ -147,9 +157,8 @@ $(document).ready(function(){
    }
 });
 
-document.addEventListener('show', function (event) {
+document.addEventListener('init', function (event) {
     var page = event.target;
-    console.log(page)
     var myNavigator = document.getElementById('mainNavigator');
     if (page.matches('#index')) {
         myChart.render({
@@ -239,11 +248,9 @@ document.addEventListener('show', function (event) {
                 });
             });
         };
+    }else if(page.matches('#gaugeView')){
+        gaugeBuilder();
     }
-
-
-
-
 });
 
 var prev = function() {
@@ -251,13 +258,8 @@ var prev = function() {
     carousel.prev();
 };
   
-  var next = function() {
+var next = function() {
     var carousel = document.getElementById('carousel');
     carousel.next();
 };
   
-ons.ready(function() {
-    var carousel = document.addEventListener('postchange', function(event) {
-      console.log('Changed to ' + event.activeIndex)
-    });
-});

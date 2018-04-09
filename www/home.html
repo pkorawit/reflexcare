@@ -9,21 +9,56 @@
     <link rel="stylesheet" href="lib/OnsenUI/css/onsen-css-components.min.css">
     <script src="lib/OnsenUI/js/onsenui.min.js"></script>
     <script src="lib/jQuery/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="lib/Chart/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
     <script src="lib/Gauge/gauge.js"></script>
     <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script src="js/utils.js"></script>
     <title>ReflexCare</title>
 </head>
 
 <body>
 
 
-    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/gaugeView.html"></ons-navigator>
+    <script id="template" type="x-tmpl-mustache">
+            <ons-card style="padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;">
+                <ons-row id={{id}}>
+                    <ons-col class="center Sukhumvit-font marginAuto">
+                        <div><img src="{{img}}" alt="" class="smartProfile72px"></div>   
+                        <div>{{name}}</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Step</div>
+                        <div>0000</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Distance</div>
+                        <div>0000 m.</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Heart rate</div>
+                        <div>0000</div>
+                    </ons-col>
+                </ons-row>
+            </ons-card>
+    </script>
+    <script id="familyTemplate" type="x-tmpl-mustache">
+        <div class="marginAuto" id="{{id}}">
+            <img src="{{img}}" alt="" class="smartProfile">
+            <div>
+                {{name}}
+            </div>
+        </div>
+    </script>
 
     
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script src="js/mustacheRender.js"></script>
+    <script src="js/gaugeView.js"></script>
+    
 </body>
 
 </html>

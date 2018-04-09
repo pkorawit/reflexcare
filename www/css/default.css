@@ -278,7 +278,7 @@ placholder{
 
 .verticalLine {
     border-right: 1px solid #3b3b3b47;
-    height: 45px;
+    height: 55px;
 }
 
 #canvas-container {
@@ -318,8 +318,68 @@ canvas {
     background-color: #ffffff44;
 }
 
+.smartProfile{
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    margin: 10px
+}
 
-@media only screen and (max-width: 768px) {
+.smartProfile72px{
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    margin: 10px
+}
+
+.marginAuto{
+    margin: auto;
+}
+
+.color{
+    color: #e53d3d;
+}
+
+.buttonText{
+    font-size: 16px
+}
+
+.gaugeViewButton{
+    border: 1px solid #e53d3d;
+}
+
+.gaugeViewButtonSelected{
+    background-color: #e53d3d;
+    color: #f0f0f0;
+}
+
+
+@media only screen and (max-width: 360px) {
     /*Mobile Screen*/
+    .profiles{
+        width: 90px;
+        height: 90px;
+        background-image: url("../UI/aoi.jpg");
+        display: inline-block;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        box-shadow: 0 1px 5px rgba(0,0,0,.3);
+        margin-left: 10px;
+        margin-right: 10px
+    }
+
+    .smartProfile72px{
+        border-radius: 50%;
+        width: 62px;
+        height: 62px;
+        margin: 10px
+    }
     
+    .buttonText{
+        font-size: 13px
+    }
+    
+
 }
