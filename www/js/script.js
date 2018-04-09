@@ -299,7 +299,7 @@ ons.ready(function () {
 document.addEventListener('show', function (event) {
     var page = event.target;
     if (page.matches('#personal')) {
-        //วันที่
+        //------------------------ วันที่ ---------------------------
         (function () {
             var elm = document.getElementById('daydropdown'), // get the select
                 df = document.createDocumentFragment();
@@ -312,20 +312,28 @@ document.addEventListener('show', function (event) {
             elm.appendChild(df);
         }());
 
-        //เดือน
-        // (function () {
-           
-        // var months = ['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฏาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
-        // for(var i = 0; i < 1; i++){
-        //         var option = document.createElement('option');
-        //      option.value = months[i];
-        //          option.text = months[i];
-        //          option.appendChild(option);
-        //        }
-        //        months.appendChild(months);
-        
-        //     }());
-        //ปี
+//------------------------ เดือน ------------------------
+        var d = new Date();
+        var monthArray = new Array();
+        monthArray[0] = "มกราคม";
+        monthArray[1] = "กุมภาพันธ์";
+        monthArray[2] = "มีนาคม";
+        monthArray[3] = "เมษายน";
+        monthArray[4] = "พฤษภาคม";
+        monthArray[5] = "มิถุนายน";
+        monthArray[6] = "กรกฎาคม";
+        monthArray[7] = "สิงหาคม";
+        monthArray[8] = "กันยายน";
+        monthArray[9] = "ตุลาคม";
+        monthArray[10] = "พฤศจิกายน";
+        monthArray[11] = "ธันวาคม";
+        for (m = 0; m <= 11; m++) {
+            var optn = document.createElement("OPTION");
+            optn.text = monthArray[m];
+            optn.value = (m + 1);
+            document.getElementById('month').options.add(optn);
+        }
+        //---------------------------------- ปี -------------------------------
         (function () {
             var elm = document.getElementById('yeardropdown'), // get the select
                 df = document.createDocumentFragment();
@@ -337,42 +345,54 @@ document.addEventListener('show', function (event) {
             }
             elm.appendChild(df);
         }());
-        //น้ำหนัก
+        //----------------------------- น้ำหนัก ---------------------------------
         (function () {
             var elm = document.getElementById('weightdropdown'), // get the select
                 df = document.createDocumentFragment();
-            for (var i = 30; i <= 150; i++) {
+            for (var i = 2; i <= 150; i++) {
                 var option = document.createElement('option');
                 option.value = i;
-                option.appendChild(document.createTextNode(i + "KG."));
+                option.appendChild(document.createTextNode(i + " กก."));
                 df.appendChild(option); // append 
             }
             elm.appendChild(df);
         }());
-        // ส่วนสูง
-        (function () { 
+        //--------------------------- ส่วนสูง ---------------------------------
+        (function () {
             var elm = document.getElementById('heighdropdown'), // get the select
-                df = document.createDocumentFragment(); 
-            for (var i = 100; i <= 200; i++) { 
+                df = document.createDocumentFragment();
+            for (var i = 100; i <= 200; i++) {
                 var option = document.createElement('option'); // create the option element
                 option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i + "CM.")); 
+                option.appendChild(document.createTextNode(i + " ซม."));
                 df.appendChild(option); // append
             }
-            elm.appendChild(df); 
+            elm.appendChild(df);
         }());
-        //รอบเอว
-        (function () { 
+        //--------------------- รอบเอว -------------------
+        (function () {
             var elm = document.getElementById('waistlinedropdown'), // get the select
-                df = document.createDocumentFragment(); 
-            for (var i = 20; i <= 80; i++) { 
-                var option = document.createElement('option'); 
+                df = document.createDocumentFragment();
+            for (var i = 20; i <= 80; i++) {
+                var option = document.createElement('option');
                 option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i + "นิ้ว")); 
+                option.appendChild(document.createTextNode(i + " นิ้ว"));
                 df.appendChild(option); // append 
             }
-            elm.appendChild(df); 
+            elm.appendChild(df);
         }());
+
+        //------------------------select option only one---------------------
+        $(document).ready(function () {
+            $('.slectOne').on('change', function () {
+                $('.slectOne').not(this).prop('checked', false);
+                $('#result').html($(this).data("id"));
+                if ($(this).is(":checked"))
+                    $('#result').html($(this).data("id"));
+                else
+                    $('#result').html('Empty...!');
+            });
+        });
     }
 
 
