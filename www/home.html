@@ -14,23 +14,23 @@
 <body>
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
     <script id="template" type="x-tmpl-mustache">
-            <ons-card id={{id}} style="padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;">
-                <ons-row id={{id}}>
-                    <ons-col class="center Sukhumvit-font marginAuto" id={{id}}>
-                        <div id={{id}}><img src="{{img}}" alt="" class="smartProfile72px" id={{id}} onclick="imgPush()"></div>   
-                        <a onclick="imgPush" id={{id}}>{{name}}</a>
+            <ons-card style="padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;">
+                <ons-row>
+                    <ons-col class="center Sukhumvit-font marginAuto">
+                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>   
+                        <a onclick="imgPush">{{name}}</a>
                     </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" id={{id}}>
-                        <div class="color" id={{id}}>Step</div>
-                        <div id={{id}}>0000</div>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Step</div>
+                        <div>0000</div>
                     </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto"  id={{id}}>
-                        <div class="color" id={{id}}>Distance</div>
-                        <div id={{id}}>0000 m.</div>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
+                        <div class="color">Distance</div>
+                        <div>0000 m.</div>
                     </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" id={{id}}>
-                        <div class="color"  id={{id}}>Heart rate</div>
-                        <div id={{id}}>0000</div>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Heart rate</div>
+                        <div>0000</div>
                     </ons-col>
                 </ons-row>
             </ons-card>
@@ -60,6 +60,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script src="js/gaugeView.js"></script>
     
 </body>
 

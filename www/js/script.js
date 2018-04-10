@@ -1,5 +1,17 @@
 ons.platform.select('android');
-var data; 
+var data = {
+    names: [
+        {id:"0" , name: "Luke", img:"https://www.cheme.cornell.edu/engineering2/customcf/iws_news/uploads/alabi__reis.jpg", meta: 3, heart: 2, motion: 4 },
+        {id:"1" , name: "Drake", img:"http://www.abc.net.au/news/image/7852476-3x2-940x627.jpg",meta: 1, heart: 1, motion: 1  },
+        {id:"2" , name: "Famigo", img:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",meta: 1.9, heart: 2.6, motion: 2.7 },
+        {id:"3" , name: "Four", img:"http://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg",meta: 2.3, heart: 3, motion: 4 },
+        {id:"4" , name: "Eogi", img:"http://www.imgworlds.com/wp-content/themes/IMG/img/phase3/welcome/trex.png",meta: 3.5, heart: 4.5, motion: 4 },
+        {id:"5" , name: "Fluffy", img:"https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg",meta: 4, heart: 4.1, motion: 3.9 },
+        {id:"6" , name: "Kuku", img:"https://cdn.pixabay.com/photo/2017/05/13/23/05/img-src-x-2310895_960_720.png",meta: 3.1, heart: 2.1, motion: 2.8 },
+    ]
+}
+var presets = window.chartColors;
+var utils = Samples.utils;
 var defaultId;
 var defaultmetabolism;
 var defaultheartRate;
@@ -10,19 +22,11 @@ var id;
 var metabolism;
 var heartRate;
 var motion;
+var myNavigator;
+var page;
 
 ons.ready(function () {
-    data = {
-        names: [
-            {id:"0" , name: "Luke", img:"https://www.cheme.cornell.edu/engineering2/customcf/iws_news/uploads/alabi__reis.jpg", meta: 3, heart: 2, motion: 4 },
-            {id:"1" , name: "Drake", img:"http://www.abc.net.au/news/image/7852476-3x2-940x627.jpg",meta: 1, heart: 1, motion: 1  },
-            {id:"2" , name: "Famigo", img:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",meta: 1.9, heart: 2.6, motion: 2.7 },
-            {id:"3" , name: "Four", img:"http://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg",meta: 2.3, heart: 3, motion: 4 },
-            {id:"4" , name: "Eogi", img:"http://www.imgworlds.com/wp-content/themes/IMG/img/phase3/welcome/trex.png",meta: 3.5, heart: 4.5, motion: 4 },
-            {id:"5" , name: "Fluffy", img:"https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg",meta: 4, heart: 4.1, motion: 3.9 },
-            {id:"6" , name: "Kuku", img:"https://cdn.pixabay.com/photo/2017/05/13/23/05/img-src-x-2310895_960_720.png",meta: 3.1, heart: 2.1, motion: 2.8 },
-        ]
-    }
+    myNavigator = document.getElementById('mainNavigator');
     defaultId = 0;
     defaultmetabolism = data.names[0].meta;
     defaultheartRate = data.names[0].heart;
@@ -65,7 +69,7 @@ ons.ready(function () {
     })
     
     
-    
+    lineChart();
     chartBuilder("myChart", defaultmetabolism, defaultheartRate, defaultmotion);
     gaugeBuilder("heartFit", defaultheartRate);
     gaugeBuilder("metabolismFit", defaultmetabolism);
@@ -77,6 +81,90 @@ ons.ready(function () {
     });
         
 });
+function lineChart() {
+    document.addEventListener('init', function (event) {
+        var page = event.target;
+        if (page.matches('#gaugeView')) {
+            var dataDaily = {
+                labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
+                datasets: [{
+                    data: [0, 59, 75, 20, 20, 55, 40, 100],
+                    lineTension: 0,
+                    fill: 'start',
+                    borderColor: 'orange',
+                    backgroundColor: utils.transparentize(presets.red),
+                    borderColor: presets.red,
+                }]
+            };
+           
+            var dataWeek = {
+                labels: ["", "Sum", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                datasets: [{
+                    data: [0, 50, 75, 59, 45, 65, 68, 55],
+                    lineTension: 0,
+                    fill: 'start',
+                    borderColor: 'orange',
+                    backgroundColor: utils.transparentize(presets.red),
+                    borderColor: presets.red,
+                }]
+            };
+            
+            var dataMonth = {
+                labels: ["", "Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aus", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                    data: [0, 20, 54, 56, 58, 68, 78, 40, 50, 30, 35, 45, 55],
+                    lineTension: 0,
+                    fill: 'start',
+                    borderColor: 'orange',
+                    backgroundColor: utils.transparentize(presets.red),
+                    borderColor: presets.red,
+                }]
+            };
+            
+            var dataYear = {
+                labels: ["", "2015", "2016", "2017", "2018", "2019", "2020", "2021"],
+                datasets: [{
+                    data: [0, 59, 75, 48, 55, 0, 0, 0],
+                    lineTension: 0,
+                    fill: 'start',
+                    borderColor: 'orange',
+                    backgroundColor: utils.transparentize(presets.red),
+                    borderColor: presets.red,
+                }]
+            };
+            var chartOptions = {
+                legend: {
+                    display: false,
+                }
+            };
+            var ctxDailay = document.getElementById("lineChartDaily").getContext('2d');
+            var lineChart = new Chart(ctxDailay, {
+                type: 'line',
+                data: dataDaily,
+                options: chartOptions
+            });
+            var ctxWeek = document.getElementById("lineChartWeek").getContext('2d');
+            var lineChart = new Chart(ctxWeek, {
+                type: 'line',
+                data: dataWeek,
+                options: chartOptions
+            });
+            var ctxMonth = document.getElementById("lineChartMonth").getContext('2d');
+            var lineChart = new Chart(ctxMonth, {
+                type: 'line',
+                data: dataMonth,
+                options: chartOptions
+            });
+            var ctxYear = document.getElementById("lineChartYear").getContext('2d');
+            var lineChart = new Chart(ctxYear, {
+                type: 'line',
+                data: dataYear,
+                options: chartOptions
+            });
+        }
+    })
+}
+
 
 function chartBuilder(renderTarget, metabolismRate, heartRate, motionRate){
     var ctx = document.getElementById(renderTarget).getContext('2d');
@@ -158,21 +246,19 @@ function gaugeBuilder(renderTarget, value){
     gauge.set(value); // set actual value
 }
 
-function imgPush(){
-    document.addEventListener('click', function(event){
-        id = event.target.id;    
-        var navigator = document.getElementById('mainNavigator');
-        navigator.pushPage('views/smartReflexPush.html', {data:{id:id}});
-        metabolism = data.names[id].meta;
-        heartRate = data.names[id].heart;
-        motion = data.names[id].motion;
-    })
+function imgPush(id){
+            if(page.matches('#smartReflex')){        
+            myNavigator.pushPage('views/smartReflexPush.html', {data:{id:id}});
+            metabolism = data.names[id].meta;
+            heartRate = data.names[id].heart;
+            motion = data.names[id].motion;
+        }
+    
 }
 
-document.addEventListener('init', function (event) {
-    var page = event.target;
-    var myNavigator = document.getElementById('mainNavigator');
-    if (page.matches('#index')) {
+document.addEventListener('show', function (event) {
+        page = event.target;
+    if (page.matches('#smartReflex')) {
         console.log(page.id);
         page.querySelector('#smartPush').onclick = function () {
             myNavigator.bringPageTop('views/smartCare.html');
@@ -262,7 +348,7 @@ document.addEventListener('init', function (event) {
         var profileRendered = Mustache.render(profileTemplate, img);
         $('#profileGauge').html(profileRendered);
 
-    }else if (page.matches('#smartReflex')) {
+    }else if (page.matches('#smartReflexPush')) {
         id = page.data.id;
         chartBuilder("myChartPush", metabolism, heartRate, motion);
         gaugeBuilder("heartFitPush", heartRate);
@@ -285,20 +371,17 @@ document.addEventListener('init', function (event) {
         
         //------------------------------------------ClickEvent--------------------------------------------------------
         
-        var navigator = document.getElementById('mainNavigator');
+        
         $('#motionFitPush').click(function () {
-            navigator.pushPage('views/gaugeView.html', { data: { id: id } })
-            console.log(id)
+            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
         })
         $('#heartFitPush').click(function () {
-            navigator.pushPage('views/gaugeView.html', { data: { id: id } })
-            console.log(id)
+            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
         })
         $('#metabolismFitPush').click(function () {
-            navigator.pushPage('views/gaugeView.html', { data: { id: id } })
-            console.log(id)
+            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
         })
-            
+           
 
         //------------------------------------------template Render-------------------------------------------------
         var thumbnailTemplate = $('#thumbnailTamplate').html();
