@@ -272,13 +272,11 @@ function gaugeBuilder(renderTarget, value){
 }
 
 function imgPush(id){
-                    
+            console.log(id)        
             myNavigator.pushPage('views/smartReflexPush.html', {data:{id:id}});
             metabolism = data.names[id].meta;
             heartRate = data.names[id].heart;
             motion = data.names[id].motion;
-        
-    
 }
 
 document.addEventListener('show', function (event) {
@@ -306,7 +304,7 @@ document.addEventListener('show', function (event) {
 
         };
         page.querySelector('#finish').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html');
+            window.location.replace('home.html');
         };
         page.querySelector('#datacare').onclick = function () {
             myNavigator.bringPageTop('views/data.html');
@@ -315,7 +313,7 @@ document.addEventListener('show', function (event) {
             myNavigator.bringPageTop('views/moreDevice.html');
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
                 ;
         };
     } else if (page.id === 'datacare') {
@@ -327,14 +325,14 @@ document.addEventListener('show', function (event) {
 
         };
         page.querySelector('#finish').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html');
+            window.location.replace('home.html');
         };
         page.querySelector('#moreDevicePush').onclick = function () {
             myNavigator.bringPageTop('views/moreDevice.html');
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
-                ;
+            window.location.replace('home.html');
+        ;
         };
     } else if (page.id === 'moreDevice') {
         console.log(page.id);
@@ -348,7 +346,7 @@ document.addEventListener('show', function (event) {
 
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
         };
         page.querySelector('#recommend').onclick = function () {
             myNavigator.bringPageTop('views/recommendNewDevice.html')
@@ -365,10 +363,10 @@ document.addEventListener('show', function (event) {
 
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
         };
         page.querySelector('#send').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
         };
     } else if (page.matches('#smartCare')) {
         console.log(page.id);
@@ -382,7 +380,7 @@ document.addEventListener('show', function (event) {
             myNavigator.bringPageTop('views/moreDevice.html');
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
         };
 
     }else if (page.matches('#smartReflexPush')) {
@@ -391,11 +389,10 @@ document.addEventListener('show', function (event) {
         gaugeBuilder("heartFitPush", heartRate);
         gaugeBuilder("metabolismFitPush", metabolism);
         gaugeBuilder("motionFitPush", motion);
-        
         lineChart("lineChartDailyPush", "lineChartWeekPush", "lineChartMonthPush", "lineChartYearPush");
         
 
-        console.log(page.id);
+        console.log(page.index);
         page.querySelector('#smartPush').onclick = function () {
             myNavigator.bringPageTop('views/smartCare.html');
         };
@@ -406,7 +403,7 @@ document.addEventListener('show', function (event) {
             myNavigator.bringPageTop('views/moreDevice.html');
         };
         page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
+            window.location.replace('home.html');
         };
         
        
