@@ -1,13 +1,13 @@
 ons.platform.select('android');
 var data = {
     names: [
-        {id:"0" , name: "Luke", img:"https://www.cheme.cornell.edu/engineering2/customcf/iws_news/uploads/alabi__reis.jpg", meta: 3, heart: 2, motion: 4 },
-        {id:"1" , name: "Drake", img:"http://www.abc.net.au/news/image/7852476-3x2-940x627.jpg",meta: 1, heart: 1, motion: 1  },
-        {id:"2" , name: "Famigo", img:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Phoenicopterus_ruber_in_S%C3%A3o_Paulo_Zoo.jpg",meta: 1.9, heart: 2.6, motion: 2.7 },
-        {id:"3" , name: "Four", img:"http://www.imgworlds.com/wp-content/uploads/2015/12/18-CONTACTUS-HEADER.jpg",meta: 2.3, heart: 3, motion: 4 },
-        {id:"4" , name: "Eogi", img:"http://www.imgworlds.com/wp-content/themes/IMG/img/phase3/welcome/trex.png",meta: 3.5, heart: 4.5, motion: 4 },
-        {id:"5" , name: "Fluffy", img:"https://www.codeproject.com/KB/GDI-plus/ImageProcessing2/img.jpg",meta: 4, heart: 4.1, motion: 3.9 },
-        {id:"6" , name: "Kuku", img:"https://cdn.pixabay.com/photo/2017/05/13/23/05/img-src-x-2310895_960_720.png",meta: 3.1, heart: 2.1, motion: 2.8 },
+        {id:"0" , name: "Waree", img:"https://randomuser.me/api/portraits/med/women/44.jpg", meta: 3, heart: 2, motion: 4 },
+        {id:"1" , name: "Piyada", img:"https://randomuser.me/api/portraits/med/women/61.jpg",meta: 1, heart: 1, motion: 1  },
+        {id:"2" , name: "Somjai", img:"https://randomuser.me/api/portraits/med/men/4.jpg",meta: 1.9, heart: 2.6, motion: 2.7 },
+        {id:"3" , name: "Nattida", img:"https://randomuser.me/api/portraits/med/women/26.jpg",meta: 2.3, heart: 3, motion: 4 },
+        {id:"4" , name: "Thida", img:"https://randomuser.me/api/portraits/med/women/76.jpg",meta: 3.5, heart: 4.5, motion: 4 },
+        {id:"5" , name: "Somsak", img:"https://randomuser.me/api/portraits/med/men/76.jpg",meta: 4, heart: 4.1, motion: 3.9 },
+        
     ]
 }
 var presets = window.chartColors;
@@ -257,12 +257,12 @@ function gaugeBuilder(renderTarget, value){
 }
 
 function imgPush(id){
-            if(page.matches('#smartReflex')){        
+                    
             myNavigator.pushPage('views/smartReflexPush.html', {data:{id:id}});
             metabolism = data.names[id].meta;
             heartRate = data.names[id].heart;
             motion = data.names[id].motion;
-        }
+        
     
 }
 

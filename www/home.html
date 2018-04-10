@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
     <script id="template" type="x-tmpl-mustache">
             <ons-card>
@@ -21,9 +22,9 @@
                         <div>
                             <ons-card class="center" style="width:90px">
                                     <div>
-                                        <a onclick="imgPush({{id}})">{{name}}</a>
+                                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
                                     </div>
-                                </ons-card>
+                            </ons-card>
                         </div>
                     </ons-col>
                     <ons-col class="center Sukhumvit-font verticalLine marginAuto">
@@ -42,12 +43,12 @@
             </ons-card>
     </script>
     <script id="familyTemplate" type="x-tmpl-mustache">
-        <div class="marginAuto" >
-            <img id="{{id}} onClick="ingPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
+        <div class="marginAuto">
+            <img id="{{id}}" onclick="imgPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
             <div>
                 <ons-card class="center" style="width:90px">
                     <div>
-                        {{name}}
+                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
                     </div>
                 </ons-card>
             </div>
