@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ReflexCare</name>
+<widget id="info.smartreflex.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SmartReflex</name>
     <description>
-        A Smart Health Care Solution
+        SmartReflex: Daily Check Up, Early Alarm
     </description>
-    <author email="dev@reflexcare.org" href="http://reflexcare.org">
+    <author email="dev@smartreflex.info" href="http://www.smartreflex.info">
         ReflexCare Team
     </author>
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -23,6 +22,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <icon src="./www/UI/logo/0.75x/Asset 1ldpi.png" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
 </widget>
