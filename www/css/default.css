@@ -2,8 +2,7 @@
     font-family: 'SukhumvitSet-Bold';
     font-style: normal;
     src: 
-    url('../fonts/SukhumvitSet-Bold.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-Bold.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-Bold.ttf') /* Super Modern Browsers */
 }
 
 @font-face{
@@ -11,8 +10,7 @@
     font-style: normal;
     
     src:
-    url('../fonts/SukhumvitSet-Light.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-Light.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-Light.ttf') /* Super Modern Browsers */
 }
 
 
@@ -21,8 +19,7 @@
     font-style: normal;
     
     src:
-    url('../fonts/SukhumvitSet-Medium.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-Medium.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-Medium.ttf') /* Super Modern Browsers */
 }
 
 
@@ -31,8 +28,7 @@
     font-style: normal;
     
     src:
-    url('../fonts/SukhumvitSet-SemiBold.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-SemiBold.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-SemiBold.ttf') /* Super Modern Browsers */
 }
 
 
@@ -41,8 +37,7 @@
     font-style: normal;
     
     src:
-    url('../fonts/SukhumvitSet-Text.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-Text.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-Text.ttf') /* Super Modern Browsers */
 }
 
 
@@ -51,8 +46,7 @@
     font-style: normal;
     
     src:
-    url('../fonts/SukhumvitSet-Thin.woff2') format('woff2'), /* Super Modern Browsers */
-    url('../fonts/SukhumvitSet-Thin.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/SukhumvitSet-Thin.ttf') /* Super Modern Browsers */
 }
 
 *{
@@ -396,4 +390,24 @@ canvas {
     
     
 
+}
+
+.b1{
+    background-color: #e53d3d;
+    color:white;
+    border-radius: 10px;
+}
+.b2{
+    background-color: #33CCFF;
+    color:white;
+    border-radius: 10px;
+}
+.assign{ 
+        width: 100px;
+}
+.k2{
+    margin-right: 100px;
+}
+.red{
+    color: red;
 }

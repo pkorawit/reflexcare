@@ -1,44 +1,145 @@
+<ons-page id="personal">
+    <ons-toolbar id="toolsbar">
+        <div class="toolbar__left center">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div class="toolbar__center welcomeHeader">PERSONAL INFO</div>
+        <div class="toolbar__right avatar">
+            <div class="thumbnail"></div>
+        </div>
+    </ons-toolbar>
+    <ons-row>
+        <ons-col>
 
-        <ons-page id="personal">
-            <ons-toolbar id="toolsbar">
-                <div class="toolbar__left center">
-                    <ons-back-button></ons-back-button>
+        </ons-col>
+    </ons-row>
+    <ons-row>
+
+    </ons-row>
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
+        <ons-row>
+            <ons-col width="25%">
+                <div id="smartPush" style="margin:auto">
+                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
                 </div>
-                <div class="toolbar__center welcomeHeader">PERSONAL INFO</div>
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="personalPush" style="margin:auto" class="transparent-Bottom-Toolbar">
+                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
                 </div>
-            </ons-toolbar>
-            <ons-row>
-                <ons-col>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="moreDevicePush" style="margin:auto">
+                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="indexPush" style="margin:auto">
+                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
+                </div>
+            </ons-col>
+        </ons-row>
+    </ons-bottom-toolbar>
 
-                </ons-col>
-            </ons-row>
-            <ons-row>
 
-            </ons-row>
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-                <ons-row>
-                    <ons-col width="25%">
-                        <div id="smartPush" style="margin:auto">
-                            <img style="WIDTH:52px;padding-top:7px" src="UI/ai/0.75x/smartcare.png" alt="">
-                        </div>
-                    </ons-col>
-                    <ons-col width="25%">
-                        <div id="personalPush" style="margin:auto" class="transparent-Bottom-Toolbar">
-                            <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                        </div>
-                    </ons-col>
-                    <ons-col width="25%">
-                        <div id="moreDevicePush" style="margin:auto">
-                            <img style="WIDTH:60px;padding-top:4px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                        </div>
-                    </ons-col>
-                    <ons-col width="25%">
-                        <div id="indexPush" style="margin:auto">
-                            <img style="WIDTH:64px;padding-top:4px" src="UI/ai/0.75x/reflex.png" alt="">
-                        </div>
-                    </ons-col>
-                </ons-row>
-            </ons-bottom-toolbar>
-        </ons-page>
+
+    <ons-row>
+        <ons-col></ons-col>
+        <ons-col>
+            <div class="logo">
+
+                <img id="imgFileUpload" alt="Select File" title="Select File" class="logoSize" src="img/camera.png" style="cursor: pointer" />
+                <br />
+                <span id="spnFilePath"></span>
+                <input type="file" id="FileUpload1" style="display: none" />
+                
+            </div>
+        </ons-col>
+        <ons-col></ons-col>
+    </ons-row>
+
+    <ons-row>
+        <ons-col>
+            <div class="center">
+                <div class="text-Shadow headerText text-Spacing">PERSONAL INFO</div>
+
+            </div>
+        </ons-col>
+    </ons-row>
+    <ons-card style="border-radius:10px;margin: 10px;padding: 10px;">
+
+
+        <div style="font-size:20px; color:red;text-align: center;" font-family: 'SukhumvitSet-Text';>ข้อมูลพื้นฐาน</div>
+        <div class="card__content">
+            ชื่อ
+            <div class="left">
+                <ons-input style="width:45%" rows="1" placeholder="First name"></ons-input>
+            </div>
+            นามสกุล
+            <div class="left">
+                <ons-input style="width:45%" rows="1" placeholder="Last name"></ons-input>
+            </div>
+            <ons-col style="margin-top:30px">
+                <div class="left">
+                    วัน | เดือน | ปีเกิด
+                    <form action="" name="someform">
+                        <select id="daydropdown"></select>
+                        <select class="month">
+                                <option>มกราคม</option>
+                                <option>กุมภาพันธ์</option>
+                                <option>มีนาคม</option>
+                                <option>เมษายน</option>
+                                <option>พฤษภาคม</option>
+                                <option>มิถุนายน</option>
+                                <option>กรกฎาคม</option>
+                                <option>สิงหาคม</option>
+                                <option>กันยายน</option>
+                                <option>ตุลาคม</option>
+                                <option>พฤศจิกายน</option>
+                                <option>ธันวาคม</option>
+                              </select>
+                        <select id="yeardropdown"></select>
+                    </form>
+                </div>
+            </ons-col>
+
+            <ons-list-item tappable>
+                <label class="left">
+                    <ons-radio name="gender" input-id="radio-1" checked type="checkbox" class="slectOne" data-id="1"></ons-radio>
+                </label>
+                <label for="radio-1" class="center">ผู้ชาย</label>
+            </ons-list-item>
+            <ons-list-item tappable>
+                <label class="left">
+                    <ons-radio name="gender" input-id="radio-2" type="checkbox" class="slectOne" data-id="2"></ons-radio>
+                </label>
+                <label for="radio-2" class="center">ผู้หญิง</label>
+            </ons-list-item>
+            <div class="center">
+                <p class="red">*อัพเดทข้อมูลล่าสุด 29/03/2561</p>
+            </div>
+
+            <div class="left">
+                <div>
+                    <p>น้ำหนัก ส่วนสูง รอบเอว</p>
+                </div>
+
+                <form action="">
+                    <select id="weightdropdown"></select>
+                    <select id="heighdropdown"></select>
+                    <select id="waistlinedropdown"></select>
+                </form>
+            </div>
+
+            <ons-col style="margin-top:30px">
+                <div class="center">
+                    <ons-button class="b1" id="finish">เสร็จสิ้น</ons-button>
+                    <ons-button class="b2" id="datacare">ข้อมูลสุขภาพเชิงลึก</ons-button>
+                    <p class="red">*อัพเดทข้อมูลสุขภาพเชิงลึกเพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
+                </div>
+            </ons-col>
+        </div>
+        </div>
+    </ons-card>
+    </ons-row>
+</ons-page>

@@ -1,12 +1,12 @@
 ons.platform.select('android');
 var data = {
     names: [
-        {id:"0" , name: "Waree", img:"https://randomuser.me/api/portraits/med/women/44.jpg", meta: 3, heart: 2, motion: 4, step: 5124, cal: 530, hr: 75 },
-        {id:"1" , name: "Piyada", img:"https://randomuser.me/api/portraits/med/women/61.jpg",meta: 1, heart: 1, motion: 1, step: 7059, cal: 655, hr: 72  },
-        {id:"2" , name: "Somjai", img:"https://randomuser.me/api/portraits/med/men/4.jpg",meta: 1.9, heart: 2.6, motion: 2.7, step: 1226, cal: 201, hr: 88 },
-        {id:"3" , name: "Nattida", img:"https://randomuser.me/api/portraits/med/women/26.jpg",meta: 2.3, heart: 3, motion: 4, step: 5124, cal: 530, hr: 75 },
-        {id:"4" , name: "Thida", img:"https://randomuser.me/api/portraits/med/women/76.jpg",meta: 3.5, heart: 4.5, motion: 4, step: 5124, cal: 530, hr: 75 },
-        {id:"5" , name: "Somsak", img:"https://randomuser.me/api/portraits/med/men/76.jpg",meta: 4, heart: 4.1, motion: 3.9, step: 5124, cal: 530, hr: 75 },
+        {id:"0" , name: "Waree", img:"https://randomuser.me/api/portraits/women/44.jpg", meta: 3, heart: 2, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"1" , name: "Piyada", img:"https://randomuser.me/api/portraits/women/61.jpg",meta: 1, heart: 1, motion: 1, step: 7059, cal: 655, hr: 72  },
+        {id:"2" , name: "Somjai", img:"https://randomuser.me/api/portraits/men/4.jpg",meta: 1.9, heart: 2.6, motion: 2.7, step: 1226, cal: 201, hr: 88 },
+        {id:"3" , name: "Nattida", img:"https://randomuser.me/api/portraits/women/26.jpg",meta: 2.3, heart: 3, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"4" , name: "Thida", img:"https://randomuser.me/api/portraits/women/76.jpg",meta: 3.5, heart: 4.5, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"5" , name: "Somsak", img:"https://randomuser.me/api/portraits/men/76.jpg",meta: 4, heart: 4.1, motion: 3.9, step: 5124, cal: 530, hr: 75 },
         
     ]
 }
@@ -98,6 +98,11 @@ ons.ready(function () {
     });
         
 });
+
+function imgPushToInfo(id){
+    myNavigator.bringPageTop('views/personal.html');
+}
+
 function lineChart(targetDaily, targetWeek, targetMonth, targetYear) {
             var dataDaily = {
                 labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
@@ -300,12 +305,36 @@ document.addEventListener('show', function (event) {
         page.querySelector('#personalPush').onclick = function () {
 
         };
+        page.querySelector('#finish').onclick = function () {
+            myNavigator.bringPageTop('views/smartReflex.html');
+        };
+        page.querySelector('#datacare').onclick = function () {
+            myNavigator.bringPageTop('views/data.html');
+        };
         page.querySelector('#moreDevicePush').onclick = function () {
             myNavigator.bringPageTop('views/moreDevice.html');
         };
         page.querySelector('#indexPush').onclick = function () {
             myNavigator.bringPageTop('views/smartReflex.html')
-        ;
+                ;
+        };
+    } else if (page.id === 'datacare') {
+        console.log(page.id);
+        page.querySelector('#smartPush').onclick = function () {
+            myNavigator.bringPageTop('views/smartCare.html');
+        };
+        page.querySelector('#personalPush').onclick = function () {
+
+        };
+        page.querySelector('#finish').onclick = function () {
+            myNavigator.bringPageTop('views/smartReflex.html');
+        };
+        page.querySelector('#moreDevicePush').onclick = function () {
+            myNavigator.bringPageTop('views/moreDevice.html');
+        };
+        page.querySelector('#indexPush').onclick = function () {
+            myNavigator.bringPageTop('views/smartReflex.html')
+                ;
         };
     } else if (page.id === 'moreDevice') {
         console.log(page.id);
@@ -319,6 +348,26 @@ document.addEventListener('show', function (event) {
 
         };
         page.querySelector('#indexPush').onclick = function () {
+            myNavigator.bringPageTop('views/smartReflex.html')
+        };
+        page.querySelector('#recommend').onclick = function () {
+            myNavigator.bringPageTop('views/recommendNewDevice.html')
+        };
+    }else if (page.id === 'recommendNewDevice') {
+        console.log(page.id);
+        page.querySelector('#smartPush').onclick = function () {
+            myNavigator.bringPageTop('views/smartCare.html');
+        };
+        page.querySelector('#personalPush').onclick = function () {
+            myNavigator.bringPageTop('views/personal.html');
+        };
+        page.querySelector('#moreDevicePush').onclick = function () {
+
+        };
+        page.querySelector('#indexPush').onclick = function () {
+            myNavigator.bringPageTop('views/smartReflex.html')
+        };
+        page.querySelector('#send').onclick = function () {
             myNavigator.bringPageTop('views/smartReflex.html')
         };
     } else if (page.matches('#smartCare')) {
@@ -382,5 +431,96 @@ document.addEventListener('show', function (event) {
         $('#stepPush').html(stepTemplateRendered);
         $('#calPush').html(calTemplateRendered);
         $('#hrPush').html(hrTemplateRendered);
+    }
+});
+
+//------------------------------------------------start-------------------------------------
+document.addEventListener('show', function (event) {
+    var page = event.target;
+    if (page.matches('#personal')) {
+        //------------------------ วันที่ ---------------------------
+        (function () {
+            var elm = document.getElementById('daydropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 01; i <= 31; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.appendChild(document.createTextNode(i));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+
+ 
+        //---------------------------------- ปี -------------------------------
+        (function () {
+            var elm = document.getElementById('yeardropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 2450; i <= 2561; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.appendChild(document.createTextNode(i));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+        //----------------------------- น้ำหนัก ---------------------------------
+        (function () {
+            var elm = document.getElementById('weightdropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 2; i <= 150; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.appendChild(document.createTextNode(i + " GG."));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+        //--------------------------- ส่วนสูง ---------------------------------
+        (function () {
+            var elm = document.getElementById('heighdropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 100; i <= 200; i++) {
+                var option = document.createElement('option'); // create the option element
+                option.value = i; // set the value property
+                option.appendChild(document.createTextNode(i + " CM."));
+                df.appendChild(option); // append
+            }
+            elm.appendChild(df);
+        }());
+        //--------------------- รอบเอว -------------------
+        (function () {
+            var elm = document.getElementById('waistlinedropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 20; i <= 80; i++) {
+                var option = document.createElement('option');
+                option.value = i; // set the value property
+                option.appendChild(document.createTextNode(i + " Inches"));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+
+        //------------------------------- upload ---------------------------------
+          
+    $(function () {
+        var fileupload = $("#FileUpload1");
+        var filePath = $("#spnFilePath");
+        var image = $("#imgFileUpload");
+        image.click(function () {
+            fileupload.click();
+        });
+        fileupload.change(function () {
+            var fileName = $(this).val().split('\\')[$(this).val().split('\\').length - 1];
+            var reader = new FileReader();
+            console.log(reader);
+            reader.onload = function (e) {
+                $('#img').attr('src', e.target.result);
+            filePath.html(fileName);
+            }
+            reader.readAsDataURL(input.files[0]);
+
+        });
+    });
     }
 });
