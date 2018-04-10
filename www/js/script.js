@@ -34,7 +34,7 @@ ons.ready(function () {
     $.get('views/smartReflex.html', function (templates) {
         var template = $('#template').html();
         Mustache.parse(template);   // optional, speeds up future uses
-        for (let index = 1; index < data.names.length; index++) {
+        for (let index = 1; index < 4; index++) {
             var rendered = Mustache.render(template, data.names[index]);
             $('#target').append(rendered);
         }
@@ -59,17 +59,24 @@ ons.ready(function () {
         if (page.matches('#smartCare')) {
             $.get('views/smartCare.html', function (templates) {
                 var template = $('#familyTemplate').html();
+                var recentlyTemplate = $('#recentlyTemplate').html();
                 Mustache.parse(template);   // optional, speeds up future uses
                 for (let index = 1; index < 4; index++) {
                     var rendered = Mustache.render(template, data.names[index]);
+                    var recentlyRendered  = Mustache.render(recentlyTemplate, data.names[index]);
                     $('#family').append(rendered);
+                    $('#recentlyTarget').append(recentlyRendered);
+                }
+                for (let index = 4; index < data.names.length; index++) {
+                    var recentlyRendered  = Mustache.render(recentlyTemplate, data.names[index]);
+                    $('#recentlyTarget2').append(recentlyRendered);
                 }
             });
         }
     })
     
     
-    lineChart();
+    lineChart("lineChartDaily", "lineChartWeek", "lineChartMonth", "lineChartYear");
     chartBuilder("myChart", defaultmetabolism, defaultheartRate, defaultmotion);
     gaugeBuilder("heartFit", defaultheartRate);
     gaugeBuilder("metabolismFit", defaultmetabolism);
@@ -81,10 +88,7 @@ ons.ready(function () {
     });
         
 });
-function lineChart() {
-    document.addEventListener('init', function (event) {
-        var page = event.target;
-        if (page.matches('#gaugeView')) {
+function lineChart(targetDaily, targetWeek, targetMonth, targetYear) {
             var dataDaily = {
                 labels: ["0s", "10s", "20s", "30s", "40s", "50s", "60s"],
                 datasets: [{
@@ -137,32 +141,31 @@ function lineChart() {
                     display: false,
                 }
             };
-            var ctxDailay = document.getElementById("lineChartDaily").getContext('2d');
-            var lineChart = new Chart(ctxDailay, {
+            var ctxDailay = document.getElementById(targetDaily).getContext('2d');
+            var ctxWeek = document.getElementById(targetWeek).getContext('2d');
+            var ctxMonth = document.getElementById(targetMonth).getContext('2d');
+            var ctxYear = document.getElementById(targetYear).getContext('2d');
+
+            var lineChartDaily = new Chart(ctxDailay, {
                 type: 'line',
                 data: dataDaily,
                 options: chartOptions
             });
-            var ctxWeek = document.getElementById("lineChartWeek").getContext('2d');
-            var lineChart = new Chart(ctxWeek, {
+            var lineChartWeek = new Chart(ctxWeek, {
                 type: 'line',
                 data: dataWeek,
                 options: chartOptions
             });
-            var ctxMonth = document.getElementById("lineChartMonth").getContext('2d');
-            var lineChart = new Chart(ctxMonth, {
+            var lineChartMonth = new Chart(ctxMonth, {
                 type: 'line',
                 data: dataMonth,
                 options: chartOptions
             });
-            var ctxYear = document.getElementById("lineChartYear").getContext('2d');
-            var lineChart = new Chart(ctxYear, {
+            var lineChartYear = new Chart(ctxYear, {
                 type: 'line',
                 data: dataYear,
                 options: chartOptions
             });
-        }
-    })
 }
 
 
@@ -198,7 +201,7 @@ function chartBuilder(renderTarget, metabolismRate, heartRate, motionRate){
                 },
                 pointLabels: {
                     fontColor: "black",
-                    fontSize: 15
+                    fontSize: 15,
                 }
             },
            
@@ -221,7 +224,7 @@ function gaugeBuilder(renderTarget, value){
     var opts = {
         renderTicks: {
             divisions: 5,
-            divWidth: 1.5,
+            divWidth: 0,
             divLength: 1,
             divColor: '#FFFFFF',
           },
@@ -233,10 +236,17 @@ function gaugeBuilder(renderTarget, value){
             strokeWidth: 0.035, // The thickness
             color: '#000000' // Fill color
         },
-        strokeColor: '#cdcdb1',  // to see which ones work best for you
+        staticZones: [
+            {strokeStyle: "#fa4417", min: 0, max: 1}, // Red from 100 to 130
+            {strokeStyle: "#faaa17", min: 1, max: 2}, // Yellow
+            {strokeStyle: "#faf617", min: 2, max: 3}, // Green
+            {strokeStyle: "#a3fa17", min: 3, max: 4}, // Yellow
+            {strokeStyle: "#1ffa17", min: 4, max: 5}  // Red
+         ],
+          // to see which ones work best for you
         generateGradient: true,
         highDpiSupport: true,     // High resolution support
-        percentColors: [[0.0, "#ff0000" ], [0.30, "#f9c802"],[0.55, "#e3ef04"],[0.65, "#d0e20b"], [1.0, "#0dcc0a"]]
+        
     };
     var target = document.getElementById(renderTarget); // your canvas element
     gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
@@ -316,44 +326,15 @@ document.addEventListener('show', function (event) {
             myNavigator.bringPageTop('views/smartReflex.html')
         };
 
-    }else if(page.matches('#gaugeView')){
-        id = page.data.id;
-        if(document.getElementById('heartFitView') != null){
-        gaugeBuilder("heartFitView", data.names[id].heart);
-        gaugeBuilder("metabolismFitView", data.names[id].meta);
-        gaugeBuilder("motionFitView", data.names[id].motion);
-        }
-        page.querySelector('#smartPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartCare.html');
-        };
-        page.querySelector('#personalPush').onclick = function () {
-            myNavigator.bringPageTop('views/personal.html');
-        };
-        page.querySelector('#moreDevicePush').onclick = function () {
-            myNavigator.bringPageTop('views/moreDevice.html');
-        };
-        page.querySelector('#indexPush').onclick = function () {
-            myNavigator.bringPageTop('views/smartReflex.html')
-        };
-
-        //    ---------------------------------     template render ---------------------------------------------
-        var thumbnailTemplate = $('#thumbnailTamplate').html();
-        var img = data.names[0];
-        var imgRendered = Mustache.render(thumbnailTemplate, img);
-        $('#thumbnailGauge').html(imgRendered);
-
-        
-        var profileTemplate = $('#profileTamplate').html();
-        var img = data.names[id];
-        var profileRendered = Mustache.render(profileTemplate, img);
-        $('#profileGauge').html(profileRendered);
-
     }else if (page.matches('#smartReflexPush')) {
         id = page.data.id;
         chartBuilder("myChartPush", metabolism, heartRate, motion);
         gaugeBuilder("heartFitPush", heartRate);
         gaugeBuilder("metabolismFitPush", metabolism);
         gaugeBuilder("motionFitPush", motion);
+        
+        lineChart("lineChartDailyPush", "lineChartWeekPush", "lineChartMonthPush", "lineChartYearPush");
+        
 
         console.log(page.id);
         page.querySelector('#smartPush').onclick = function () {
@@ -369,20 +350,7 @@ document.addEventListener('show', function (event) {
             myNavigator.bringPageTop('views/smartReflex.html')
         };
         
-        //------------------------------------------ClickEvent--------------------------------------------------------
-        
-        
-        $('#motionFitPush').click(function () {
-            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
-        })
-        $('#heartFitPush').click(function () {
-            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
-        })
-        $('#metabolismFitPush').click(function () {
-            myNavigator.pushPage('views/gaugeView.html', { data: { id: id } })
-        })
-           
-
+       
         //------------------------------------------template Render-------------------------------------------------
         var thumbnailTemplate = $('#thumbnailTamplate').html();
         var img = data.names[defaultId];

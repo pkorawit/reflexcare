@@ -18,113 +18,158 @@
         </ons-col>
     </ons-row>
     <!--Nav Bar-->
-    <div class="contents">
-        <ons-card>
-            <ons-row class="right" style="margin-bottom:10px;margin-top:7px">
-                <!--Content-->
-                <ons-col></ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Step</div>
-                    <div>9,080</div>
-                </ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Distance</div>
-                    <div>1002 m.</div>
-                </ons-col>
-                <ons-col class="center Sukhumvit-font verticalLine">
-                    <div>Heart rate</div>
-                    <div>98</div>
-                </ons-col>
-                <ons-col width="15px"></ons-col>
-            </ons-row>
-        </ons-card>
-        <ons-card>
-            <ons-row>
-                <ons-col>
-                    <canvas id="myChart" width="250" height="250"></canvas>
-                    <!-- Radar Chart -->
-                </ons-col>
-            </ons-row>
-        </ons-card>
-        <ons-card>
-            <ons-row>
-                <ons-col>
-                    <ons-carousel auto-scroll overscrollable id="gaugeCarouselReflex">
-                        <ons-carousel-item>
-                            <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
-                                <ons-row id="inner">
-                                    <ons-col class="center">
-                                        <div>
-                                            <canvas id="heartFit"></canvas>
-                                            <!-- Heart Fit Gauge -->
-                                        </div>
-                                        <div class="color">Heart fit</div>
-                                    </ons-col>
-                                </ons-row>
-                            </div>
-                        </ons-carousel-item>
-                        <ons-carousel-item>
-                            <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
-                                <ons-row>
-                                    <ons-col class="center">
-                                        <div>
-                                            <canvas id="metabolismFit"></canvas>
-                                            <!-- metabolismFit Gauge -->
-                                        </div>
-                                        <div class="color">Metabolism fit</div>
-                                    </ons-col>
-                                </ons-row>
-                            </div>
-                        </ons-carousel-item>
-                        <ons-carousel-item>
-                            <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
-                                <ons-row>
-                                    <ons-col class="center">
-                                        <div>
-                                            <canvas id="motionFit"></canvas>
-                                            <!-- motionFit Gauge -->
-                                        </div>
-                                        <div class="color">Motion fit</div>
-                                    </ons-col>
-                                </ons-row>
-                            </div>
-                        </ons-carousel-item>
-                    </ons-carousel>
-                </ons-col>
-            </ons-row>
-        </ons-card>
-        <ons-card>
-            <ons-row style="margin-top: 25px;margin-bottom: 30px">
-                <ons-col>
-                    <div class="center">
-                        <ons-button id="heartBtn" class="buttonText gaugeViewButton color">Heart fit</ons-button>
-                        <ons-button id="metaBtn" class="buttonText gaugeViewButton color">Metabolism fit</ons-button>
-                        <ons-button id="motionBtn" class="buttonText gaugeViewButton color">Motion fit</ons-button>
-                    </div>
-                </ons-col>
-            </ons-row>
-        </ons-card>
-        <ons-card>
-            <ons-row class="center">
-                <ons-col>
-                    <hr style="border: 1px solid #e53d3d;">
-                </ons-col>
-                <ons-col width="20%" style="color: #e53d3d;">คำแนะนำ</ons-col>
-                <ons-col>
-                    <hr style="border: 1px solid #e53d3d;">
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col style="color: #e53d3d;" class="center">
-                    ผลสุขภาพของคุณมีความเสี่ยงที่จะไม่สบายสูง ควรพบแพทย์ เพื่อตรวจเช็คร่างกาย
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col>
-                    <hr style="border: 1px solid #e53d3d;">
-                </ons-col>
-            </ons-row>
-        </ons-card>
+    <div>
+        <ons-row class="right" style="margin-bottom:7px;margin-top:7px">
+            <!--Content-->
+            <ons-col></ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Step</div>
+                <div id="step">9,080</div>
+            </ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Distance</div>
+                <div>1002 m.</div>
+            </ons-col>
+            <ons-col class="center Sukhumvit-font verticalLine">
+                <div>Heart rate</div>
+                <div>98</div>
+            </ons-col>
+            <ons-col width="15px"></ons-col>
+        </ons-row>
+
+        <ons-row>
+        </ons-row>
+        <ons-row class="center" style="margin-bottom: 20px">
+            <ons-col>
+                <hr style="  border: 0.5px solid #e53d3d;">
+            </ons-col>
+            <ons-col width="24%" style="color: #e53d3d;font-family:SukhumvitSet-Bold">Today</ons-col>
+            <ons-col>
+                <hr style=" border: 0.5px solid #e53d3d;">
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col>
+                <canvas id="myChart"></canvas>
+                <!-- Radar Chart -->
+            </ons-col>
+        </ons-row>
+        <hr style="width: 97%;   border: 0.5px solid #e53d3d;">
+        <ons-row>
+            <ons-col>
+                <ons-carousel auto-scroll overscrollable id="gaugeCarouselReflex">
+                    <ons-carousel-item>
+                        <div style="text-align: center; font-size: 20px;">
+                            <ons-row id="inner">
+                                <ons-col class="center">
+                                    <div>
+                                        <canvas class="canvas" id="heartFit"></canvas>
+                                        <!-- Heart Fit Gauge -->
+                                    </div>
+                                    <div class="color">Heart fit</div>
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                    </ons-carousel-item>
+                    <ons-carousel-item>
+                        <div style="text-align: center; font-size: 20px;">
+                            <ons-row>
+                                <ons-col class="center">
+                                    <div>
+                                        <canvas class="canvas" id="metabolismFit"></canvas>
+                                        <!-- metabolismFit Gauge -->
+                                    </div>
+                                    <div class="color">Metabolism fit</div>
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                    </ons-carousel-item>
+                    <ons-carousel-item>
+                        <div style="text-align: center; font-size: 20px;">
+                            <ons-row>
+                                <ons-col class="center">
+                                    <div>
+                                        <canvas class="canvas" id="motionFit"></canvas>
+                                        <!-- motionFit Gauge -->
+                                    </div>
+                                    <div class="color">Motion fit</div>
+                                </ons-col>
+                            </ons-row>
+                        </div>
+                    </ons-carousel-item>
+                </ons-carousel>
+            </ons-col>
+        </ons-row>
+        <ons-row style="margin-top: 25px;margin-bottom: 30px">
+            <ons-col>
+                <div class="center">
+                    <ons-button id="heartBtn" class="buttonText gaugeViewButton color">Heart fit</ons-button>
+                    <ons-button id="metaBtn" class="buttonText gaugeViewButton color">Metabolism fit</ons-button>
+                    <ons-button id="motionBtn" class="buttonText gaugeViewButton color">Motion fit</ons-button>
+                </div>
+            </ons-col>
+        </ons-row>
+
+        <ons-row class="center">
+            <ons-col>
+                <hr style="width: 97%;   border: 0.5px solid #e53d3d;">
+            </ons-col>
+            <ons-col width="20%" style="color: #e53d3d;font-family:SukhumvitSet-Bold">คำแนะนำ</ons-col>
+            <ons-col>
+                <hr style="width: 97%;   border: 0.5px solid #e53d3d;">
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col style="color: #e53d3d;" class="center">
+                ผลสุขภาพของคุณมีความเสี่ยงที่จะไม่สบายสูง ควรพบแพทย์ เพื่อตรวจเช็คร่างกาย
+            </ons-col>
+        </ons-row>
+        <ons-row>
+            <ons-col>
+                <hr style="width: 97%;   border: 0.5px solid #e53d3d;">
+            </ons-col>
+        </ons-row>
+        <ons-row style="margin-top: 25px">
+            <ons-col>
+                <div class="center">
+                    <ons-button id="dailybtn" class="buttonText gaugeViewButton color">Daily</ons-button>
+                    <ons-button id="weekbtn" class="buttonText gaugeViewButton color">Week</ons-button>
+                    <ons-button id="monthbtn" class="buttonText gaugeViewButton color">Month</ons-button>
+                    <ons-button id="yearbtn" class="buttonText gaugeViewButton color">Year</ons-button>
+                </div>
+            </ons-col>
+        </ons-row>
+        <ons-carousel swipeable auto-scroll overscrollable id="lineChartCarousel">
+            <ons-carousel-item>
+                <ons-row style="margin-bottom: 25px; margin-top: 25px">
+                    <ons-col>
+                        <canvas id="lineChartDaily"></canvas>
+                    </ons-col>
+                </ons-row>
+            </ons-carousel-item>
+            <ons-carousel-item>
+                <ons-row style="margin-bottom: 25px; margin-top: 25px">
+                    <ons-col>
+                        <canvas id="lineChartWeek"></canvas>
+                    </ons-col>
+                </ons-row>
+            </ons-carousel-item>
+            <ons-carousel-item>
+                <ons-row style="margin-bottom: 25px; margin-top: 25px">
+                    <ons-col>
+                        <canvas id="lineChartMonth"></canvas>
+                    </ons-col>
+                </ons-row>
+            </ons-carousel-item>
+            <ons-carousel-item>
+                <ons-row style="margin-bottom: 25px; margin-top: 25px">
+                    <ons-col>
+                        <canvas id="lineChartYear"></canvas>
+                    </ons-col>
+                </ons-row>
+            </ons-carousel-item>
+        </ons-carousel>
+
 
 
         <div id="target">
@@ -140,7 +185,7 @@
         <ons-row>
             <ons-col width="25%">
                 <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
+                    <img style="WIDTH:52px;padding-top:7px" src="UI/ai/0.75x/smartcare.png" alt="">
                 </div>
             </ons-col>
             <ons-col width="25%">
@@ -150,12 +195,12 @@
             </ons-col>
             <ons-col width="25%">
                 <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
+                    <img style="WIDTH:60px;padding-top:4px" src="UI/ai/0.75x/moreDevice.png" alt="">
                 </div>
             </ons-col>
             <ons-col width="25%">
                 <div id="indexPush" style="margin:auto" class="transparent-Bottom-Toolbar">
-                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
+                    <img style="WIDTH:64px;padding-top:4px" src="UI/ai/0.75x/reflex.png" alt="">
                 </div>
             </ons-col>
         </ons-row>

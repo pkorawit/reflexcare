@@ -1,7 +1,6 @@
 @font-face{
     font-family: 'SukhumvitSet-Bold';
     font-style: normal;
-    
     src: 
     url('../fonts/SukhumvitSet-Bold.woff2') format('woff2'), /* Super Modern Browsers */
     url('../fonts/SukhumvitSet-Bold.woff') format('woff'), /* Modern Browsers */
@@ -57,11 +56,6 @@
 }
 
 *{
-    font-family: 'SukhumvitSet-Text';
-    color: #787878
-}
-
-body{
     font-family: 'SukhumvitSet-Text';
     color: #787878
 }
@@ -269,7 +263,7 @@ placholder{
 
 .verticalLine {
     border-right: 1px solid #3b3b3b47;
-    height: 55px;
+    height: 42px;
 }
 
 #canvas-container {
@@ -282,7 +276,7 @@ canvas {
 }
 
 .card{
-    padding-top: 5px
+    padding: 0px;
 }
 
 .contents{
@@ -294,12 +288,7 @@ canvas {
 .profiles{
     width: 90px;
     height: 90px;
-    background-image: url("../UI/aoi.jpg");
-    display: inline-block;
     border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
     box-shadow: 0 1px 5px rgba(0,0,0,.3);
     margin-left: 20px;
     margin-right: 20px
@@ -333,7 +322,7 @@ canvas {
 }
 
 .buttonText{
-    font-size: 16px
+    font-size: 14px
 }
 
 .gaugeViewButton{
@@ -359,7 +348,12 @@ canvas {
 }
 
 .page--material, .page--material__background{
-    background-color: #e7e4e4fd;
+    background-color: #fafafa;
+}
+
+.canvas{
+    display: block;
+    margin: auto
 }
 
 
@@ -388,7 +382,7 @@ canvas {
     }
     
     .buttonText{
-        font-size: 13px
+        font-size: 12px
     }
 
     .cardDevice{

@@ -14,11 +14,17 @@
 <body>
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
     <script id="template" type="x-tmpl-mustache">
-            <ons-card style="padding-top:7px;padding-bottom:7px;padding-left:7px;padding-right:7px;">
+            <ons-card>
                 <ons-row>
                     <ons-col class="center Sukhumvit-font marginAuto">
-                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>   
-                        <a onclick="imgPush">{{name}}</a>
+                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>
+                        <div>
+                            <ons-card class="center" style="width:90px">
+                                    <div>
+                                        <a onclick="imgPush({{id}})">{{name}}</a>
+                                    </div>
+                                </ons-card>
+                        </div>
                     </ons-col>
                     <ons-col class="center Sukhumvit-font verticalLine marginAuto">
                         <div class="color">Step</div>
@@ -36,10 +42,14 @@
             </ons-card>
     </script>
     <script id="familyTemplate" type="x-tmpl-mustache">
-        <div class="marginAuto" id="{{id}}">
-            <img src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
+        <div class="marginAuto" >
+            <img id="{{id}} onClick="ingPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
             <div>
-                {{name}}
+                <ons-card class="center" style="width:90px">
+                    <div>
+                        {{name}}
+                    </div>
+                </ons-card>
             </div>
         </div>
     </script>
@@ -50,6 +60,10 @@
 
     <script id="profileTamplate" type="x-tmpl-mustache">
             <img src="{{img}}" alt="" class="profile">
+    </script>
+
+    <script id="recentlyTemplate" type="x-tmpl-mustache">
+            <img id="{{id}}" src="{{img}}" alt="" class="profiles">
     </script>
     <script src="lib/OnsenUI/js/onsenui.min.js"></script>
     <script src="lib/jQuery/jquery-3.3.1.js"></script>
