@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    
+
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
     <script id="template" type="x-tmpl-mustache">
             <ons-card>
@@ -29,15 +29,15 @@
                     </ons-col>
                     <ons-col class="center Sukhumvit-font verticalLine marginAuto">
                         <div class="color">Step</div>
-                        <div>0000</div>
+                        <div>{{step}}</div>
                     </ons-col>
                     <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
-                        <div class="color">Distance</div>
-                        <div>0000 m.</div>
+                        <div class="color">Calories</div>
+                        <div>{{cal}} kcal</div>
                     </ons-col>
                     <ons-col class="center Sukhumvit-font verticalLine marginAuto">
                         <div class="color">Heart rate</div>
-                        <div>0000</div>
+                        <div>{{hr}}</div>
                     </ons-col>
                 </ons-row>
             </ons-card>
@@ -66,6 +66,16 @@
     <script id="recentlyTemplate" type="x-tmpl-mustache">
             <img id="{{id}}" src="{{img}}" alt="" class="profiles">
     </script>
+
+    <script id="stepTemplate" type="x-tmpl-mustache">
+        {{step}}
+    </script>
+    <script id="calTemplate" type="x-tmpl-mustache">
+        {{cal}} kcal
+    </script>
+    <script id="hrTemplate" type="x-tmpl-mustache">
+        {{hr}} bpm
+    </script>
     <script src="lib/OnsenUI/js/onsenui.min.js"></script>
     <script src="lib/jQuery/jquery-3.3.1.js"></script>
     <script src="lib/Chart/Chart.bundle.js"></script>
@@ -76,7 +86,7 @@
     <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script src="js/gaugeView.js"></script>
-    
+
 </body>
 
 </html>

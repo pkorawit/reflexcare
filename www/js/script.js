@@ -1,12 +1,12 @@
 ons.platform.select('android');
 var data = {
     names: [
-        {id:"0" , name: "Waree", img:"https://randomuser.me/api/portraits/med/women/44.jpg", meta: 3, heart: 2, motion: 4 },
-        {id:"1" , name: "Piyada", img:"https://randomuser.me/api/portraits/med/women/61.jpg",meta: 1, heart: 1, motion: 1  },
-        {id:"2" , name: "Somjai", img:"https://randomuser.me/api/portraits/med/men/4.jpg",meta: 1.9, heart: 2.6, motion: 2.7 },
-        {id:"3" , name: "Nattida", img:"https://randomuser.me/api/portraits/med/women/26.jpg",meta: 2.3, heart: 3, motion: 4 },
-        {id:"4" , name: "Thida", img:"https://randomuser.me/api/portraits/med/women/76.jpg",meta: 3.5, heart: 4.5, motion: 4 },
-        {id:"5" , name: "Somsak", img:"https://randomuser.me/api/portraits/med/men/76.jpg",meta: 4, heart: 4.1, motion: 3.9 },
+        {id:"0" , name: "Waree", img:"https://randomuser.me/api/portraits/med/women/44.jpg", meta: 3, heart: 2, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"1" , name: "Piyada", img:"https://randomuser.me/api/portraits/med/women/61.jpg",meta: 1, heart: 1, motion: 1, step: 7059, cal: 655, hr: 72  },
+        {id:"2" , name: "Somjai", img:"https://randomuser.me/api/portraits/med/men/4.jpg",meta: 1.9, heart: 2.6, motion: 2.7, step: 1226, cal: 201, hr: 88 },
+        {id:"3" , name: "Nattida", img:"https://randomuser.me/api/portraits/med/women/26.jpg",meta: 2.3, heart: 3, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"4" , name: "Thida", img:"https://randomuser.me/api/portraits/med/women/76.jpg",meta: 3.5, heart: 4.5, motion: 4, step: 5124, cal: 530, hr: 75 },
+        {id:"5" , name: "Somsak", img:"https://randomuser.me/api/portraits/med/men/76.jpg",meta: 4, heart: 4.1, motion: 3.9, step: 5124, cal: 530, hr: 75 },
         
     ]
 }
@@ -39,14 +39,24 @@ ons.ready(function () {
             $('#target').append(rendered);
         }
         var thumbnailTemplate = $('#thumbnailTamplate').html();
-        var img = data.names[defaultId];
-        var imgRendered = Mustache.render(thumbnailTemplate, img);
+        var query = data.names[defaultId];
+        var imgRendered = Mustache.render(thumbnailTemplate, query);
         $('#thumbnailIMG').html(imgRendered);
 
         var profileTemplate = $('#profileTamplate').html();
-        var img = data.names[defaultId];
-        var profileRendered = Mustache.render(profileTemplate, img);
+        var profileRendered = Mustache.render(profileTemplate, query);
         $('#profileTarget').html(profileRendered);
+
+        var stepTemplate = $('#stepTemplate').html();
+        var callTemplate = $('#calTemplate').html();
+        var hrTemplate = $('#hrTemplate').html();
+        var stepTemplateRendered = Mustache.render(stepTemplate, query);
+        var calTemplateRendered = Mustache.render(callTemplate, query);
+        var hrTemplateRendered = Mustache.render(hrTemplate, query);
+        $('#step').html(stepTemplateRendered);
+        $('#cal').html(calTemplateRendered);
+        $('#hr').html(hrTemplateRendered);
+        
     });
     
     var thumbnailTemplate = $('#thumbnailTamplate').html();
@@ -362,5 +372,15 @@ document.addEventListener('show', function (event) {
         var img = data.names[id];
         var profileRendered = Mustache.render(profileTemplate, img);
         $('#profilePushed').html(profileRendered);
+        var query = data.names[id];
+        var stepTemplate = $('#stepTemplate').html();
+        var callTemplate = $('#calTemplate').html();
+        var hrTemplate = $('#hrTemplate').html();
+        var stepTemplateRendered = Mustache.render(stepTemplate, query);
+        var calTemplateRendered = Mustache.render(callTemplate, query);
+        var hrTemplateRendered = Mustache.render(hrTemplate, query);
+        $('#stepPush').html(stepTemplateRendered);
+        $('#calPush').html(calTemplateRendered);
+        $('#hrPush').html(hrTemplateRendered);
     }
 });
