@@ -3,3 +3,5 @@ hooks
 platforms
 plugins
 res
+*.keystore
+*.apk
