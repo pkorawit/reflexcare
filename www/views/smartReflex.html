@@ -195,7 +195,7 @@
                     $('#step').html(stepTemplateRendered);
                     $('#cal').html(calTemplateRendered);
                     $('#hr').html(hrTemplateRendered);
-
+                    ChartBuilder.createRadarchart("myChart", data.meta, data.heart, data.motion);
                 });
             }
         })

@@ -54,6 +54,41 @@
         </ons-row>
     </ons-bottom-toolbar>
 
+    <script id="alertTemplate" type="x-tmpl-mustache">
+        <ons-card>
+            <ons-row>
+                <ons-col class="center Sukhumvit-font marginAuto">
+                    <div style="background-image:url('{{img}}')" class="smartProfile72px smartProfileAlert" onclick="imgPush({{id}})" id="{{id}}"></div>
+                    <div>
+                        <ons-card class="center" style="width:90px">
+                                <div>
+                                    <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                </div>
+                        </ons-card>
+                    </div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
+                    <div class="color">Steps</div>
+                    <div>{{step}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
+                    <div style="height:5px"></div>
+                    <div class="color">Distance</div>
+                    <div>{{cal}} kcal</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
+                    <div class="color">Heart rate</div>
+                    <div>{{hr}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine">
+                        <canvas id="radarTarget{{id}}" width="80" height="180"></canvas>
+                </ons-col>
+            </ons-row>
+        </ons-card>
+    </script>
+
     <script id="template" type="x-tmpl-mustache">
             <ons-card>
                 <ons-row>
@@ -126,6 +161,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
     <script src="js/smartreflex.js"></script>
+    <script src="js/chart.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
         

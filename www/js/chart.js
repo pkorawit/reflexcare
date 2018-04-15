@@ -1,22 +1,24 @@
-ons.ready(function () {
-    var ctx = document.getElementById("myChart").getContext('2d');
-    console.log(ctx);
-    var myChart = new Chart(ctx, {
+var ChartBuilder = {
+    createRadarchart: function(renderTarget, metabolismRate, heartRate, motionRate, alert){
+        var rgba = "";
+    if(alert){
+        rgba = "rgba(255, 0, 0, 0.6)";
+    }else{
+        rgba = "rgba(75, 192, 192, 0.2)";
+    }
+    var ctx = document.getElementById(renderTarget).getContext('2d');
+    myChart = new Chart(ctx, {
         type: 'radar',
         data: {            //Top          //Right       //Left
-            labels: ["Metabolism fit", "Heart fit", "Motion fit"],
+            labels: ["Heart fit",  "Motion fit", "Metabolism fit"],
             datasets: [{
                       //top,right,left  
-                data: [2, 5, 3],
+                data: [heartRate, motionRate, metabolismRate],
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    rgba
                 ],
                 borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    rgba
                 ],
                 borderWidth: 1
             }]
@@ -31,7 +33,7 @@ ons.ready(function () {
                 },
                 pointLabels: {
                     fontColor: "black",
-                    fontSize: 15
+                    fontSize: 13,
                 }
             },
            
@@ -47,5 +49,58 @@ ons.ready(function () {
             }
         }
     });
-});
-
+    myChart.update();
+    },
+    createConnectionRadarchart: function(renderTarget, metabolismRate, heartRate, motionRate, alert){
+        var rgba = "";
+    if(alert){
+        rgba = "rgba(255, 0, 0, 0.6)";
+    }else{
+        rgba = "rgba(75, 192, 192, 0.2)";
+    }
+    var ctx = document.getElementById(renderTarget).getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {            //Top          //Right       //Left
+            labels: ["", "", ""],
+            datasets: [{
+                      //top,right,left  
+                data: [metabolismRate, heartRate, motionRate],
+                backgroundColor: [
+                    rgba
+                ],
+                borderColor: [
+                    rgba
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {            
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 5,
+                    stepSize: 1,
+                    fontSize: 8
+                },
+                pointLabels: {
+                    fontColor: "black",
+                    fontSize: 5,
+                },
+            },
+            legend: {
+                display: false,
+            },
+            tooltips: {
+                callbacks: {
+                   label: function(tooltipItem) {
+                          return tooltipItem.yLabel;
+                   }
+                }
+            }
+        }
+    });
+    myChart.update();
+    }
+}
