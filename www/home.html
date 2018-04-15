@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="lib/OnsenUI/css/onsenui.css">
     <link rel="stylesheet" href="lib/OnsenUI/css/onsen-css-components.min.css">
     <link rel="stylesheet" type="text/css" href="css/default.css">
-    <title>ReflexCare</title>
+    <title>SmartReflex</title>
 </head>
 
 <body>
 
-    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;" page="views/smartReflex.html"></ons-navigator>
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;"></ons-navigator>
 
     <ons-toolbar id="toolsbar">
         <div class="toolbar__left center">
@@ -21,7 +21,7 @@
         </div>
         <div id="pageTitle" class="toolbar__center welcomeHeader">SMART REFLEX</div>
         <div class="toolbar__right avatar">
-            <div id="thumbnailIMG"></div>
+            <div id="thumbnailIMG" onclick="changeTab('views/personal.html', 'PERSONAL INFO', 3)"></div>
         </div>
     </ons-toolbar>
 
@@ -119,26 +119,47 @@
     <script src="lib/OnsenUI/js/onsenui.min.js"></script>
     <script src="lib/jQuery/jquery-3.3.1.js"></script>
     <script src="lib/Chart/Chart.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <script src="lib/Mustache/mustache.js"></script>
     <script src="lib/Gauge/gauge.js"></script>
     <script src="js/gaugeView.js"></script>
     <script src="js/utils.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+    <script src="js/smartreflex.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
+        
+        //Hide default back button
+        document.querySelector('ons-back-button').hide();
+        
+        //Get logon user info from backend
+        var currentUser;
+        SmartReflex.getUser("waree@smartreflex.info").then(function (message, user) {
+            
+            //Init left thumbnail on toolbar
+            var thumbnailTemplate = $('#thumbnailTamplate').html();
+            var data = { img: user.profile.photo };
+            currentUser = user;
+            var imgRendered = Mustache.render(thumbnailTemplate, data);
+            $('#thumbnailIMG').html(imgRendered);
+
+            changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+        });
+
         function changeTab(page, pagename, highlight) {
             $('#pageTitle').html(pagename);
             document.querySelector('ons-navigator').resetToPage(page, {
                 data: {
-                    title: pagename
+                    title: pagename,
+                    currentUser : currentUser
                 }
             });
-            for(var tab=0;tab<5;tab++){
-                var target = '#tab' + tab; 
-                console.log(target);
-                if(highlight == tab){
+            for (var tab = 0; tab < 4; tab++) {
+                var target = '#tab' + tab;
+                if (highlight == tab) {
                     $(target).addClass('transparent-Bottom-Toolbar');
                 }
-                else{
+                else {
                     $(target).removeClass('transparent-Bottom-Toolbar');
                 }
             }

@@ -70,8 +70,9 @@
         <script>
                 document.addEventListener('init', function (event) {
                     var page = event.target;
+                    var currentUser = page.data.currentUser;
                     if (page.id == "smartCare") {
-                        document.querySelector('ons-back-button').hide();
+                        console.log(currentUser.profile.userid);
                     }
                 })
         </script>

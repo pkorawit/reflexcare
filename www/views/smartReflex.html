@@ -165,8 +165,38 @@
     <script>
         document.addEventListener('init', function (event) {
             var page = event.target;
+            var currentUser = page.data.currentUser;
             if (page.id == "smartReflex") {
-                document.querySelector('ons-back-button').hide();
+
+                SmartReflex.getScore(currentUser.profile.userid).then(function (message, user) {
+                    var data = {
+                        id: "0",
+                        name: currentUser.profile.firstname,
+                        img: currentUser.profile.photo,
+                        meta: user.today.scores.metabolism,
+                        heart: user.today.scores.heart,
+                        motion: user.today.scores.motion,
+                        step: user.today.steps,
+                        cal: user.today.distance,
+                        hr: user.today.HR
+                    }
+                    //Render profile photo
+                    var profileTemplate = $('#profileTamplate').html();
+                    var profileRendered = Mustache.render(profileTemplate, data);
+                    $('#profileTarget').html(profileRendered);
+
+                    //Render today health data, HR, steps, distance
+                    var stepTemplate = $('#stepTemplate').html();
+                    var callTemplate = $('#calTemplate').html();
+                    var hrTemplate = $('#hrTemplate').html();
+                    var stepTemplateRendered = Mustache.render(stepTemplate, data);
+                    var calTemplateRendered = Mustache.render(callTemplate, data);
+                    var hrTemplateRendered = Mustache.render(hrTemplate, data);
+                    $('#step').html(stepTemplateRendered);
+                    $('#cal').html(calTemplateRendered);
+                    $('#hr').html(hrTemplateRendered);
+
+                });
             }
         })
     </script>
