@@ -1,0 +1,80 @@
+{
+    "profile": {
+        "userid": "qawjJtOfeqQPpttlMTWG",
+        "firstname": "Waree",
+        "lastname": "Jaidee",
+        "gender": "F",
+        "DOB": "1970-04-09T17:13:10.247Z"
+    },
+    "health": {
+        "general": {
+            "height": 168,
+            "weight": 47,
+            "waist": 25
+        },
+        "clinical": [{
+            "timestamp": "2018-04-09T17:13:10.247Z",
+            "HR": 70,
+            "BPS": 120,
+            "BPD": 60,
+            "FBS": 89
+        }],
+        "today": {
+            "steps": 9040,
+            "distance": 5596,
+            "HR": 70,
+            "calories": 2502,
+            "fitscores": {
+                "heart": 1,
+                "metabolism": 2,
+                "motion": 1
+            },
+            "recommedation": ["หลีกเลี่ยงการออกกำลังกายหนัก", "หลีกเลี้ยงเครื่องดื่มแอลกอฮอล์", "นอนหลับให้เพียงพอ", "ควบคุมปริมาณแคลลอรี่"]
+        },
+        "summary": {
+            "fitscores": {
+                "heart": {
+                    "day": 3,
+                    "week": 4,
+                    "month": 4,
+                    "year": 4
+                },
+                "metabolism": {
+                    "day": 3,
+                    "week": 4,
+                    "month": 4,
+                    "year": 4
+                },
+                "motion": {
+                    "day": 3,
+                    "week": 4,
+                    "month": 4,
+                    "year": 4
+                }
+            }
+        },
+        "history": {
+            "fitscores": {
+                "heart": {
+                    "day": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "week": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "month": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "year": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5]
+                },
+                "metabolism": {
+                    "day": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "week": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "month": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "year": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5]
+                },
+                "motion": {
+                    "day": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "week": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "month": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5],
+                    "year": [3, 2, 4, 4, 5, 4, 4, 3, 4, 5]
+                }
+            }
+        }
+    }
+
+}

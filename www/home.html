@@ -7,172 +7,86 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" href="lib/OnsenUI/css/onsenui.css">
     <link rel="stylesheet" href="lib/OnsenUI/css/onsen-css-components.min.css">
-    <script src="lib/OnsenUI/js/onsenui.min.js"></script>
-    <script src="lib/jQuery/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/default.css">
     <title>ReflexCare</title>
 </head>
 
 <body>
-    <ons-navigator swipeable id="mainNavigator" page="index.html"></ons-navigator>
-    <!-- INDEX -->
-    <template id="index.html">
-        <ons-page id="index">
-            <ons-toolbar id="toolsbar">
-                <div class="toolbar__left center">
-                    <div class="arrow"></div>
-                </div>
-                <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
-                </div>
-            </ons-toolbar>
-            <ons-row>
-                <ons-col>
-                    <div class="welcomeCover"></div>
-                    <div class="profile"></div>
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <ons-col>
-                    <div style="margin-bottom:35px"></div>
-                </ons-col>
-            </ons-row>
-            <ons-row>
-                <canvas style="font-family: 'SukhumvitSet-Bold';" id="myChart" width="400" height="400"></canvas>
-            </ons-row>
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-                <div id="indexPush" style="margin:auto">
-                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-bottom-toolbar>
-        </ons-page>
-    </template>
-    <!-- SmartCare -->
-    <template id="smartCare.html">
-        <ons-page id="smartCare">
-            <ons-toolbar id="toolsbar">
-                <div class="toolbar__left center">
-                    <div class="arrow"></div>
-                </div>
-                <div class="toolbar__center welcomeHeader">SMART CARE</div>
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
-                </div>
-            </ons-toolbar>
-            <ons-row>
-                <ons-col>
 
-                </ons-col>
-            </ons-row>
-            <ons-row>
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
+    <script id="template" type="x-tmpl-mustache">
+            <ons-card>
+                <ons-row>
+                    <ons-col class="center Sukhumvit-font marginAuto">
+                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>
+                        <div>
+                            <ons-card class="center" style="width:90px">
+                                    <div>
+                                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                    </div>
+                            </ons-card>
+                        </div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Step</div>
+                        <div>{{step}}</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
+                        <div class="color">Calories</div>
+                        <div>{{cal}} kcal</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Heart rate</div>
+                        <div>{{hr}}</div>
+                    </ons-col>
+                </ons-row>
+            </ons-card>
+    </script>
+    <script id="familyTemplate" type="x-tmpl-mustache">
+        <div class="marginAuto">
+            <img id="{{id}}" onclick="imgPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
+            <div>
+                <ons-card class="center" style="width:90px">
+                    <div>
+                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                    </div>
+                </ons-card>
+            </div>
+        </div>
+    </script>
 
-            </ons-row>
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-                <div id="indexPush" style="margin:auto">
-                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-bottom-toolbar>
-        </ons-page>
-    </template>
-    <!-- Personal -->
-    <template id="personal.html">
-        <ons-page id="personal">
-            <ons-toolbar id="toolsbar">
-                <div class="toolbar__left center">
-                    <div class="arrow"></div>
-                </div>
-                <div class="toolbar__center welcomeHeader">PERSONAL INFO</div>
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
-                </div>
-            </ons-toolbar>
-            <ons-row>
-                <ons-col>
+    <script id="thumbnailTamplate" type="x-tmpl-mustache">
+        <img onclick="imgPushToInfo()" id="{{id}}" src="{{img}}" alt="" class="thumbnail">
+    </script>
 
-                </ons-col>
-            </ons-row>
-            <ons-row>
+    <script id="profileTamplate" type="x-tmpl-mustache">
+            <img src="{{img}}" alt="" class="profile">
+    </script>
 
-            </ons-row>
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-                <div id="indexPush" style="margin:auto">
-                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-bottom-toolbar>
-        </ons-page>
-    </template>
-    <!-- MoreDevice -->
-    <template id="moreDevice.html">
-        <ons-page id="moreDevice">
-            <ons-toolbar id="toolsbar">
-                <div class="toolbar__left center">
-                    <div class="arrow"></div>
-                </div>
-                <div class="toolbar__center welcomeHeader">DEVICES</div>
-                <div class="toolbar__right avatar">
-                    <div class="thumbnail"></div>
-                </div>
-            </ons-toolbar>
-            <ons-row>
-                <ons-col>
+    <script id="recentlyTemplate" type="x-tmpl-mustache">
+            <img id="{{id}}" src="{{img}}" alt="" class="profiles">
+    </script>
 
-                </ons-col>
-            </ons-row>
-            <ons-row>
-
-            </ons-row>
-            <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-                <div id="indexPush" style="margin:auto">
-                    <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-bottom-toolbar>
-        </ons-page>
-    </template>
-
-    
-    
+    <script id="stepTemplate" type="x-tmpl-mustache">
+        {{step}}
+    </script>
+    <script id="calTemplate" type="x-tmpl-mustache">
+        {{cal}} kcal
+    </script>
+    <script id="hrTemplate" type="x-tmpl-mustache">
+        {{hr}} bpm
+    </script>
+    <script src="lib/OnsenUI/js/onsenui.min.js"></script>
+    <script src="lib/jQuery/jquery-3.3.1.js"></script>
+    <script src="lib/Chart/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <script src="lib/Gauge/gauge.js"></script>
+    <script src="js/utils.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
-    <script src="js/chart.js"></script>
+    <script src="js/gaugeView.js"></script>
+
 </body>
 
 </html>

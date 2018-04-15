@@ -12,7 +12,9 @@
     "dependencies": {
         "cordova-android": "^7.0.0",
         "cordova-browser": "^5.0.3",
-        "cordova-plugin-whitelist": "^1.3.3"
+        "cordova-plugin-imagepicker-pro": "^1.0.2",
+        "cordova-plugin-whitelist": "^1.3.3",
+        "jquery": "^3.3.1"
     },
     "cordova": {
         "plugins": {
