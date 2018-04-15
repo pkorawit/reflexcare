@@ -12,11 +12,27 @@
   "dependencies": {
     "cordova-android": "^7.0.0",
     "cordova-browser": "^5.0.3",
-    "cordova-plugin-whitelist": "^1.3.3"
+    "cordova-plugin-browsertab": "^0.2.0",
+    "cordova-plugin-buildinfo": "^2.0.1",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-customurlscheme": "^4.3.0",
+    "cordova-plugin-inappbrowser": "^2.0.2",
+    "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-universal-links-plugin": "git+https://github.com/walteram/cordova-universal-links-plugin.git"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-plugin-browsertab": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-customurlscheme": {
+        "URL_SCHEME": "info.smartreflex.android",
+        "ANDROID_SCHEME": " ",
+        "ANDROID_HOST": " ",
+        "ANDROID_PATHPREFIX": "/"
+      },
+      "cordova-universal-links-plugin": {}
     },
     "platforms": [
       "browser",
