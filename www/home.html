@@ -128,7 +128,9 @@
     <script src="js/smartreflex.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
-
+        
+        //Force android UI
+        ons.platform.select('android');
         //Hide default back button
         document.querySelector('ons-back-button').hide();
 
