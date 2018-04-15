@@ -87,8 +87,6 @@ var SmartReflex = {
                 .catch(function(error) {                    
                     deferred.resolve("Cannot update user data", url);
                 });
-                
-                deferred.resolve(url);
             })
         });
 
