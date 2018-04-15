@@ -69,26 +69,43 @@ var SmartReflex = {
     },
 
     //Save profile photo
-    saveProfilePhoto: function(file, userid){
+    saveProfilePhoto: function (file, userid) {
 
         var deferred = new $.Deferred();
         var photoRef = storageRef.child("photos/" + userid);
-        
+
         photoRef.put(file).then(function (snapshot) {
-            photoRef.getDownloadURL().then(function (url) {          
-                
+            photoRef.getDownloadURL().then(function (url) {
+
                 var docRef = db.collection("users").doc(userid);
                 docRef.update({
-                    "profile.photo" : url
+                    "profile.photo": url
                 })
-                .then(function() {
-                    deferred.resolve("Updated", url);
-                })
-                .catch(function(error) {                    
-                    deferred.resolve("Cannot update user data", url);
-                });
+                    .then(function () {
+                        deferred.resolve("Updated", url);
+                    })
+                    .catch(function (error) {
+                        deferred.resolve("Cannot update user data", url);
+                    });
             })
         });
+
+        return deferred.promise();
+    },
+
+    //Save profile photo
+    updateUser: function (user, userid) {
+
+        var deferred = new $.Deferred();
+
+        var docRef = db.collection("users").doc(userid);
+        docRef.update(user)
+            .then(function () {
+                deferred.resolve("Updated");
+            })
+            .catch(function (error) {
+                deferred.resolve("Cannot update profile");
+            });
 
         return deferred.promise();
     }
