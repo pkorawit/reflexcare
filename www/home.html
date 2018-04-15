@@ -128,21 +128,21 @@
     <script src="js/smartreflex.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>
-        
+
         //Hide default back button
         document.querySelector('ons-back-button').hide();
-        
+
         //Get logon user info from backend
         var currentUser;
         SmartReflex.getUser("waree@smartreflex.info").then(function (message, user) {
-            
+
             //Init left thumbnail on toolbar
             var thumbnailTemplate = $('#thumbnailTamplate').html();
             var data = { img: user.profile.photo };
             currentUser = user;
             var imgRendered = Mustache.render(thumbnailTemplate, data);
             $('#thumbnailIMG').html(imgRendered);
-
+            
             changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
         });
 
@@ -151,7 +151,7 @@
             document.querySelector('ons-navigator').resetToPage(page, {
                 data: {
                     title: pagename,
-                    currentUser : currentUser
+                    currentUser: currentUser
                 }
             });
             for (var tab = 0; tab < 4; tab++) {
