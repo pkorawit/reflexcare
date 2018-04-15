@@ -25,7 +25,7 @@
     <ons-card style="border-radius:10px;margin: 10px;padding: 10px;">
 
 
-        <div style="font-size:20px; color:red;text-align: center;" font-family: 'SukhumvitSet-Text';>ข้อมูลพื้นฐาน</div>
+        <div style="font-size:17px; color:red;text-align: center;" font-family: 'SukhumvitSet-Text';>ข้อมูลพื้นฐาน</div>
         <div class="card__content">
             ชื่อ
             <div class="left">
@@ -36,27 +36,11 @@
                 <ons-input style="width:45%" rows="1" placeholder="Last name"></ons-input>
             </div>
             <ons-col style="margin-top:30px">
-                <div class="left">
-                    วัน | เดือน | ปีเกิด
-                    <form action="" name="someform">
-                        <select id="daydropdown"></select>
-                        <select class="month">
-                                <option>มกราคม</option>
-                                <option>กุมภาพันธ์</option>
-                                <option>มีนาคม</option>
-                                <option>เมษายน</option>
-                                <option>พฤษภาคม</option>
-                                <option>มิถุนายน</option>
-                                <option>กรกฎาคม</option>
-                                <option>สิงหาคม</option>
-                                <option>กันยายน</option>
-                                <option>ตุลาคม</option>
-                                <option>พฤศจิกายน</option>
-                                <option>ธันวาคม</option>
-                              </select>
-                        <select id="yeardropdown"></select>
-                    </form>
-                </div>
+                <div class="left">วัน | เดือน | ปีเกิด
+                    <br>
+                    <label for="meeting"></label><input type="date"/>
+                </form>
+            </div>
             </ons-col>
 
             <ons-list-item tappable>
@@ -81,19 +65,27 @@
                 </div>
 
                 <form action="">
-                    <select id="weightdropdown"></select>
-                    <select id="heighdropdown"></select>
-                    <select id="waistlinedropdown"></select>
+                    <select id="weightdropdown">
+                            <option value="" selected="selected" disabled="disabled">กก.</option>
+                    </select>
+                    <select id="heighdropdown">
+                            <option value="" selected="selected" disabled="disabled">ซม.</option>
+                    </select>
+                    <select id="waistlinedropdown">
+                            <option value="" selected="selected" disabled="disabled">นิ้ว</option>
+                    </select>
                 </form>
             </div>
 
             <ons-col style="margin-top:30px">
                 <div class="center">
                     <ons-button class="b1" id="finish">เสร็จสิ้น</ons-button>
-                    <ons-button class="b2" id="datacare">ข้อมูลสุขภาพเชิงลึก</ons-button>
-                    <p class="red">*อัพเดทข้อมูลสุขภาพเชิงลึกเพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
+                    <ons-button class="b2" id="datacare">ข้อมูลสุขภาพแบบละเอียด</ons-button>
+                    <p class="red">*อัพเดทข้อมูลสุขภาพแบบละเอียด</p>
+                    <p class="red">เพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
                 </div>
             </ons-col>
+            <ons-col style="margin-top:50px"></ons-col>
         </div>
         </div>
     </ons-card>
@@ -105,5 +97,41 @@
                     document.querySelector('ons-back-button').hide();
                 }
             })
+    </script>
+    <script>(function () {
+        var elm = document.getElementById('weightdropdown'), // get the select
+            df = document.createDocumentFragment();
+        for (var i = 2; i <= 150; i++) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.appendChild(document.createTextNode(i));
+            df.appendChild(option); // append 
+        }
+        elm.appendChild(df);
+    }());
+    (function () {
+            var elm = document.getElementById('heighdropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 100; i <= 200; i++) {
+                var option = document.createElement('option'); // create the option element
+                option.value = i; // set the value property
+                option.appendChild(document.createTextNode(i));
+                df.appendChild(option); // append
+            }
+            elm.appendChild(df);
+        }());
+
+           (function () {
+            var elm = document.getElementById('waistlinedropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 20; i <= 80; i++) {
+                var option = document.createElement('option');
+                option.value = i; // set the value property
+                option.appendChild(document.createTextNode(i));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+
     </script>
 </ons-page>
