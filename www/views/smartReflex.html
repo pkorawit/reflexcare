@@ -1,15 +1,5 @@
 <ons-page id="smartReflex">
-    <ons-toolbar id="toolsbar">
-        <!--Nav Bar-->
-        <div class="toolbar__left center">
-            <ons-back-button></ons-back-button>
-        </div>
-        <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
-        <div class="toolbar__right avatar">
-            <div id="thumbnailIMG"></div>
-        </div>
-    </ons-toolbar>
-    <!--Nav Bar-->
+
     <ons-row>
         <!--Cover-->
         <ons-col>
@@ -17,7 +7,6 @@
             <div id="profileTarget"></div>
         </ons-col>
     </ons-row>
-    <!--Nav Bar-->
     <div>
         <ons-row class="right" style="margin-bottom:7px;margin-top:7px">
             <!--Content-->
@@ -169,41 +158,16 @@
                 </ons-row>
             </ons-carousel-item>
         </ons-carousel>
-
-
-
         <div id="target">
-
         </div>
-
-
-
         <!--Content-->
     </div>
-    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-        <!--Bottom-->
-        <ons-row>
-            <ons-col width="25%">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:7px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:4px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="indexPush" style="margin:auto" class="transparent-Bottom-Toolbar">
-                    <img style="WIDTH:64px;padding-top:4px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-col>
-        </ons-row>
-    </ons-bottom-toolbar>
-    <!--Bottom-->
+    <script>
+        document.addEventListener('init', function (event) {
+            var page = event.target;
+            if (page.id == "smartReflex") {
+                document.querySelector('ons-back-button').hide();
+            }
+        })
+    </script>
 </ons-page>

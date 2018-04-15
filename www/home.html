@@ -13,7 +13,47 @@
 
 <body>
 
-    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;" page="views/smartReflex.html"></ons-navigator>
+
+    <ons-toolbar id="toolsbar">
+        <div class="toolbar__left center">
+            <ons-back-button></ons-back-button>
+        </div>
+        <div id="pageTitle" class="toolbar__center welcomeHeader">SMART REFLEX</div>
+        <div class="toolbar__right avatar">
+            <div id="thumbnailIMG"></div>
+        </div>
+    </ons-toolbar>
+
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
+        <ons-row>
+            <ons-col width="25%">
+                <div id="tab1" style="margin:auto" class="transparent-Bottom-Toolbar">
+                    <img style="WIDTH:64px;padding-top:4px" onclick="changeTab('views/smartReflex.html', 'SMART REFLEX', 1);" src="UI/ai/0.75x/reflex.png"
+                        alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="tab2" style="margin:auto">
+                    <img style="WIDTH:52px;padding-top:7px" onclick="changeTab('views/smartCare.html', 'SMART CARE', 2)" src="UI/ai/0.75x/smartcare.png"
+                        alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="tab3" style="margin:auto">
+                    <img style="WIDTH:68px;padding-top:7px" onclick="changeTab('views/personal.html', 'PERSONAL INFO', 3)" src="UI/ai/0.75x/personal.png"
+                        alt="">
+                </div>
+            </ons-col>
+            <ons-col width="25%">
+                <div id="tab4" style="margin:auto">
+                    <img style="WIDTH:60px;padding-top:4px" onclick="changeTab('views/moreDevice.html', 'DEVICES', 4)" src="UI/ai/0.75x/moreDevice.png"
+                        alt="">
+                </div>
+            </ons-col>
+        </ons-row>
+    </ons-bottom-toolbar>
+
     <script id="template" type="x-tmpl-mustache">
             <ons-card>
                 <ons-row>
@@ -81,11 +121,29 @@
     <script src="lib/Chart/Chart.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
     <script src="lib/Gauge/gauge.js"></script>
+    <script src="js/gaugeView.js"></script>
     <script src="js/utils.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="js/script.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
-    <script src="js/gaugeView.js"></script>
+    <script>
+        function changeTab(page, pagename, highlight) {
+            $('#pageTitle').html(pagename);
+            document.querySelector('ons-navigator').resetToPage(page, {
+                data: {
+                    title: pagename
+                }
+            });
+            for(var tab=0;tab<5;tab++){
+                var target = '#tab' + tab; 
+                console.log(target);
+                if(highlight == tab){
+                    $(target).addClass('transparent-Bottom-Toolbar');
+                }
+                else{
+                    $(target).removeClass('transparent-Bottom-Toolbar');
+                }
+            }
+        }
+    </script>
 
 </body>
 

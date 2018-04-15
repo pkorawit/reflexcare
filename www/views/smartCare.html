@@ -1,14 +1,5 @@
 
     <ons-page id="smartCare">
-        <ons-toolbar id="toolsbar">
-            <div class="toolbar__left center">
-                <ons-back-button></ons-back-button>
-            </div>
-            <div class="toolbar__center welcomeHeader">SMART CARE</div>
-            <div class="toolbar__right avatar">
-                    <div id="thumbnailCare"></div>
-            </div>
-        </ons-toolbar>
         <ons-row style="margin-top:20px">
             <ons-col class="center">
                 <div>
@@ -76,29 +67,12 @@
 
                 </div>
         </ons-row>
-        
-
-        <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-            <ons-row>
-                <ons-col width="25%">
-                    <div id="smartPush" style="margin:auto" class="transparent-Bottom-Toolbar">
-                        <img style="WIDTH:52px;padding-top:7px" src="UI/ai/0.75x/smartcare.png" alt="">
-                    </div>
-                </ons-col>
-                <ons-col width="25%">
-                    <div id="personalPush" style="margin:auto">
-                        <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                    </div>
-                </ons-col>
-                <ons-col width="25%">
-                    <div id="moreDevicePush" style="margin:auto">
-                        <img style="WIDTH:60px;padding-top:4px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                    </div>
-                </ons-col>
-                <ons-col width="25%">
-                    <div id="indexPush" style="margin:auto">
-                        <img style="WIDTH:64px;padding-top:4px" src="UI/ai/0.75x/reflex.png" alt="">
-                    </div>
-                </ons-col>
-            </ons-row>            
-        </ons-bottom-toolbar>
+        <script>
+                document.addEventListener('init', function (event) {
+                    var page = event.target;
+                    if (page.id == "smartCare") {
+                        document.querySelector('ons-back-button').hide();
+                    }
+                })
+        </script>
+    </ons-page>
