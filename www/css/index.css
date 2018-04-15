@@ -29,7 +29,7 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background:url('../UI/logo/0.75x/Asset 1ldpi.png') no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
     top:50%;
@@ -94,4 +94,24 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.headerText{
+    font-size: 25px;
+    font-family: 'SukhumvitSet-Bold';
+    color: #787878;
+}
+
+.subtitleText{
+    font-family: 'SukhumvitSet-Bold';
+    font-size: 15px;
+    color: #787878;
+}
+
+.text-Shadow{
+    text-shadow: 0.1px 0.1px 10px #9b9b9c;
+}
+
+.text-Spacing{
+    letter-spacing: 2.5px;
 }

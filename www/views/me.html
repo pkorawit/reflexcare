@@ -1,18 +1,33 @@
 <ons-page id="me">
-    <ons-toolbar>
-        <div class="left">
-            <ons-back-button>Me</ons-back-button>
+    <ons-toolbar id="toolsbar">
+        <div class="toolbar__left center">
+            <div class="arrow"></div>
         </div>
-        <div class="center"></div>
+        <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
+        <div class="toolbar__right avatar">
+            <div class="thumbnail"></div>
+        </div>
     </ons-toolbar>
+    <ons-row>
+        <ons-col>
 
-    <p>This is the second page.</p>
-    <script>
-        document.addEventListener('init', function (event) {
-            var page = event.target;
-            if (page.id === 'me') {
-                page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
-            }
-        });
-    </script>
+        </ons-col>
+    </ons-row>
+    <ons-row>
+
+    </ons-row>
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
+        <div id="smartcare" style="margin:auto">
+            <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
+        </div>
+    </ons-bottom-toolbar>
 </ons-page>

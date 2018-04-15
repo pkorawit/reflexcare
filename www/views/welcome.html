@@ -1,20 +1,33 @@
 <ons-page id="welcome">
-    <ons-toolbar>
-        <div class="center">Welcome</div>
+    <ons-toolbar id="toolsbar">
+        <div class="toolbar__left center">
+            <div class="arrow"></div>
+        </div>
+        <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
+        <div class="toolbar__right avatar">
+            <div class="thumbnail"></div>
+        </div>
     </ons-toolbar>
     <ons-row>
-            <ons-col class="avatar"><div class="thumbnail"></div></ons-col>
+        <ons-col>
+            <div class="welcomeCover"></div>
+        </ons-col>
     </ons-row>
     <ons-row>
-            <div class="text-center">ข้อมูลของฉัน</div>
+
     </ons-row>
-    <script>
-        $('#push-button').click(function () {
-            document.querySelector('#mainNavigator').pushPage('views/me.html', {
-                data: {
-                    title: 'My Reflex'
-                }
-            });
-        })
-    </script>
+    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
+        <div id="smart" style="margin:auto">
+            <img style="WIDTH:52px;padding-top:6px" src="UI/ai/0.75x/smartcare.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:60px;padding-top:3px" src="UI/ai/0.75x/moreDevice.png" alt="">
+        </div>
+        <div style="margin:auto">
+            <img style="WIDTH:64px;padding-top:3px" src="UI/ai/0.75x/reflex.png" alt="">
+        </div>
+    </ons-bottom-toolbar>
 </ons-page>

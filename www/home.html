@@ -7,17 +7,86 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" href="lib/OnsenUI/css/onsenui.css">
     <link rel="stylesheet" href="lib/OnsenUI/css/onsen-css-components.min.css">
-    <script src="lib/OnsenUI/js/onsenui.min.js"></script>
-    <script src="lib/jQuery/jquery-3.3.1.js"></script>
     <link rel="stylesheet" type="text/css" href="css/default.css">
     <title>ReflexCare</title>
 </head>
 
 <body>
-    <ons-navigator swipeable id="mainNavigator" page="views/welcome.html"></ons-navigator>
 
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" page="views/smartReflex.html"></ons-navigator>
+    <script id="template" type="x-tmpl-mustache">
+            <ons-card>
+                <ons-row>
+                    <ons-col class="center Sukhumvit-font marginAuto">
+                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>
+                        <div>
+                            <ons-card class="center" style="width:90px">
+                                    <div>
+                                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                    </div>
+                            </ons-card>
+                        </div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Step</div>
+                        <div>{{step}}</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
+                        <div class="color">Calories</div>
+                        <div>{{cal}} kcal</div>
+                    </ons-col>
+                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                        <div class="color">Heart rate</div>
+                        <div>{{hr}}</div>
+                    </ons-col>
+                </ons-row>
+            </ons-card>
+    </script>
+    <script id="familyTemplate" type="x-tmpl-mustache">
+        <div class="marginAuto">
+            <img id="{{id}}" onclick="imgPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
+            <div>
+                <ons-card class="center" style="width:90px">
+                    <div>
+                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                    </div>
+                </ons-card>
+            </div>
+        </div>
+    </script>
+
+    <script id="thumbnailTamplate" type="x-tmpl-mustache">
+        <img onclick="imgPushToInfo()" id="{{id}}" src="{{img}}" alt="" class="thumbnail">
+    </script>
+
+    <script id="profileTamplate" type="x-tmpl-mustache">
+            <img src="{{img}}" alt="" class="profile">
+    </script>
+
+    <script id="recentlyTemplate" type="x-tmpl-mustache">
+            <img id="{{id}}" src="{{img}}" alt="" class="profiles">
+    </script>
+
+    <script id="stepTemplate" type="x-tmpl-mustache">
+        {{step}}
+    </script>
+    <script id="calTemplate" type="x-tmpl-mustache">
+        {{cal}} kcal
+    </script>
+    <script id="hrTemplate" type="x-tmpl-mustache">
+        {{hr}} bpm
+    </script>
+    <script src="lib/OnsenUI/js/onsenui.min.js"></script>
+    <script src="lib/jQuery/jquery-3.3.1.js"></script>
+    <script src="lib/Chart/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.js"></script>
+    <script src="lib/Gauge/gauge.js"></script>
+    <script src="js/utils.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/script.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script src="js/gaugeView.js"></script>
+
 </body>
 
 </html>
