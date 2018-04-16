@@ -1,23 +1,11 @@
 <ons-page id="smartReflexPush">
-    <ons-toolbar id="toolsbar">
-        <!--Nav Bar-->
-        <div id="backPush" class="toolbar__left center">
-            <ons-back-button></ons-back-button>
-        </div>
-        <div class="toolbar__center welcomeHeader">SMART REFLEX</div>
-        <div class="toolbar__right avatar">
-            <div id="thumbnailPushed"></div>
-        </div>
-    </ons-toolbar>
-    <!--Nav Bar-->
-    <ons-row>
-        <!--Cover-->
-        <ons-col>
-            <div class="welcomeCover"></div>
-            <div id="profilePushed"></div>
-        </ons-col>
-    </ons-row>
-    <!--Nav Bar-->
+        <ons-row>
+                <!--Cover-->
+                <ons-col>
+                    <div class="welcomeCover"></div>
+                    <div id="profilePushed"></div>
+                </ons-col>
+            </ons-row>
     <div>
         <ons-row class="right" style="margin-bottom:7px;margin-top:7px">
             <!--Content-->
@@ -205,34 +193,123 @@
             </ons-row>
         </ons-card>
 
-        <div id="test"></div>
+        <div id="target"></div>
 
         <!--Content-->
     </div>
-    <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
-        <!--Bottom-->
-        <ons-row>
-            <ons-col width="25%">
-                <div id="smartPush" style="margin:auto">
-                    <img style="WIDTH:52px;padding-top:7px" src="UI/ai/0.75x/smartcare.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="personalPush" style="margin:auto">
-                    <img style="WIDTH:68px;padding-top:7px" src="UI/ai/0.75x/personal.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="moreDevicePush" style="margin:auto">
-                    <img style="WIDTH:60px;padding-top:4px" src="UI/ai/0.75x/moreDevice.png" alt="">
-                </div>
-            </ons-col>
-            <ons-col width="25%">
-                <div id="indexPush" style="margin:auto" class="transparent-Bottom-Toolbar">
-                    <img style="WIDTH:64px;padding-top:4px" src="UI/ai/0.75x/reflex.png" alt="">
-                </div>
-            </ons-col>
-        </ons-row>
-    </ons-bottom-toolbar>
-    <!--Bottom-->
+    <script>
+         document.addEventListener('init', function (event) {
+            var page = event.target;
+            var userid = page.data.userid;
+            console.log(userid)
+            if (page.id == "smartReflexPush") {
+                SmartReflex.getScore(userid).then(function (message, user) {
+                        var data = {
+                            name: currentUser.profile.firstname,
+                            img: currentUser.profile.photo,
+                            meta: user.today.scores.metabolism,
+                            heart: user.today.scores.heart,
+                            motion: user.today.scores.motion,
+                            step: user.today.steps,
+                            cal: user.today.distance,
+                            hr: user.today.HR,
+                            alert: user.today.alert
+                        }
+                        //Render profile photo
+                        var profileTemplate = $('#profileTamplate').html();
+                        var profileRendered = Mustache.render(profileTemplate, data);
+                        $('#profileTarget').html(profileRendered);
+                         //Render today health data, HR, steps, distance
+                        var stepTemplate = $('#stepTemplate').html();
+                        var callTemplate = $('#calTemplate').html();
+                        var hrTemplate = $('#hrTemplate').html();
+                        var stepTemplateRendered = Mustache.render(stepTemplate, data);
+                        var calTemplateRendered = Mustache.render(callTemplate, data);
+                        var hrTemplateRendered = Mustache.render(hrTemplate, data);
+                        $('#step').html(stepTemplateRendered);
+                        $('#cal').html(calTemplateRendered);
+                        $('#hr').html(hrTemplateRendered);
+                        ChartBuilder.createRadarchart("myChartPush", data.meta, data.heart, data.motion, alert);
+                        ChartBuilder.gaugebuilder("heartFitPush", data.heart);
+                        ChartBuilder.gaugebuilder("metabolismFitPush", data.meta);
+                        ChartBuilder.gaugebuilder("motionFitPush", data.motion);
+                        ChartBuilder.linechartBuilder("lineChartDailyPush", "lineChartWeekPush", "lineChartMonthPush", "lineChartYearPush", user.history.heart);
+
+                        //botton handle
+                        $('#heartBtnPush').addClass("gaugeViewButtonSelected");
+                        $('#dailybtnPush').addClass("gaugeViewButtonSelected");
+                    $('#heartBtnPush').click(function () {
+                        document.getElementById('gaugeCarouselReflexPush').setActiveIndex(0);
+                        $('#heartBtnPush').addClass("gaugeViewButtonSelected");
+                        $('#metabtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#motionBtnPush').removeClass("gaugeViewButtonSelected");
+                        ChartBuilder.removeData(ChartBuilder.lineChartDaily);
+                        ChartBuilder.removeData(ChartBuilder.lineChartWeek);
+                        ChartBuilder.removeData(ChartBuilder.lineChartMonth);
+                        ChartBuilder.removeData(ChartBuilder.lineChartYear);
+                        ChartBuilder.addData(ChartBuilder.lineChartDaily, user.history.heart.day);
+                        ChartBuilder.addData(ChartBuilder.lineChartWeek, user.history.heart.week);
+                        ChartBuilder.addData(ChartBuilder.lineChartMonth, user.history.heart.month);
+                        ChartBuilder.addData(ChartBuilder.lineChartYear, user.history.heart.year);
+                    })
+                    $('#metaBtnPush').click(function () {
+                        document.getElementById('gaugeCarouselReflexPush').setActiveIndex(1);
+                        $('#metaBtnPush').addClass("gaugeViewButtonSelected");
+                        $('#motionBtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#heartBtnPush').removeClass("gaugeViewButtonSelected");
+                        ChartBuilder.removeData(ChartBuilder.lineChartDaily);
+                        ChartBuilder.removeData(ChartBuilder.lineChartWeek);
+                        ChartBuilder.removeData(ChartBuilder.lineChartMonth);
+                        ChartBuilder.removeData(ChartBuilder.lineChartYear);
+                        ChartBuilder.addData(ChartBuilder.lineChartDaily, user.history.metabolism.day);
+                        ChartBuilder.addData(ChartBuilder.lineChartWeek, user.history.metabolism.week);
+                        ChartBuilder.addData(ChartBuilder.lineChartMonth, user.history.metabolism.month);
+                        ChartBuilder.addData(ChartBuilder.lineChartYear, user.history.metabolism.year);                        
+                    })
+                    $('#motionBtnPush').click(function () {
+                        document.getElementById('gaugeCarouselReflexPush').setActiveIndex(2);
+                        $('#motionBtnPush').addClass("gaugeViewButtonSelected");
+                        $('#metaBtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#heartBtnPush').removeClass("gaugeViewButtonSelected");
+                        ChartBuilder.removeData(ChartBuilder.lineChartDaily);
+                        ChartBuilder.removeData(ChartBuilder.lineChartWeek);
+                        ChartBuilder.removeData(ChartBuilder.lineChartMonth);
+                        ChartBuilder.removeData(ChartBuilder.lineChartYear);
+                        ChartBuilder.addData(ChartBuilder.lineChartDaily, user.history.motion.day);
+                        ChartBuilder.addData(ChartBuilder.lineChartWeek, user.history.motion.week);
+                        ChartBuilder.addData(ChartBuilder.lineChartMonth, user.history.motion.month);
+                        ChartBuilder.addData(ChartBuilder.lineChartYear, user.history.motion.year);
+                    })
+                    $('#dailybtnPush').click(function () {
+                        document.getElementById('lineChartCarouselPush').setActiveIndex(0);
+                        $('#dailybtnPush').addClass("gaugeViewButtonSelected");
+                        $('#weekbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#monthbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#yearbtnPush').removeClass("gaugeViewButtonSelected");
+                    })
+                    $('#weekbtnPush').click(function () {
+                        document.getElementById('lineChartCarouselPush').setActiveIndex(1);
+                        $('#dailybtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#weekbtnPush').addClass("gaugeViewButtonSelected");
+                        $('#monthbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#yearbtnPush').removeClass("gaugeViewButtonSelected");
+                    })
+                    $('#monthbtnPush').click(function () {
+                        document.getElementById('lineChartCarouselPush').setActiveIndex(2);
+                        $('#dailybtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#weekbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#monthbtnPush').addClass("gaugeViewButtonSelected");
+                        $('#yearbtnPush').removeClass("gaugeViewButtonSelected");
+                    })
+                    $('#yearbtnPush').click(function () {
+                        document.getElementById('lineChartCarouselPush').setActiveIndex(3);
+                        $('#dailybtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#weekbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#monthbtnPush').removeClass("gaugeViewButtonSelected");
+                        $('#yearbtnPush').addClass("gaugeViewButtonSelected");
+                    })
+                });
+            }
+         });
+    </script>
 </ons-page>

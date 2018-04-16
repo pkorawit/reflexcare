@@ -30,8 +30,8 @@
             <ons-col width="92%" class="center">
                 <ons-card class="center" style="padding-left:0px;padding-right:0px;padding-bottom:0px;padding-top:10px;border-radius:4px">
                     <div class="careText">
-                        <div>ดูแลคนที่คุณห่ววงใยผ่าน Reflex Care</div>
-                        <div>โดยที่คุณสามาถดูผลสุขภาพของคนที่คุณรักได้ใน Applicationนี้</div>
+                        <div>ดูแลคนที่คุณห่ววงใยผ่าน Smart Care</div>
+                        <div>โดยที่คุณสามาถดูผลสุขภาพของคนที่คุณรักผ่าน Applications นี้</div>
                         <div>รายงานผลสุขภาพประจำวันและแจ้งเตือนเมื่อผลวิเคราะห์มีความเสี่ยงที่จะไม่สบาย / ควรพบแพทย์</div>
                     </div>
                     <div style="margin-bottom:10px">
@@ -56,24 +56,49 @@
         <ons-row id="family" class="center">
             
         </ons-row>
-        <ons-row>
+        <ons-row class="center">
                 <div class="marginAuto" >
                         <img class="smartProfile" src="https://cdn1.iconfinder.com/data/icons/rounded-flat-country-flag-collection-1/2000/ch-01.png" alt="">
-                </div>
-                <div class="marginAuto"  style="width: 90px;     height: 90px;">
-
-                </div>
-                <div class="marginAuto"  style="width: 90px;     height: 90px;">
-
                 </div>
         </ons-row>
         <script>
                 document.addEventListener('init', function (event) {
-                    var page = event.target;
-                    var currentUser = page.data.currentUser;
-                    if (page.id == "smartCare") {
-                        console.log(currentUser.profile.userid);
-                    }
-                })
+                        var page = event.target;
+                        var currentUser = page.data.currentUser;
+                        if (page.id == "smartCare") {
+                            console.log(currentUser.profile.userid);
+                            SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
+                                doc.connections.forEach((connections) => {
+                                    SmartReflex.getScore(connections.userid).then(function (messages, score) {
+                                        SmartReflex.getUser(connections.userid).then(function (message, data) {
+                                            console.log(score);
+                                            console.log(data);
+                                            var connectionData = {
+                                                alert: score.today.alert,
+                                                hr: score.today.HR,
+                                                step: score.today.steps,
+                                                cal: score.today.distance,
+                                                name: data.profile.firstname,
+                                                img: data.profile.photo,
+                                                meta: score.today.scores.metabolism,
+                                                heart: score.today.scores.heart,
+                                                motion: score.today.scores.motion,
+                                                id: data.profile.firstname,
+                                                userid: data.profile.userid
+                                            }
+                                            var template = $('#familyTemplate').html();
+                                            var recentlyTemplate = $('#recentlyTemplate').html();
+                                            Mustache.parse(template);
+                                            Mustache.parse(recentlyTemplate);
+                                            var rendered = Mustache.render(template, connectionData);
+                                            var recentlyRendered = Mustache.render(recentlyTemplate, connectionData);
+                                            $('#family').append(rendered);
+                                            $('#recentlyTarget').append(recentlyRendered);
+                                        })
+                                    })
+                                })
+                            })
+                        }
+                    })
         </script>
     </ons-page>
