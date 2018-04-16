@@ -264,13 +264,5 @@ var ChartBuilder = {
                     userid: userid
                 }
             });
-            for (var tab = 0; tab < 4; tab++) {
-                var target = '#tab' + tab;
-                if (highlight == tab) {
-                    $(target).addClass('transparent-Bottom-Toolbar');
-                } else {
-                    $(target).removeClass('transparent-Bottom-Toolbar');
-                }
-            }
         }    
     }
