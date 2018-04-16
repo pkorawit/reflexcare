@@ -13,7 +13,12 @@
 
 <body>
 
+<<<<<<< HEAD
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;margin-bottom:56px;"></ons-navigator>
+
+=======
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;"></ons-navigator>
+>>>>>>> 31e65d8a6f249b63cb64b6711251973b218e1ca1
     <ons-toolbar id="toolsbar">
         <div class="toolbar__left center">
             <ons-back-button></ons-back-button>
@@ -58,6 +63,41 @@
             </ons-col>
         </ons-row>
     </ons-bottom-toolbar>
+
+    <script id="alertTemplate" type="x-tmpl-mustache">
+        <ons-card>
+            <ons-row>
+                <ons-col class="center Sukhumvit-font marginAuto">
+                    <div style="background-image:url('{{img}}')" class="smartProfile72px smartProfileAlert" onclick="imgPush({{id}})" id="{{id}}"></div>
+                    <div>
+                        <ons-card class="center" style="width:90px">
+                                <div>
+                                    <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                </div>
+                        </ons-card>
+                    </div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
+                    <div class="color">Steps</div>
+                    <div>{{step}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
+                    <div style="height:5px"></div>
+                    <div class="color">Distance</div>
+                    <div>{{cal}} kcal</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
+                    <div class="color">Heart rate</div>
+                    <div>{{hr}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine">
+                        <canvas id="radarTarget{{id}}" width="80" height="180"></canvas>
+                </ons-col>
+            </ons-row>
+        </ons-card>
+    </script>
 
     <script id="template" type="x-tmpl-mustache">
         <ons-card>
@@ -133,6 +173,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
     <script src="js/smartreflex.js"></script>
+    <script src="js/chart.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>   
         var modal = document.querySelector('ons-modal');

@@ -128,7 +128,7 @@
                 </div>
             </ons-col>
         </ons-row>
-        <ons-carousel swipeable auto-scroll overscrollable id="lineChartCarousel">
+        <ons-carousel auto-scroll overscrollable id="lineChartCarousel">
             <ons-carousel-item>
                 <ons-row style="margin-bottom: 25px; margin-top: 25px">
                     <ons-col>
@@ -195,6 +195,14 @@
                     $('#step').html(stepTemplateRendered);
                     $('#cal').html(calTemplateRendered);
                     $('#hr').html(hrTemplateRendered);
+<<<<<<< HEAD
+                    ChartBuilder.createRadarchart("myChart", data.meta, data.heart, data.motion);
+                    ChartBuilder.gaugebuilder("heartFit", data.heart);
+                    ChartBuilder.gaugebuilder("metabolismFit", data.meta);
+                    ChartBuilder.gaugebuilder("motionFit", data.motion);
+                    ChartBuilder.linechartBuilder("lineChartDaily", "lineChartWeek", "lineChartMonth", "lineChartYear", user.history.heart);
+=======
+>>>>>>> 9155e37524497061d64efe3e5e32482131004972
                 });
             }
         })
