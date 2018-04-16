@@ -59,23 +59,39 @@
                 <p class="red">*อัพเดทข้อมูลล่าสุด 29/03/2561</p>
             </div>
 
-            <div class="left">
-                <div>
-                    <p>น้ำหนัก ส่วนสูง รอบเอว</p>
-                </div>
+            <ons-row>
+                <ons-col>
+                    <div class="center">น้ำหนัก</div>
+                </ons-col>
+                <ons-col>
+                    <div class="center">ส่วนสูง</div>
+                </ons-col>
+                <ons-col>
+                    <div class="center">รอบเอว</div>
+                </ons-col>
+            </ons-row>
 
-                <form action="">
-                    <select id="weightdropdown">
-                            <option value="" selected="selected" disabled="disabled">กก.</option>
-                    </select>
-                    <select id="heighdropdown">
-                            <option value="" selected="selected" disabled="disabled">ซม.</option>
-                    </select>
-                    <select id="waistlinedropdown">
-                            <option value="" selected="selected" disabled="disabled">นิ้ว</option>
-                    </select>
-                </form>
-            </div>
+            
+                
+            
+
+            <ons-row>
+                <ons-col><div class="center">
+                    <ons-select select-id="weightdropdown">
+                        <option value="" selected="selected" disabled="disabled">กก.</option>
+                    </ons-select></div>
+                </ons-col>
+                <ons-col><div class="center">
+                    <ons-select select-id="heighdropdown">
+                        <option value="" selected="selected" disabled="disabled">ซม.</option>
+                </ons-select></div>
+                </ons-col>
+                <ons-col><div class="center">
+                    <ons-select select-id="waistlinedropdown">
+                        <option value="" selected="selected" disabled="disabled">นิ้ว</option>
+                </ons-select></div>
+                </ons-col>
+            </ons-row>
 
             <ons-col style="margin-top:30px">
                 <div class="center">
@@ -85,7 +101,6 @@
                     <p class="red">เพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
                 </div>
             </ons-col>
-            <ons-col style="margin-top:50px"></ons-col>
         </div>
         </div>
     </ons-card>
