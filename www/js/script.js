@@ -435,69 +435,6 @@ document.addEventListener('show', function (event) {
 document.addEventListener('show', function (event) {
     var page = event.target;
     if (page.matches('#personal')) {
-        //------------------------ วันที่ ---------------------------
-        (function () {
-            var elm = document.getElementById('daydropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 01; i <= 31; i++) {
-                var option = document.createElement('option');
-                option.value = i;
-                option.appendChild(document.createTextNode(i));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-
- 
-        //---------------------------------- ปี -------------------------------
-        (function () {
-            var elm = document.getElementById('yeardropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 2450; i <= 2561; i++) {
-                var option = document.createElement('option');
-                option.value = i;
-                option.appendChild(document.createTextNode(i));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-        //----------------------------- น้ำหนัก ---------------------------------
-        (function () {
-            var elm = document.getElementById('weightdropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 2; i <= 150; i++) {
-                var option = document.createElement('option');
-                option.value = i;
-                option.appendChild(document.createTextNode(i + " GG."));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-        //--------------------------- ส่วนสูง ---------------------------------
-        (function () {
-            var elm = document.getElementById('heighdropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 100; i <= 200; i++) {
-                var option = document.createElement('option'); // create the option element
-                option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i + " CM."));
-                df.appendChild(option); // append
-            }
-            elm.appendChild(df);
-        }());
-        //--------------------- รอบเอว -------------------
-        (function () {
-            var elm = document.getElementById('waistlinedropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 20; i <= 80; i++) {
-                var option = document.createElement('option');
-                option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i + " Inches"));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-
         //------------------------------- upload ---------------------------------
           
     $(function () {
