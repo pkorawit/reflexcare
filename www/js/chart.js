@@ -109,6 +109,15 @@ var ChartBuilder = {
         myChart.update();
     },
     gaugebuilder: function(renderTarget, value){
+        if (value === 1) {
+            value = 1.4
+        } else if (value === 2) {
+            value = 2.2
+        } else if (value === 4) {
+            value = 3.8
+        } else if (value === 5) {
+            value = 4.6
+        }
         var opts = {
             renderTicks: {
                 divisions: 4,

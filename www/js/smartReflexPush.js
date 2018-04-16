@@ -35,7 +35,7 @@ document.addEventListener('init', function (event) {
                 $('#stepPush').html(stepTemplateRendered);
                 $('#calPush').html(calTemplateRendered);
                 $('#hrPush').html(hrTemplateRendered);
-                ChartBuilder.createRadarchart("myChartPush", data.meta, data.heart, data.motion, alert);
+                ChartBuilder.createRadarchart("myChartPush", data.meta, data.heart, data.motion, data.alert);
                 ChartBuilder.gaugebuilder("heartFitPush", data.heart);
                 ChartBuilder.gaugebuilder("metabolismFitPush", data.meta);
                 ChartBuilder.gaugebuilder("motionFitPush", data.motion);
