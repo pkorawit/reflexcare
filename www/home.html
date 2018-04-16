@@ -257,15 +257,13 @@
 
         document.addEventListener('show', function(event){
             var page = event.target;
-            if (page.matches('#smartReflex')) {
-                setTabHighlight(1);
-            } else if (page.matches('#smartReflexPush')) {
+            if (page.matches('#smartReflex') || page.matches('#smartReflexPush')) {
                 setTabHighlight(1);
             } else if (page.matches('#smartCare')) {
                 setTabHighlight(2);
-            } else if (page.matches('#personal')) {
+            } else if (page.matches('#personal') || page.matches('#datacare')) {
                 setTabHighlight(3);
-            } else if (page.matches('#moreDevice')) {
+            } else if (page.matches('#moreDevice') || page.matches('#recommendNewDevice')) {
                 setTabHighlight(4);
             }
         })
