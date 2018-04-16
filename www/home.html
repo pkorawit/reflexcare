@@ -13,8 +13,12 @@
 
 <body>
 
+<<<<<<< HEAD
     <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;margin-bottom:56px;"></ons-navigator>
 
+=======
+    <ons-navigator animation="slide" swipeable="force" id="mainNavigator" style="margin-top:56px;"></ons-navigator>
+>>>>>>> 31e65d8a6f249b63cb64b6711251973b218e1ca1
     <ons-toolbar id="toolsbar">
         <div class="toolbar__left center">
             <ons-back-button></ons-back-button>
@@ -24,7 +28,13 @@
             <div id="thumbnailIMG" onclick="changeTab('views/personal.html', 'PERSONAL INFO', 3)"></div>
         </div>
     </ons-toolbar>
-
+    <ons-modal direction="up">
+        <div style="text-align: center">
+            <p>
+                <ons-icon icon="fa-spinner" size="32px" spin></ons-icon> Loading...
+            </p>
+        </div>
+    </ons-modal>
     <ons-bottom-toolbar modifier="aligned" class="botton-toolbar-align center">
         <ons-row>
             <ons-col width="25%">
@@ -90,32 +100,34 @@
     </script>
 
     <script id="template" type="x-tmpl-mustache">
-            <ons-card>
-                <ons-row>
-                    <ons-col class="center Sukhumvit-font marginAuto">
-                        <div><img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})"></div>
-                        <div>
-                            <ons-card class="center" style="width:90px">
-                                    <div>
-                                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
-                                    </div>
-                            </ons-card>
-                        </div>
-                    </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
-                        <div class="color">Step</div>
-                        <div>{{step}}</div>
-                    </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
-                        <div class="color">Calories</div>
-                        <div>{{cal}} kcal</div>
-                    </ons-col>
-                    <ons-col class="center Sukhumvit-font verticalLine marginAuto">
-                        <div class="color">Heart rate</div>
-                        <div>{{hr}}</div>
-                    </ons-col>
-                </ons-row>
-            </ons-card>
+        <ons-card>
+            <ons-row>
+                <ons-col class="center Sukhumvit-font marginAuto">
+                    <div>
+                        <img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})">
+                    </div>
+                    <div>
+                        <ons-card class="center" style="width:90px">
+                            <div>
+                                <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                            </div>
+                        </ons-card>
+                    </div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div class="color">Step</div>
+                    <div>{{step}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div class="color">Calories</div>
+                    <div>{{cal}} kcal</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div class="color">Heart rate</div>
+                    <div>{{hr}}</div>
+                </ons-col>
+            </ons-row>
+        </ons-card>
     </script>
     <script id="familyTemplate" type="x-tmpl-mustache">
         <div class="marginAuto">
@@ -135,11 +147,11 @@
     </script>
 
     <script id="profileTamplate" type="x-tmpl-mustache">
-            <img src="{{img}}" alt="" class="profile">
+        <img src="{{img}}" alt="" class="profile">
     </script>
 
     <script id="recentlyTemplate" type="x-tmpl-mustache">
-            <img id="{{id}}" src="{{img}}" alt="" class="profiles">
+        <img id="{{id}}" src="{{img}}" alt="" class="profiles">
     </script>
 
     <script id="stepTemplate" type="x-tmpl-mustache">
@@ -163,24 +175,32 @@
     <script src="js/smartreflex.js"></script>
     <script src="js/chart.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script>
-        
+    <script>   
+        var modal = document.querySelector('ons-modal');
+        modal.show();     
         //Force android UI
         ons.platform.select('android');
+        //Get logged in user id
+        var loggedInUserId = SmartReflex.getUrlParameter('userid');
         //Hide default back button
         document.querySelector('ons-back-button').hide();
-
         //Get logon user info from backend
         var currentUser;
-        SmartReflex.getUser("waree@smartreflex.info").then(function (message, user) {
+        SmartReflex.getUser(loggedInUserId).then(function (message, user) {
 
             //Init left thumbnail on toolbar
             var thumbnailTemplate = $('#thumbnailTamplate').html();
-            var data = { img: user.profile.photo };
+            var data = {
+                img: user.profile.photo
+            };
             currentUser = user;
             var imgRendered = Mustache.render(thumbnailTemplate, data);
             $('#thumbnailIMG').html(imgRendered);
+
+            var modal = document.querySelector('ons-modal');
             
+            modal.hide();
+
             changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
         });
 
@@ -196,8 +216,7 @@
                 var target = '#tab' + tab;
                 if (highlight == tab) {
                     $(target).addClass('transparent-Bottom-Toolbar');
-                }
-                else {
+                } else {
                     $(target).removeClass('transparent-Bottom-Toolbar');
                 }
             }
