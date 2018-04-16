@@ -140,6 +140,12 @@ var ChartBuilder = {
                 {strokeStyle: "#05d6e1", min: 3.4, max: 4.2}, // Yellow
                 {strokeStyle: "#0981dc", min: 4.2, max: 5}  // Red
              ],
+             staticLabels: {
+                font: "13px sans-serif",  // Specifies font
+                labels: [1, 2, 3, 4, 5],  // Print labels at these values
+                color: "#000000",  // Optional: Label text color
+                fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+              },
               // to see which ones work best for you
             generateGradient: true,
             highDpiSupport: true,     // High resolution support
