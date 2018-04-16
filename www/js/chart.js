@@ -143,6 +143,7 @@ var ChartBuilder = {
         gauge.animationSpeed = 128; // set animation speed (32 is default value)
         gauge.set(value); // set actual value
     },
+    
     linechartBuilder: function(targetDaily, targetWeek, targetMonth, targetYear, data){
         var utils = Samples.utils;
         var presets = window.chartColors;
@@ -245,5 +246,22 @@ var ChartBuilder = {
         });
         chart.update();
         console.log(ChartBuilder.lineChartDaily)
+    },
+    smartreflexPush: function (page, pagename, highlight, userid) {
+        $('#pageTitle').html(pagename);
+        document.querySelector('ons-navigator').pushPage(page, {
+            data: {
+                    title: pagename,
+                    userid: userid
+                }
+            });
+            for (var tab = 0; tab < 4; tab++) {
+                var target = '#tab' + tab;
+                if (highlight == tab) {
+                    $(target).addClass('transparent-Bottom-Toolbar');
+                } else {
+                    $(target).removeClass('transparent-Bottom-Toolbar');
+                }
+            }
+        }
     }
-}

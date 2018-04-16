@@ -64,11 +64,11 @@
         <ons-card>
             <ons-row>
                 <ons-col class="center Sukhumvit-font marginAuto">
-                    <div style="background-image:url('{{img}}')" class="smartProfile72px smartProfileAlert" onclick="imgPush({{id}})" id="{{id}}"></div>
+                    <div style="background-image:url('{{img}}');margin: auto; margin-top: 10px;" class="smartProfile72px smartProfileAlert" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART sREFLEX', 1, '{{userid}}')" id="{{id}}"></div>
                     <div>
                         <ons-card class="center" style="width:90px">
                                 <div>
-                                    <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                    <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
                                 </div>
                         </ons-card>
                     </div>
@@ -100,27 +100,33 @@
             <ons-row>
                 <ons-col class="center Sukhumvit-font marginAuto">
                     <div>
-                        <img id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="imgPush({{id}})">
+                        <img style="margin-top: 10px;" id="{{id}}" src="{{img}}" alt="" class="smartProfile72px" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')">
                     </div>
                     <div>
                         <ons-card class="center" style="width:90px">
                             <div>
-                                <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                                <a smartreflexPush="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
                             </div>
                         </ons-card>
                     </div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
                     <div class="color">Step</div>
                     <div>{{step}}</div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
-                    <div class="color">Calories</div>
+                    <div style="height:5px"></div>
+                    <div class="color">Distance</div>
                     <div>{{cal}} kcal</div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
+                    <div style="height:5px"></div>
                     <div class="color">Heart rate</div>
                     <div>{{hr}}</div>
+                </ons-col>
+                <ons-col class="center Sukhumvit-font verticalLine">
+                    <canvas id="radarTarget{{id}}" width="80" height="180"></canvas>
                 </ons-col>
             </ons-row>
         </ons-card>
