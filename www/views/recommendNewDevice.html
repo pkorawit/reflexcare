@@ -13,4 +13,16 @@
                 <div class="center">
         <ons-button class="b1" id="send"onclick="changeTab('views/smartReflex.html')">SEND</ons-button></div></ons-col>
     </ons-card>
+    <script>
+        document.addEventListener('show', function (event) {
+            var page = event.target;
+            if (page.id == "recommendNewDevice") {
+                document.querySelector('ons-back-button').show();
+                page.querySelector('ons-back-button').onclick = function(event) {
+                document.querySelector('ons-navigator').popPage();
+                        }
+            }
+        })
+</script>
 </ons-page>
+

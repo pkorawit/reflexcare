@@ -174,10 +174,15 @@
         </ons-card>
             <ons-col style="margin-top:30px"></ons-col>
             </ons-row>
-
-
-
-
-
-
+            <script>
+                document.addEventListener('show', function (event) {
+                    var page = event.target;
+                    if (page.id == "datacare") {
+                        document.querySelector('ons-back-button').show();
+                        page.querySelector('ons-back-button').onClick = function(event) {
+                        document.querySelector('ons-navigator').popPage();
+                        }
+                    }
+                })
+        </script>
 </ons-page>

@@ -34,12 +34,4 @@
             <ons-button class="b1" id="recommend"onclick="changeTab('views/recommendNewDevice.html')">DEVICES RECOMMEND</ons-button>
         </div>
     </ons-col>
-    <script>
-            document.addEventListener('init', function (event) {
-                var page = event.target;
-                if (page.id == "moreDevice") {
-                    document.querySelector('ons-back-button').hide();
-                }
-            })
-    </script>
 </ons-page>
