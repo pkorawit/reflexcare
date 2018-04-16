@@ -20,7 +20,7 @@
         </div>
         <div id="pageTitle" class="toolbar__center welcomeHeader">SMART REFLEX</div>
         <div class="toolbar__right avatar">
-            <div id="thumbnailIMG" onclick="changeTab('views/personal.html', 'PERSONAL INFO', 3)"></div>
+            <div id="thumbnailIMG" onclick="signOut();"></div>
         </div>
     </ons-toolbar>
     <ons-modal direction="up">
@@ -103,7 +103,7 @@
     </script>
 
     <script id="thumbnailTamplate" type="x-tmpl-mustache">
-        <img onclick="imgPushToInfo()" id="{{id}}" src="{{img}}" alt="" class="thumbnail">
+        <img id="{{id}}" src="{{img}}" alt="" class="thumbnail">
     </script>
 
     <script id="profileTamplate" type="x-tmpl-mustache">
@@ -179,6 +179,13 @@
                     $(target).removeClass('transparent-Bottom-Toolbar');
                 }
             }
+        }
+
+        function signOut(){
+            SmartReflex.signOut().then(function (){
+                console.log('signOut');
+                window.location.replace('login.html');
+            }); 
         }
     </script>
 

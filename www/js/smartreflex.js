@@ -111,18 +111,34 @@ var SmartReflex = {
     },
 
     //Get URL parameter
-    getUrlParameter : function getUrlParameter(sParam) {
+    getUrlParameter: function (sParam) {
         var sPageURL = decodeURIComponent(window.location.search.substring(1)),
             sURLVariables = sPageURL.split('&'),
             sParameterName,
             i;
-    
+
         for (i = 0; i < sURLVariables.length; i++) {
             sParameterName = sURLVariables[i].split('=');
-    
+
             if (sParameterName[0] === sParam) {
                 return sParameterName[1] === undefined ? true : sParameterName[1];
             }
         }
-    }
+    },
+
+    //Sign Out
+    signOut: function () {
+
+        var deferred = new $.Deferred();
+
+        firebase.auth().signOut().then(function () {
+            deferred.resolve("Signed Out");
+            console.log('signed out');
+        }).catch(function (error) {
+            deferred.resolve("Cannot sign out");
+        });
+
+        return deferred.promise();
+    },
+
 };

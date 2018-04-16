@@ -8,8 +8,11 @@ ons.ready(function () {
     firebase.initializeApp(config);
     var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
+    
+    var mockUserID = 'waree@smartreflex.info';
 
     $('#signin').click(function () {
+
         var username = $('#username').val();
         var password = $('#password').val();
         if (username === password) {
