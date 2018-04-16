@@ -3,13 +3,10 @@ document.addEventListener('init', function (event) {
     var currentUser = page.data.currentUser;
     if (page.id == "smartCare") {
         document.querySelector('ons-back-button').hide();
-        console.log(currentUser.profile.userid);
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
             doc.connections.forEach((connections) => {
                 SmartReflex.getScore(connections.userid).then(function (messages, score) {
                     SmartReflex.getUser(connections.userid).then(function (message, data) {
-                        console.log(score);
-                        console.log(data);
                         var connectionData = {
                             alert: score.today.alert,
                             hr: score.today.HR,

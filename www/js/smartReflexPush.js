@@ -1,23 +1,11 @@
 
          document.addEventListener('init', function (event) {
             var page = event.target;
-            var userid = page.data.userid;
-            console.log(page.id);
-            function setTabHighlight(tabNo){
-                for (var tab = 1; tab <= 4; tab++) {
-                    var target = '#tab' + tab;
-                    if (tabNo == tab) {
-                        $(target).addClass('transparent-Bottom-Toolbar');
-                    } else {
-                        $(target).removeClass('transparent-Bottom-Toolbar');
-                    }
-                }
-            }
+            var userid = page.data.userid;           
             if (page.id == "smartReflexPush") {
                 //show the back-button
                 document.querySelector('ons-back-button').show();
                 document.querySelector('ons-back-button').onClick = function (event) {
-                    setTabHighlight(2);
                     document.querySelector('ons-navigator').popPage();
                 };
                 SmartReflex.getScore(userid).then(function (message, user) {
