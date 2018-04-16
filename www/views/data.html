@@ -19,20 +19,20 @@
     </ons-row>
 
         <ons-card style="border-radius:10px;margin:10px;padding:10px;">
-                <h2 class="card__title" style="font-size:20px; color:red;text-align: center;font-family: 'SukhumvitSet-Text';">ข้อมูลสุขภาพเชิงลึก</h2>
+                <h2 class="card__title" style="font-size:17px; color:red;text-align: center;font-family: 'SukhumvitSet-Text';">ข้อมูลสุขภาพแบบละเอียด</h2>
                 <div class="card__content">
                     <ons-row class="center">
                         <ons-col>
                             <p>ระดับชีพจร</p>
-                            <ons-select id="choose-sel" onchange="editSelects(event)">
-                                <option value="Bpm">Bpm</option>
+                            <ons-select id="bpm">
+                                <option value="" selected="selected" disabled="disabled">bmp</option>
                                 <option value="...">...</option>
                                 <option value="...">...</option>
                             </ons-select>
                         </ons-col>
                         <ons-col>
                             <p> ระดับความดันโลหิต</p>
-                            <ons-select id="choose-sel" onchange="editSelects(event)">
+                            <ons-select id="">
                                 <option value="1">น้อยกว่า 80</option>
                                 <option value="2">80-89</option>
                                 <option value="3">90-99</option>
@@ -47,17 +47,15 @@
                         <ons-row>
                             <ons-col>
                                 <p>ระดับความเข้มข้นของเลือด</p>
-
-
-                                <ons-select id="choose-sel" onchange="editSelects(event)">
-                                    <option value="HB">HB</option>
+                                <ons-select id="">
+                                        <option value="" selected="selected" disabled="disabled">HB</option>
                                     <option value="...">...</option>
                                     <option value="...">...</option>
                                 </ons-select>
                             </ons-col>
                             <ons-col>
                                 <p>ไตรกรีเซอไรด์</p>
-                                <ons-select id="choose-sel" onchange="editSelects(event)">
+                                <ons-select id="">
                                     <option value="...">...</option>
                                     <option value="...">...</option>
                                     <option value="...">...</option>
@@ -67,7 +65,7 @@
                             <ons-row>
                                 <ons-col>
                                     <p>ระดับน้ำตาลในเลือด</p>
-                                    <ons-select id="choose-sel" onchange="editSelects(event)">
+                                    <ons-select id="">
                                         <option value="...">...</option>
                                         <option value="...">...</option>
                                         <option value="...">...</option>
@@ -75,7 +73,7 @@
                                 </ons-col>
                                 <ons-col>
                                     <p>ระดับไขมันในเลือด</p>
-                                    <ons-select id="choose-sel" onchange="editSelects(event)">
+                                    <ons-select id="">
                                         <option value="...">...</option>
                                         <option value="...">...</option>
                                         <option value="...">...</option>
