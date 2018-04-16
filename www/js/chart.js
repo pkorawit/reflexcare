@@ -263,5 +263,5 @@ var ChartBuilder = {
                     $(target).removeClass('transparent-Bottom-Toolbar');
                 }
             }
-        }
+        }    
     }

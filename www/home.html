@@ -64,11 +64,17 @@
         <ons-card>
             <ons-row>
                 <ons-col class="center Sukhumvit-font marginAuto">
-                    <div style="background-image:url('{{img}}');margin: auto; margin-top: 10px;" class="smartProfile72px smartProfileAlert" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART sREFLEX', 1, '{{userid}}')" id="{{id}}"></div>
+                    <div style="background-image:url('{{img}}');margin: auto; margin-top: 10px;" class="smartProfile72px smartProfileAlert" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}"></div>
                     <div>
                         <ons-card class="center" style="width:90px">
                                 <div>
                                     <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
+                                </div>
+                                <div>
+                                    <hr style="margin-bottom: 0px; margin-top: 0px; width: 80%;">    
+                                </div>
+                                <div>
+                                    <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{relation}}</a>
                                 </div>
                         </ons-card>
                     </div>
@@ -105,14 +111,20 @@
                     <div>
                         <ons-card class="center" style="width:90px">
                             <div>
-                                <a smartreflexPush="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
+                                <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
+                            </div>
+                            <div>
+                                <hr style="margin-bottom: 0px; margin-top: 0px; width: 80%;">    
+                            </div>
+                            <div>
+                                <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{relation}}</a>
                             </div>
                         </ons-card>
                     </div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
                     <div style="height:5px"></div>
-                    <div class="color">Step</div>
+                    <div class="color">Steps</div>
                     <div>{{step}}</div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
@@ -133,11 +145,17 @@
     </script>
     <script id="familyTemplate" type="x-tmpl-mustache">
         <div class="marginAuto">
-            <img id="{{id}}" onclick="imgPush({{id}})" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
+            <img id="{{id}}" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}" src="{{img}}" alt="" class="smartProfile" style="margin-bottom:0px">
             <div>
                 <ons-card class="center" style="width:90px">
                     <div>
-                        <a onclick="imgPush({{id}})" id="{{id}}">{{name}}</a>
+                        <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}" id="{{id}}">{{name}}</a>
+                    </div>
+                    <div>
+                        <hr style="margin-bottom: 0px; margin-top: 0px; width: 80%;">    
+                    </div>
+                    <div>
+                        <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{relation}}</a>
                     </div>
                 </ons-card>
             </div>
@@ -176,6 +194,9 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
     <script src="js/smartreflex.js"></script>
     <script src="js/chart.js"></script>
+    <script src="js/smartReflexScript.js"></script>
+    <script src="js/smartReflexPush.js"></script>
+    <script src="js/smartCareScript.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script>   
         var modal = document.querySelector('ons-modal');
@@ -214,6 +235,7 @@
                     currentUser: currentUser
                 }
             });
+            
             for (var tab = 0; tab < 4; tab++) {
                 var target = '#tab' + tab;
                 if (highlight == tab) {
