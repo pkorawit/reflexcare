@@ -21,11 +21,11 @@
         <div class="card__content" id="data">
             ชื่อ
             <div class="left">
-                <ons-input name=fname style="width:45%" rows="1" placeholder="First name"></ons-input>
+                <ons-input id="fname" name=fname style="width:45%" rows="1" placeholder="First name"></ons-input>
             </div>
             นามสกุล
             <div class="left">
-                <ons-input style="width:45%" rows="1" placeholder="Last name"></ons-input>
+                <ons-input id="lname" style="width:45%" rows="1" placeholder="Last name"></ons-input>
             </div>
             <ons-col style="margin-top:30px">
                 <div class="left">วัน | เดือน | ปีเกิด
@@ -96,7 +96,7 @@
 
             <ons-col style="margin-top:30px">
                 <div class="center">
-                    <ons-button class="b1" id="finish" onclick="changeTab('views/smartReflex.html')">เสร็จสิ้น</ons-button>
+                    <ons-button class="b1" id="finish" onclick="updateUserData();">เสร็จสิ้น</ons-button>
                     <ons-button class="b2" id="datacare" onclick="changeTab('views/data.html')">ข้อมูลสุขภาพแบบละเอียด</ons-button>
                     <p class="red">*อัพเดทข้อมูลสุขภาพแบบละเอียด</p>
                     <p class="red">เพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
@@ -107,78 +107,5 @@
         </ons-row>
     </ons-card>
     </ons-row>
-    <script>
-    document.addEventListener('init', function (event) {
-    var page = event.target;
-    var currentUser = page.data.currentUser;
-    if (page.id == "personal") {
-        document.querySelector('ons-back-button').hide();
-        console.log(currentUser.profile.userid);
-        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
-            doc.connections.forEach((connections) => {
-                SmartReflex.getScore(connections.userid).then(function (messages, score) {
-                    SmartReflex.getUser(connections.userid).then(function (message, data) {
-                        var dataP ={
-                            fname: data.profile.firstname,
-                            lname: data.profile.lastname,
-                            g: data.profile.gender,
-                            DOB: data.profile.DOB,
-                            h: data.health.general.height,
-                            w: data.health.general.weight,
-                            waist: data.health.general.waist
-                        }
-                        console.log(dataP)
-                        var template = $('#dataTemplate').html();
-                        var recentlyTemplate = $('#recentlyTemplate').html();
-                        Mustache.parse(template);
-                        Mustache.parse(recentlyTemplate);
-                        var rendered = Mustache.render(template, connectionData);
-                        var recentlyRendered = Mustache.render(recentlyTemplate, connectionData);
-                        $('#data').append(rendered);
-                        $('#recentlyTarget').append(recentlyRendered);
-                    })
-                })
-            })
-        })
-    }
-})
-    </script>
-    
-    
-    <script>(function () {
-            var elm = document.getElementById('weightdropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 2; i <= 150; i++) {
-                var option = document.createElement('option');
-                option.value = i;
-                option.appendChild(document.createTextNode(i));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-        (function () {
-            var elm = document.getElementById('heighdropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 100; i <= 200; i++) {
-                var option = document.createElement('option'); // create the option element
-                option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i));
-                df.appendChild(option); // append
-            }
-            elm.appendChild(df);
-        }());
 
-        (function () {
-            var elm = document.getElementById('waistlinedropdown'), // get the select
-                df = document.createDocumentFragment();
-            for (var i = 20; i <= 80; i++) {
-                var option = document.createElement('option');
-                option.value = i; // set the value property
-                option.appendChild(document.createTextNode(i));
-                df.appendChild(option); // append 
-            }
-            elm.appendChild(df);
-        }());
-
-    </script>
 </ons-page>

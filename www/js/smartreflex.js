@@ -94,11 +94,11 @@ var SmartReflex = {
     },
 
     //Save profile photo
-    updateUser: function (user, userid) {
+    updateUser: function (user) {
 
 
         var deferred = new $.Deferred();
-        var docRef = db.collection("users").doc(userid);
+        var docRef = db.collection("users").doc(user.profile.userid);
         docRef.update(user)
         
             .then(function () {
