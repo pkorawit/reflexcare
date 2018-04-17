@@ -175,14 +175,29 @@
             <ons-col style="margin-top:30px"></ons-col>
             </ons-row>
             <script>
-                document.addEventListener('show', function (event) {
+                    document.addEventListener('init', function (event) {
                     var page = event.target;
+                    var currentUser = page.data.currentUser;
                     if (page.id == "datacare") {
-                        document.querySelector('ons-back-button').show();
-                        page.querySelector('ons-back-button').onClick = function(event) {
-                        document.querySelector('ons-navigator').popPage();
-                        }
+                        document.querySelector('ons-back-button').hide();
+                        console.log(currentUser.profile.userid);
+                        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
+                            doc.connections.forEach((connections) => {
+                                SmartReflex.getScore(connections.userid).then(function (messages, score) {
+                                    SmartReflex.getUser(connections.userid).then(function (message, data) {
+                                        var dataP ={
+                                            
+                                            hr: data.health.clinical.HR,
+                                            hps: data.health.clinical.BPS,
+                                            bpd: data.health.clinical.BPD,
+                                            fbs: data.health.clinical.FBS
+                                        }
+                                        console.log(dataP)
+                                    })
+                                })
+                            })
+                        })
                     }
                 })
-        </script>
+                    </script>
 </ons-page>

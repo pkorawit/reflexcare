@@ -4,11 +4,12 @@
         <ons-col>
             <div class="logo">
 
-                <img id="imgFileUpload" alt="Select File" title="Select File" class="logoSize" src="img/camera.png" style="cursor: pointer" />
+                <img id="imgFileUpload" alt="Select File" title="Select File" class="logoSize" src="img/camera.png" style="cursor: pointer"
+                />
                 <br />
                 <span id="spnFilePath"></span>
                 <input type="file" id="FileUpload1" style="display: none" />
-                
+
             </div>
         </ons-col>
         <ons-col></ons-col>
@@ -26,10 +27,10 @@
 
 
         <div style="font-size:17px; color:red;text-align: center;" font-family: 'SukhumvitSet-Text';>ข้อมูลพื้นฐาน</div>
-        <div class="card__content">
+        <div class="card__content" id="data">
             ชื่อ
             <div class="left">
-                <ons-input style="width:45%" rows="1" placeholder="First name"></ons-input>
+                <ons-input name=fname style="width:45%" rows="1" placeholder="First name"></ons-input>
             </div>
             นามสกุล
             <div class="left">
@@ -38,9 +39,10 @@
             <ons-col style="margin-top:30px">
                 <div class="left">วัน | เดือน | ปีเกิด
                     <br>
-                    <label for="meeting"></label><input type="date"/>
-                </form>
-            </div>
+                    <label for="meeting"></label>
+                    <input type="date" />
+                    </form>
+                </div>
             </ons-col>
 
             <ons-list-item tappable>
@@ -69,51 +71,101 @@
                 <ons-col>
                     <div class="center">รอบเอว</div>
                 </ons-col>
-            </ons-row>   
+            </ons-row>
 
             <ons-row>
-                <ons-col><div class="center">
-                    <ons-select select-id="weightdropdown">
-                        <option value="" selected="selected" disabled="disabled">กก.</option>
-                    </ons-select></div>
+                <ons-col>
+                    <div class="center">
+                        <ons-select select-id="weightdropdown">
+                            <option value="" selected="selected" disabled="disabled">กก.</option>
+                        </ons-select>
+                    </div>
                 </ons-col>
-                <ons-col><div class="center">
-                    <ons-select select-id="heighdropdown">
-                        <option value="" selected="selected" disabled="disabled">ซม.</option>
-                </ons-select></div>
+                <ons-col>
+                    <div class="center">
+                        <ons-select select-id="heighdropdown">
+                            <option value="" selected="selected" disabled="disabled">ซม.</option>
+                        </ons-select>
+                    </div>
                 </ons-col>
-                <ons-col><div class="center">
-                    <ons-select select-id="waistlinedropdown">
-                        <option value="" selected="selected" disabled="disabled">นิ้ว</option>
-                </ons-select></div>
+                <ons-col>
+                    <div class="center">
+                        <ons-select select-id="waistlinedropdown">
+                            <option value="" selected="selected" disabled="disabled">นิ้ว</option>
+                        </ons-select>
+                    </div>
                 </ons-col>
+            </ons-row>
+            <ons-row id="data" class="center">
+            
+            </ons-row>
+            <ons-row id="data2" class="center">
+            
             </ons-row>
 
             <ons-col style="margin-top:30px">
                 <div class="center">
                     <ons-button class="b1" id="finish" onclick="changeTab('views/smartReflex.html')">เสร็จสิ้น</ons-button>
-                    <ons-button class="b2" id="datacare"onclick="changeTab('views/data.html')">ข้อมูลสุขภาพแบบละเอียด</ons-button>
+                    <ons-button class="b2" id="datacare" onclick="changeTab('views/data.html')">ข้อมูลสุขภาพแบบละเอียด</ons-button>
                     <p class="red">*อัพเดทข้อมูลสุขภาพแบบละเอียด</p>
                     <p class="red">เพื่อเพิ่มประสิทธิภาพการประมวลผล</p>
                 </div>
             </ons-col>
         </div>
-        </div>
+        </div>    
+        </ons-row>
     </ons-card>
     </ons-row>
+    <script>
+    document.addEventListener('init', function (event) {
+    var page = event.target;
+    var currentUser = page.data.currentUser;
+    if (page.id == "personal") {
+        document.querySelector('ons-back-button').hide();
+        console.log(currentUser.profile.userid);
+        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
+            doc.connections.forEach((connections) => {
+                SmartReflex.getScore(connections.userid).then(function (messages, score) {
+                    SmartReflex.getUser(connections.userid).then(function (message, data) {
+                        var dataP ={
+                            fname: data.profile.firstname,
+                            lname: data.profile.lastname,
+                            g: data.profile.gender,
+                            DOB: data.profile.DOB,
+                            h: data.health.general.height,
+                            w: data.health.general.weight,
+                            waist: data.health.general.waist
+                        }
+                        console.log(dataP)
+                        var template = $('#dataTemplate').html();
+                        var recentlyTemplate = $('#recentlyTemplate').html();
+                        Mustache.parse(template);
+                        Mustache.parse(recentlyTemplate);
+                        var rendered = Mustache.render(template, connectionData);
+                        var recentlyRendered = Mustache.render(recentlyTemplate, connectionData);
+                        $('#data').append(rendered);
+                        $('#recentlyTarget').append(recentlyRendered);
+                    })
+                })
+            })
+        })
+    }
+})
+    </script>
+    
     
     <script>(function () {
-        var elm = document.getElementById('weightdropdown'), // get the select
-            df = document.createDocumentFragment();
-        for (var i = 2; i <= 150; i++) {
-            var option = document.createElement('option');
-            option.value = i;
-            option.appendChild(document.createTextNode(i));
-            df.appendChild(option); // append 
-        }
-        elm.appendChild(df);
-    }());
-    (function () {
+            var elm = document.getElementById('weightdropdown'), // get the select
+                df = document.createDocumentFragment();
+            for (var i = 2; i <= 150; i++) {
+                var option = document.createElement('option');
+                option.value = i;
+                option.appendChild(document.createTextNode(i));
+                df.appendChild(option); // append 
+            }
+            elm.appendChild(df);
+        }());
+        (function () {
             var elm = document.getElementById('heighdropdown'), // get the select
                 df = document.createDocumentFragment();
             for (var i = 100; i <= 200; i++) {
@@ -125,7 +177,7 @@
             elm.appendChild(df);
         }());
 
-           (function () {
+        (function () {
             var elm = document.getElementById('waistlinedropdown'), // get the select
                 df = document.createDocumentFragment();
             for (var i = 20; i <= 80; i++) {
