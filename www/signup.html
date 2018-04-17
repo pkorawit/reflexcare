@@ -34,33 +34,28 @@
             </ons-col>
         </ons-row>
 
+        <ons-row style="margin-top:30px">
+            <ons-col>
+                <div class="center">                    
+                    <div class="subtitleText">Sign up for a new user</div>
+                </div>
+            </ons-col>
+        </ons-row>
+
         <ons-row  style="margin-top:70px">
             <ons-col width="10%"></ons-col>
             <ons-col width="80%">
                 <div class="center">
-                    <ons-input class="loginMargin" id="username" placeholder="Username" float></ons-input>
+                    <ons-input class="loginMargin" id="username" placeholder="Email Address" float></ons-input>
                 </div>
                 <div class="center">
                     <ons-input class="loginMargin" id="password" type="password" placeholder="Password" float></ons-input>
                 </div>
                 <div>
-                    <ons-button modifier="large transparent" id="signin">Log in</ons-button>
-                </div>
-                <div style="margin-bottom:25px;font-size:13px;">
-                    <p id="forgetPassword">Forget Password ?</p>
-                </div>
-                <div>
-                    <ons-row class="center" style="margin-bottom:20px">
-                        <ons-col><hr></ons-col>
-                        <ons-col width="9%">Or</ons-col>
-                        <ons-col><hr></ons-col>
-                    </ons-row>
-                </div>
-                <div class="center">
-                    <p id="loginFacebook">Log in with Facebook</p>
-                </div>
-                <div class="center">
-                    Don't have an account ? <strong id="signup">Sign up</strong>
+                    <ons-button modifier="large transparent" id="signup">Sign Up</ons-button>
+                </div>                
+                <div class="center" style="margin-top:20px">
+                   Have an account ? <strong id="backsignin">Sign in</strong>
                 </div>    
             </ons-col>
             <ons-col width="10%"></ons-col>
@@ -68,7 +63,7 @@
     </ons-page>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
 </body>
 
 </html>

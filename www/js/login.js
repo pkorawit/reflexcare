@@ -12,20 +12,15 @@ ons.ready(function () {
     var mockUserID = 'waree@smartreflex.info';
 
     $('#signin').click(function () {
-
         var username = $('#username').val();
         var password = $('#password').val();
-        if (username === password) {
-            console.log('Go to home page');
-            window.location.replace('home.html?userid=' + mockUserID);
-        } else {
-            ons.notification.alert('Incorrect password');
-            firebase.auth().signOut().then(function () {
-                ons.notification.alert('Signed Out');
-            }).catch(function (error) {
-                ons.notification.alert(error);
-            });
-        }
+        firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;     
+            ons.notification.toast(error.message,{ timeout: 2000 }).then(function(name){
+                
+            });    
+        });
     })
 
     $('#loginFacebook').click(function () {
@@ -49,4 +44,15 @@ ons.ready(function () {
             var errorMessage = error.message;
         });
     })
+
+    $('#signup').click(function () {
+        window.location.replace('signup.html');
+    })
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location.replace('home.html?userid=' + mockUserID);
+        } 
+    });
 });

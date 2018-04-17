@@ -27,7 +27,7 @@
     <ons-modal direction="up">
         <div style="text-align: center">
             <p>
-                <ons-icon icon="fa-spinner" size="32px" spin></ons-icon> Loading...
+                <ons-icon icon="fa-spinner" size="32px" spin></ons-icon>
             </p>
         </div>
     </ons-modal>
@@ -66,7 +66,7 @@
                 <ons-col class="center Sukhumvit-font marginAuto">
                     <div style="background-image:url('{{img}}');margin: auto; margin-top: 10px;" class="smartProfile72px smartProfileAlert" onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}"></div>
                     <div>
-                        <ons-card class="center" style="width:90px">
+                        <ons-card class="center" style="width:90px; background-color: rgba(255,0,0,0.25);">
                                 <div>
                                     <a onclick="ChartBuilder.smartreflexPush('views/smartReflexPush.html', 'SMART REFLEX', 1, '{{userid}}')" id="{{id}}">{{name}}</a>
                                 </div>
@@ -86,7 +86,7 @@
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto" >
                     <div style="height:5px"></div>
-                    <div class="color">Distance</div>
+                    <div class="color">Calories</div>
                     <div>{{cal}} kcal</div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
@@ -129,7 +129,7 @@
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
                     <div style="height:5px"></div>
-                    <div class="color">Distance</div>
+                    <div class="color">Calories</div>
                     <div>{{cal}} kcal</div>
                 </ons-col>
                 <ons-col class="center Sukhumvit-font verticalLine marginAuto">
@@ -236,10 +236,13 @@
                     currentUser: currentUser
                 }
             });
-            
-            for (var tab = 0; tab < 4; tab++) {
+            setTabHighlight(highlight);
+        }
+
+        function setTabHighlight(tabNo){
+            for (var tab = 1; tab <= 4; tab++) {
                 var target = '#tab' + tab;
-                if (highlight == tab) {
+                if (tabNo == tab) {
                     $(target).addClass('transparent-Bottom-Toolbar');
                 } else {
                     $(target).removeClass('transparent-Bottom-Toolbar');
@@ -249,10 +252,22 @@
 
         function signOut(){
             SmartReflex.signOut().then(function (){
-                console.log('signOut');
                 window.location.replace('login.html');
             }); 
         }
+
+        document.addEventListener('show', function(event){
+            var page = event.target;
+            if (page.matches('#smartReflex') || page.matches('#smartReflexPush')) {
+                setTabHighlight(1);
+            } else if (page.matches('#smartCare')) {
+                setTabHighlight(2);
+            } else if (page.matches('#personal') || page.matches('#datacare')) {
+                setTabHighlight(3);
+            } else if (page.matches('#moreDevice') || page.matches('#recommendNewDevice')) {
+                setTabHighlight(4);
+            }
+        })
     </script>
 
 </body>

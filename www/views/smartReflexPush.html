@@ -1,25 +1,25 @@
 <ons-page id="smartReflexPush">
-        <ons-row>
-                <!--Cover-->
-                <ons-col>
-                    <div class="welcomeCover"></div>
-                    <div id="profilePushed"></div>
-                </ons-col>
-            </ons-row>
+    <ons-row>
+        <!--Cover-->
+        <ons-col>
+            <div class="welcomeCover"></div>
+            <div id="profilePushed"></div>
+        </ons-col>
+    </ons-row>
     <div>
         <ons-row class="right" style="margin-bottom:7px;margin-top:7px">
             <!--Content-->
             <ons-col></ons-col>
             <ons-col class="center Sukhumvit-font verticalLine">
-                <div>Step</div>
+                <div class="color">Steps</div>
                 <div id="stepPush"></div>
             </ons-col>
             <ons-col class="center Sukhumvit-font verticalLine">
-                <div>Calories</div>
+                <div class="color">Calories</div>
                 <div id="calPush"></div>
             </ons-col>
             <ons-col class="center Sukhumvit-font verticalLine">
-                <div>Heart rate</div>
+                <div class="color">Heart rate</div>
                 <div id="hrPush"></div>
             </ons-col>
             <ons-col width="15px"></ons-col>
@@ -102,8 +102,9 @@
             </ons-col>
         </ons-row>
         <ons-row>
-            <ons-col style="color: #e53d3d;" class="center">
-                ผลสุขภาพของคุณมีความเสี่ยงที่จะไม่สบายสูง ควรพบแพทย์ เพื่อตรวจเช็คร่างกาย
+            <ons-col class="center careText">
+                <div class="color">ผลสุขภาพของคุณมีความเสี่ยงที่จะไม่สบายสูง</div>
+                <div class="color">ควรพบแพทย์ เพื่อตรวจเช็คร่างกาย</div>
             </ons-col>
         </ons-row>
         <ons-row>
@@ -123,7 +124,7 @@
             </ons-col>
         </ons-row>
 
-        <ons-carousel swipeable auto-scroll overscrollable id="lineChartCarouselPush">
+        <ons-carousel auto-scroll overscrollable id="lineChartCarouselPush">
             <ons-carousel-item>
                 <ons-row style="margin-bottom: 25px; margin-top: 25px">
                     <ons-col>
@@ -154,45 +155,31 @@
             </ons-carousel-item>
         </ons-carousel>
 
-        <ons-card class="cardPadding5px">
-            <ons-row>
-                <ons-col class="cardDevice">
-                    <div class="center">
-                        <img src="UI/ai/deviceLogo/75x/fitbit.png" alt="">
-                    </div>
-                </ons-col>
-                <ons-col class="cardDevice">
-                    <div>
-                        Wareable Device KG iot , Sleep Data
-                    </div>
-                </ons-col>
-                <ons-col class="cardDevice">
-                    <div class="center">
-                        <ons-switch checked></ons-switch>
-                    </div>
-                </ons-col>
-            </ons-row>
-        </ons-card>
-        <ons-card class="cardPadding5px">
-            <ons-row>
-                <ons-col class="cardDevice">
-                    <div class="center">
-                        <img src="UI/ai/deviceLogo/75x/apple.png" style="width: 72px" alt="">
-                    </div>
-                </ons-col>
-                <ons-col class="cardDevice">
-                    <div>
-                        Wareable Device ,HRV Data
-                    </div>
-                </ons-col>
-                <ons-col class="cardDevice">
-                    <div class="center">
-                        <ons-switch disabled></ons-switch>
-                    </div>
-                </ons-col>
-            </ons-row>
-        </ons-card>
+        <ons-row class="center">
+            <ons-col>
+                <hr style=" border: 0.5px solid #e53d3d;">
+            </ons-col>
+            <ons-col width="24%" style="color: #e53d3d;font-family:SukhumvitSet-Bold">Devices</ons-col>
+            <ons-col>
+                <hr style=" border: 0.5px solid #e53d3d;">
+            </ons-col>
+        </ons-row>
 
+        <ons-card style="border-radius:10px;height: 90px;">
+            <ons-row>
+                <ons-col class="center" style="margin:auto;">
+                    <img src="img/fitbitCharge2.png" style="height: 72px; width: 72px;margin-top: 8px;">
+                </ons-col>
+                <ons-col class="center Sukhumvit-font" style="margin:auto;">
+                    <div>Fitbit Charge 2</div>
+                    <div>Heart rate, Steps, Calories</div>
+
+                </ons-col>
+                <ons-col class="center " style="margin:auto;">
+                    <img style="width:30px;height:30px;margin-top: 9px;" src="img/yes.png" alt="">
+                </ons-col>
+            </ons-row>
+        </ons-card>
         <div id="target"></div>
 
         <!--Content-->

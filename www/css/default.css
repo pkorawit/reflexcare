@@ -290,7 +290,7 @@ canvas {
 }
 
 .transparent-Bottom-Toolbar{
-    background-color: #ffffff44;
+    background-color: rgb(255, 255, 255, 0.44)
 }
 
 .smartProfile{

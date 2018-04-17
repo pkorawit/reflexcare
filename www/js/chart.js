@@ -109,6 +109,15 @@ var ChartBuilder = {
         myChart.update();
     },
     gaugebuilder: function(renderTarget, value){
+        if (value === 1) {
+            value = 1.4
+        } else if (value === 2) {
+            value = 2.2
+        } else if (value === 4) {
+            value = 3.8
+        } else if (value === 5) {
+            value = 4.6
+        }
         var opts = {
             renderTicks: {
                 divisions: 4,
@@ -131,6 +140,12 @@ var ChartBuilder = {
                 {strokeStyle: "#05d6e1", min: 3.4, max: 4.2}, // Yellow
                 {strokeStyle: "#0981dc", min: 4.2, max: 5}  // Red
              ],
+             staticLabels: {
+                font: "13px sans-serif",  // Specifies font
+                labels: [1, 2, 3, 4, 5],  // Print labels at these values
+                color: "#000000",  // Optional: Label text color
+                fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+              },
               // to see which ones work best for you
             generateGradient: true,
             highDpiSupport: true,     // High resolution support
@@ -255,13 +270,5 @@ var ChartBuilder = {
                     userid: userid
                 }
             });
-            for (var tab = 0; tab < 4; tab++) {
-                var target = '#tab' + tab;
-                if (highlight == tab) {
-                    $(target).addClass('transparent-Bottom-Toolbar');
-                } else {
-                    $(target).removeClass('transparent-Bottom-Toolbar');
-                }
-            }
         }    
     }
