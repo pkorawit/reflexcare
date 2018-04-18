@@ -9,6 +9,27 @@ document.addEventListener('init', function (event) {
 
         initUI();
 
+        SmartReflex.getUser(currentUser.profile.userid).then(function (messages,dataUser){
+            var gender = document.getElementsByName("gender");
+            if(dataUser.profile.gender == "M"){
+                gender[1].checked = true;
+            }
+            else if(dataUser.profile.gender == "F"){
+                gender[2].checked = true;
+            }
+
+            // var date = new Date(dataUser.health.clinical[0].timestamp);
+            var date = new Date(dataUser.profile.DOB);
+            document.getElementById("dob").value = date.getFullYear() + 
+                                                    "-" + ( (date.getMonth() +1) <10 ? '0' : '') +( (date.getMonth() +1) ) + 
+                                                    "-" + (date.getDate() <10 ? '0' : '') + date.getDate();
+
+
+            
+        })
+
+        
+
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, user) {
 
             userData = user;
@@ -16,6 +37,10 @@ document.addEventListener('init', function (event) {
             console.log(user);
             $('#fname').val(user.profile.firstname);
             $('#lname').val(user.profile.lastname);
+            $('#height').val(user.health.general.height);
+            $('#weight').val(user.health.general.weight);
+            $('#waist').val(user.health.general.waist);
+            // $('#dob').val(user.profile.DOB);
         })
     }
 })
@@ -23,6 +48,21 @@ document.addEventListener('init', function (event) {
 function updateUserData() {
     userData.profile.firstname = $('#fname').val();
     userData.profile.lastname = $('#lname').val();
+    userData.profile.height = $('#height').val();
+    userData.profile.weight = $('#weight').val();
+    userData.profile.waist = $('#waist').val();
+    userData.profile.DOB = $('#dob').val();
+
+    var gender = document.getElementsByName("gender");
+    if(gender[1].checked){
+        userData.profile.gender = gender[1].value
+    }
+    else{
+        userData.profile.gender = gender[2].value
+    }
+    
+
+
     SmartReflex.updateUser(userData).then(function (messages) {
         console.log(messages);
         changeTab('views/smartReflex.html')
