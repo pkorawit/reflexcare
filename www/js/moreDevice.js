@@ -35,22 +35,25 @@ ons.ready(function () {
                         SmartReflex.getScore(currentUser.profile.userid).then(function (message, score) {
                             console.log(currentUser.profile.userid);
                             console.log(score);
-                            currentUser.devices.push(device);
-                            if (score == null) {
-                                //Get mock score template
-                                var mockUserID = "mock@smartreflex.info";
-                                SmartReflex.getScore(mockUserID).then(function (message, mockscore) {  
-                                    mockscore.userid = currentUser.profile.userid;
-                                    SmartReflex.addScore(mockscore).then(function (message, newscore) {                                       
-                                        SmartReflex.updateUser(currentUser).then(function (message, newuser) {
-                                            changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-                                        });                                        
+                            SmartReflex.getUser(currentUser.profile.userid).then(function (message, updateUser) {  
+                                currentUser = updateUser;
+                                updateUser.devices.push(device);
+                                if (score == null) {
+                                    //Get mock score template
+                                    var mockUserID = "mock@smartreflex.info";
+                                    SmartReflex.getScore(mockUserID).then(function (message, mockscore) {  
+                                        mockscore.userid = currentUser.profile.userid;
+                                        SmartReflex.addScore(mockscore).then(function (message, newscore) {                                       
+                                            SmartReflex.updateUser(updateUser).then(function (message, newuser) {
+                                                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                            });                                        
+                                        });
                                     });
-                                });
-                            }
-                            else{
-                                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-                            }
+                                }
+                                else{
+                                    changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                }
+                            });
                         });
                     }
                 });
