@@ -257,7 +257,7 @@ placholder{
 }
 
 .verticalLine {
-    border-right: 1px solid #3b3b3b47;
+    border-right: 1px solid rgba(59,59,59,.3);
     height: 42px;
 }
 
