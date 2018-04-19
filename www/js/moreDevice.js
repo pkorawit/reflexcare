@@ -12,29 +12,34 @@ ons.ready(function () {
                 var browser = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
                 browser.addEventListener('loadstart', function (evt) {
                     console.log('evt.url = ' + evt.url);
-                   
+
                     if (evt.url.indexOf(endUrl) == 0) {
                         // close the browser, we are done!
                         browser.close();
                         // TODO: pull the token out and 
                         // use it for further API calls.
                         var fitbitCode = evt.url.split('code=')[1];
-                        ons.notification.alert(fitbitCode);   
-                        ons.notification.toast("Return from Fitbit", { timeout: 3000 }).then(function (name) {
+                        //ons.notification.alert(fitbitCode);   
 
+                        //Create mock up score data
+                        SmartReflex.getScore(currentUser.userid).then(function (message, score) {
+                            ons.notification.alert(message);   
+                            if(score == null){
+                                //Get mock score template
+                                var mockUserID = "mock@smartreflex.info";
+                                SmartReflex.getScore(mockUserID).then(function (message, mockscore) {
+                                    ons.notification.alert(message);   
+                                    mockscore.userid = currentUser.userid;
+                                    SmartReflex.addScore(mockscore).then(function (message, newscore) {
+                                        ons.notification.alert(message);   
+                                        changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                        
+                                    });
+                                });
+                            }                          
                         });
                     }
                 });
-                browser.addEventListener('loaderror', function (err) {     
-                        ons.notification.alert('loaderror' + err);                   
-                        console.log(JSON.stringify(err));
-                        ons.notification.toast("Return from Fitbit", { timeout: 3000 }).then(function (name) {
-
-                        });
-                        browser.close();
-                    
-                });                
-
             });
 
         }
