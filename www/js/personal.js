@@ -6,7 +6,6 @@ ons.ready(function(){
     document.addEventListener('init', function (event) {
         var page = event.target;
         currentUser = page.data.currentUser;
-        console.log(currentUser)
         if (page.id == "personal") {
             document.querySelector('ons-back-button').hide();
             initUI();
