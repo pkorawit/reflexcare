@@ -9,186 +9,173 @@
         </ons-col>
         <ons-col></ons-col>
     </ons-row>
-        <ons-card style="border-radius:10px;margin:10px;padding:10px;">
-                <h2 class="card__title" style="font-size:17px; color:red;text-align: center;font-family: 'SukhumvitSet-Text';">ข้อมูลสุขภาพแบบละเอียด</h2>
-                <div class="card__content">
-                    <ons-row class="center">
+    <ons-card style="border-radius:10px;margin:10px;padding:10px;">
+        <h2 class="card__title" style="font-size:17px; color:red;text-align: center;font-family: 'SukhumvitSet-Text';">ข้อมูลสุขภาพแบบละเอียด</h2>
+        <div class="card__content">
+            <ons-row class="center">
+                <ons-col>
+                    <p>ระดับชีพจร</p>
+                    <ons-select id="bpm">
+                        <option value="" selected="selected" disabled="disabled">bmp</option>
+                        <option value="...">...</option>
+                        <option value="...">...</option>
+                    </ons-select>
+                </ons-col>
+                <ons-col>
+                    <p> ระดับความดันโลหิต</p>
+                    <ons-select id="">
+                        <option value="1">น้อยกว่า 80</option>
+                        <option value="2">80-89</option>
+                        <option value="3">90-99</option>
+                        <option value="4">100-120</option>
+                        <option value="5">121-139</option>
+                        <option value="5">140-159</option>
+                        <option value="5">160 ขึ้นไป</option>
+                    </ons-select>
+                </ons-col>
+
+
+                <ons-row>
+                    <ons-col>
+                        <p>ระดับความเข้มข้นของเลือด</p>
+                        <ons-select id="">
+                            <option value="" selected="selected" disabled="disabled">HB</option>
+                            <option value="...">...</option>
+                            <option value="...">...</option>
+                        </ons-select>
+                    </ons-col>
+                    <ons-col>
+                        <p>ไตรกรีเซอไรด์</p>
+                        <ons-select id="">
+                            <option value="...">...</option>
+                            <option value="...">...</option>
+                            <option value="...">...</option>
+                        </ons-select>
+                    </ons-col>
+
+                    <ons-row>
                         <ons-col>
-                            <p>ระดับชีพจร</p>
-                            <ons-select id="bpm">
-                                <option value="" selected="selected" disabled="disabled">bmp</option>
-                                <option value="...">...</option>
-                                <option value="...">...</option>
-                            </ons-select>
-                        </ons-col>
-                        <ons-col>
-                            <p> ระดับความดันโลหิต</p>
+                            <p>ระดับน้ำตาลในเลือด</p>
                             <ons-select id="">
-                                <option value="1">น้อยกว่า 80</option>
-                                <option value="2">80-89</option>
-                                <option value="3">90-99</option>
-                                <option value="4">100-120</option>
-                                <option value="5">121-139</option>
-                                <option value="5">140-159</option>
-                                <option value="5">160 ขึ้นไป</option>
+                                <option value="...">...</option>
+                                <option value="...">...</option>
+                                <option value="...">...</option>
                             </ons-select>
                         </ons-col>
-
-
+                        <ons-col>
+                            <p>ระดับไขมันในเลือด</p>
+                            <ons-select id="">
+                                <option value="...">...</option>
+                                <option value="...">...</option>
+                                <option value="...">...</option>
+                            </ons-select>
+                        </ons-col>
+                        </one-row>
                         <ons-row>
-                            <ons-col>
-                                <p>ระดับความเข้มข้นของเลือด</p>
-                                <ons-select id="">
-                                        <option value="" selected="selected" disabled="disabled">HB</option>
-                                    <option value="...">...</option>
-                                    <option value="...">...</option>
-                                </ons-select>
-                            </ons-col>
-                            <ons-col>
-                                <p>ไตรกรีเซอไรด์</p>
-                                <ons-select id="">
-                                    <option value="...">...</option>
-                                    <option value="...">...</option>
-                                    <option value="...">...</option>
-                                </ons-select>
-                            </ons-col>
+                            <p>อาการแพ้ยา</p>
+                            <ons-list-item tappable>
+                                <label class="left">
+                                    <ons-radio name="color" input-id="radio-1" checked type="checkbox" class="slectOne" data-id="1 selected"></ons-radio>
+                                </label>
+                                <label for="radio-1" class="center">ไม่มี</label>
+                            </ons-list-item>
+                            <ons-list-item tappable>
+                                <label class="left">
+                                    <ons-radio name="color" input-id="radio-2" type="checkbox" class="slectOne" data-id="2 selected"></ons-radio>
+                                </label>
+                                <label for="radio-2" class="center">มี</label>
+                            </ons-list-item>
 
-                            <ons-row>
-                                <ons-col>
-                                    <p>ระดับน้ำตาลในเลือด</p>
-                                    <ons-select id="">
-                                        <option value="...">...</option>
-                                        <option value="...">...</option>
-                                        <option value="...">...</option>
-                                    </ons-select>
-                                </ons-col>
-                                <ons-col>
-                                    <p>ระดับไขมันในเลือด</p>
-                                    <ons-select id="">
-                                        <option value="...">...</option>
-                                        <option value="...">...</option>
-                                        <option value="...">...</option>
-                                    </ons-select>
-                                </ons-col>
-                                </one-row>
-                                <ons-row>
-                                    <p>อาการแพ้ยา</p>
-                                    <ons-list-item tappable>
-                                        <label class="left">
-                                            <ons-radio name="color" input-id="radio-1" checked type="checkbox" class="slectOne" data-id="1 selected"></ons-radio>
-                                        </label>
-                                        <label for="radio-1" class="center">ไม่มี</label>
-                                    </ons-list-item>
-                                    <ons-list-item tappable>
-                                        <label class="left">
-                                            <ons-radio name="color" input-id="radio-2" type="checkbox" class="slectOne" data-id="2 selected"></ons-radio>
-                                        </label>
-                                        <label for="radio-2" class="center">มี</label>
-                                    </ons-list-item>
+                            <div class="left">
+                                <textarea class="textarea" style="width:100%" rows="1" placeholder="โปรดระบุ"></textarea>
 
-                                    <div class="left">
-                                            <textarea class="textarea" style="width:100%" rows="1" placeholder="โปรดระบุ"></textarea>
-                                           
-                                        </div>
-                                    </ons-list-item>
-                                </ons-row><p>โรคประจำตัว</p>
-                                <ons-row>
-                                    
-                                    <ons-list>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                ไม่มี
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-2"></ons-checkbox>
-                                            </label>
-                                            <label for="check-2" class="center">
-                                                โรคเบาหวาน
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                โรคไทรอยด์
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                โรคหัวใจ
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                โรคความดันโลหิตสูง
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                โรคภูมิแพ้
-                                            </label>
-                                        </ons-list-item>
-                                        <ons-list-item tappable>
-                                            <label class="left">
-                                                <ons-checkbox input-id="check-1"></ons-checkbox>
-                                            </label>
-                                            <label for="check-1" class="center">
-                                                อื่นๆ
-                                            </label>
-                                        </ons-list-item>
-                                    </ons-list>
-                                </ons-row>
-                                <div class="left">
-                                        <textarea class="textarea" style="width:100%" rows="1" placeholder="โปรดระบุ"></textarea>
-                                       
-                                    </div>
-                </div>
-                <div class="center" style="margin-top:30px">
-                    <ons-button class="b2" id="finish"onclick="changeTab('views/smartReflex.html', 'SMART REFLEX', 1);">เสร็จสิ้น</ons-button>
-                </div>
-            </div>
-        </ons-card>
-            <ons-col style="margin-top:30px"></ons-col>
-            </ons-row>
-            <script>
-                    document.addEventListener('init', function (event) {
-                    var page = event.target;
-                    var currentUser = page.data.currentUser;
-                    if (page.id == "datacare") {
-                        document.querySelector('ons-back-button').hide();
-                        console.log(currentUser.profile.userid);
-                        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
-                            doc.connections.forEach((connections) => {
-                                SmartReflex.getScore(connections.userid).then(function (messages, score) {
-                                    SmartReflex.getUser(connections.userid).then(function (message, data) {
-                                        var dataP ={
-                                            
-                                            hr: data.health.clinical.HR,
-                                            hps: data.health.clinical.BPS,
-                                            bpd: data.health.clinical.BPD,
-                                            fbs: data.health.clinical.FBS
-                                        }
-                                        console.log(dataP)
-                                    })
-                                })
-                            })
-                        })
-                    }
-                })
-                    </script>
+                            </div>
+                            </ons-list-item>
+                        </ons-row>
+                        <p>โรคประจำตัว</p>
+                        <ons-row>
+
+                            <ons-list>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        ไม่มี
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-2"></ons-checkbox>
+                                    </label>
+                                    <label for="check-2" class="center">
+                                        โรคเบาหวาน
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        โรคไทรอยด์
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        โรคหัวใจ
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        โรคความดันโลหิตสูง
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        โรคภูมิแพ้
+                                    </label>
+                                </ons-list-item>
+                                <ons-list-item tappable>
+                                    <label class="left">
+                                        <ons-checkbox input-id="check-1"></ons-checkbox>
+                                    </label>
+                                    <label for="check-1" class="center">
+                                        อื่นๆ
+                                    </label>
+                                </ons-list-item>
+                            </ons-list>
+                        </ons-row>
+                        <div class="left">
+                            <textarea class="textarea" style="width:100%" rows="1" placeholder="โปรดระบุ"></textarea>
+
+                        </div>
+        </div>
+        <div class="center" style="margin-top:30px">
+            <ons-button class="b2" id="finish" onclick="changeTab('views/smartReflex.html', 'SMART REFLEX', 1);">เสร็จสิ้น</ons-button>
+        </div>
+        </div>
+ 
+    </ons-card>    
+    <script>
+            document.addEventListener('show', function (event) {
+                var page = event.target;
+                if (page.id == "datacare") {
+                    document.querySelector('ons-back-button').show();
+                    document.querySelector('ons-back-button').onClick = function (event) {
+                        document.querySelector('ons-navigator').popPage();
+                    };
+                }
+            })
+    </script>
+    </ons-row>
+
 </ons-page>
