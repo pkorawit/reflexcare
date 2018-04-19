@@ -1,25 +1,19 @@
 ons.ready(function () {
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyC084zG4lwkrp4G-C6sK_smmXo9DBN2I-Q",
-        authDomain: "smartreflex-2018.firebaseapp.com",
-    };
 
-    firebase.initializeApp(config);
     var provider = new firebase.auth.FacebookAuthProvider();
     provider.addScope('user_birthday');
-    
+
     var mockUserID = 'waree@smartreflex.info';
 
     $('#signin').click(function () {
         var username = $('#username').val();
         var password = $('#password').val();
-        firebase.auth().signInWithEmailAndPassword(username, password).catch(function(error) {
+        firebase.auth().signInWithEmailAndPassword(username, password).catch(function (error) {
             var errorCode = error.code;
-            var errorMessage = error.message;     
-            ons.notification.toast(error.message,{ timeout: 2000 }).then(function(name){
-                
-            });    
+            var errorMessage = error.message;
+            ons.notification.toast(error.message, { timeout: 2000 }).then(function (name) {
+
+            });
         });
     })
 
@@ -34,10 +28,36 @@ ons.ready(function () {
             // The signed-in user info.
             var user = result.user;
             console.log(user.email);
-            //ons.notification.alert(user.email);
-            ons.notification.toast('Welcome, ' + user.displayName,{ timeout: 2000 }).then(function(name){
-                window.location.replace('home.html?userid=' + mockUserID);
-            });            
+
+            SmartReflex.getUser(user.email).then(function (message, newuser) {
+                //New user
+                if (newuser == null) {
+                    ons.notification.toast('Welcome new user, ' + user.email, { timeout: 3000 }).then(function (name) {
+
+                        //Get mockup data 
+                        var mockUserID = "mock@smartreflex.info";
+                        SmartReflex.getUser(mockUserID).then(function (message, mock) {
+
+                            mock.profile.userid = user.email;
+                            mock.profile.firstname = user.displayName.split(' ')[0];
+                            mock.profile.lastname = user.displayName.split(' ')[1];
+                            mock.profile.photo = user.photoURL;
+
+                            SmartReflex.addUser(mock).then(function (message, newprofile) {
+                                window.location.replace('home.html?userid=' + user.email);
+                            });
+                        });
+                    });
+                }
+                //Existing user
+                else {
+                    ons.notification.toast('Welcome, ' + user.displayName, { timeout: 2000 }).then(function (name) {
+                        window.location.replace('home.html?userid=' + user.email);
+                    });
+                }
+            });
+
+
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -50,9 +70,9 @@ ons.ready(function () {
     })
 
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            window.location.replace('home.html?userid=' + mockUserID);
-        } 
+            //window.location.replace('home.html?userid=' + mockUserID);
+        }
     });
 });
