@@ -100,16 +100,52 @@ var SmartReflex = {
         var deferred = new $.Deferred();
         var docRef = db.collection("users").doc(user.profile.userid);
         docRef.update(user)
-        
+
             .then(function () {
                 deferred.resolve("Updated");
             })
             .catch(function (error) {
-                deferred.resolve("Cannot update profile");
+                deferred.resolve("Cannot update profile : " + error);
             });
 
         return deferred.promise();
     },
+
+    //Save profile photo
+    addUser: function (user) {
+
+        var deferred = new $.Deferred();
+        var docRef = db.collection("users").doc(user.profile.userid);
+        docRef.set(user)
+
+            .then(function () {
+                deferred.resolve("Added");
+            })
+            .catch(function (error) {
+                deferred.resolve("Cannot add new profile : " + error);
+            });
+
+        return deferred.promise();
+    },
+
+
+    //Save profile photo
+    addScore: function (score) {
+
+        var deferred = new $.Deferred();
+        var docRef = db.collection("fitscores").doc(score.userid);
+        docRef.set(score)
+
+            .then(function () {
+                deferred.resolve("Added");
+            })
+            .catch(function (error) {
+                deferred.resolve("Cannot add new fitscores : " + error);
+            });
+
+        return deferred.promise();
+    },
+
 
     //Get URL parameter
     getUrlParameter: function (sParam) {

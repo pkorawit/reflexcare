@@ -29,10 +29,11 @@
             <path url="/__/auth/callback" />
         </host>
     </universal-links>
+    <engine name="browser" spec="^5.0.3" />
+    <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
     <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
         <variable name="URL_SCHEME" value="info.smartreflex.android" />
         <variable name="ANDROID_SCHEME" value=" " />
@@ -41,6 +42,10 @@
     </plugin>
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/nordnet/cordova-universal-links-plugin.git" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+<<<<<<< HEAD
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^6.3.0" />
+=======
+    <plugin name="cordova-plugin-inappbrowser" spec="git+https://github.com/apache/cordova-plugin-inappbrowser.git" />
+>>>>>>> a4e3834a649bd22076bb382d83819f9bf4cade4a
 </widget>
