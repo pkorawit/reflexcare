@@ -1,5 +1,15 @@
 
 ons.ready(function () {
+
+    universalLinks.subscribe('onFitbit', onRootPage);
+
+    function onRootPage(eventData) {
+        console.log('Redirected from root page' + eventData);
+        ons.notification.toast("Redirected from Fitbit", { timeout: 3000 }).then(function (name) {
+            
+        });
+    }
+
     document.addEventListener('init', function (event) {
         var page = event.target;
         var currentUser = page.data.currentUser;
@@ -7,7 +17,7 @@ ons.ready(function () {
             $('#charge2').click(function () {
 
                 console.log('Charge2');
-                var url = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CVM2&redirect_uri=https%3A%2F%2Fhmkj8.app.goo.gl&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight";
+                var url = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CVM2&redirect_uri=https%3A%2F%2Fsmartreflex-2018.firebaseapp.com%2Ffitbit&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight";
 
                 var browser = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
                 browser.addEventListener('loadstart', function (evt) {
