@@ -430,31 +430,3 @@ document.addEventListener('show', function (event) {
         $('#hrPush').html(hrTemplateRendered);
     }
 });
-
-//------------------------------------------------start-------------------------------------
-document.addEventListener('show', function (event) {
-    var page = event.target;
-    if (page.matches('#personal')) {
-        //------------------------------- upload ---------------------------------
-          
-    $(function () {
-        var fileupload = $("#FileUpload1");
-        var filePath = $("#spnFilePath");
-        var image = $("#imgFileUpload");
-        image.click(function () {
-            fileupload.click();
-        });
-        fileupload.change(function () {
-            var fileName = $(this).val().split('\\')[$(this).val().split('\\').length - 1];
-            var reader = new FileReader();
-            console.log(reader);
-            reader.onload = function (e) {
-                $('#img').attr('src', e.target.result);
-            filePath.html(fileName);
-            }
-            reader.readAsDataURL(input.files[0]);
-
-        });
-    });
-    }
-});

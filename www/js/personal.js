@@ -6,29 +6,29 @@ document.addEventListener('init', function (event) {
     if (page.id == "personal") {
         document.querySelector('ons-back-button').hide();
         console.log(currentUser.profile.userid);
-
+        
         initUI();
 
-        SmartReflex.getUser(currentUser.profile.userid).then(function (messages,dataUser){
+        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, dataUser) {
             var gender = document.getElementsByName("gender");
-            if(dataUser.profile.gender == "M"){
+            if (dataUser.profile.gender == "M") {
                 gender[1].checked = true;
             }
-            else if(dataUser.profile.gender == "F"){
+            else if (dataUser.profile.gender == "F") {
                 gender[2].checked = true;
             }
 
             // var date = new Date(dataUser.health.clinical[0].timestamp);
             var date = new Date(dataUser.profile.DOB);
-            document.getElementById("dob").value = date.getFullYear() + 
-                                                    "-" + ( (date.getMonth() +1) <10 ? '0' : '') +( (date.getMonth() +1) ) + 
-                                                    "-" + (date.getDate() <10 ? '0' : '') + date.getDate();
+            document.getElementById("dob").value = date.getFullYear() +
+                "-" + ((date.getMonth() + 1) < 10 ? '0' : '') + ((date.getMonth() + 1)) +
+                "-" + (date.getDate() < 10 ? '0' : '') + date.getDate();
 
 
-            
+
         })
 
-        
+
 
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, user) {
 
@@ -40,7 +40,6 @@ document.addEventListener('init', function (event) {
             $('#height').val(user.health.general.height);
             $('#weight').val(user.health.general.weight);
             $('#waist').val(user.health.general.waist);
-            // $('#dob').val(user.profile.DOB);
         })
     }
 })
@@ -52,16 +51,14 @@ function updateUserData() {
     userData.profile.weight = $('#weight').val();
     userData.profile.waist = $('#waist').val();
     userData.profile.DOB = $('#dob').val();
-
+    userData.health.clinical[0].timestamp = $('#timestamp').val();
     var gender = document.getElementsByName("gender");
-    if(gender[1].checked){
+    if (gender[1].checked) {
         userData.profile.gender = gender[1].value
     }
-    else{
+    else {
         userData.profile.gender = gender[2].value
     }
-    
-
 
     SmartReflex.updateUser(userData).then(function (messages) {
         console.log(messages);
@@ -104,3 +101,35 @@ function initUI() {
 
 }
 
+function cam() {
+    var storage = firebase.storage();
+    var storageRef = firebase.storage().ref();
+    navigator.camera.getPicture(onSuccess, onFail, {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
+    function onSuccess(imageURI) {
+        var base64str = imageURI;
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+            view[i] = binary.charCodeAt(i);
+        }
+        var blob = new Blob([view], { type: "image/jpeg" });
+        var userID = "";// UserID
+        var photoRef = storageRef.child("photos/" + userID + ".png");
+        photoRef.put(blob).then(function (snapshot) {
+            photoRef.getDownloadURL().then(function (url) {
+                photoUrl = url;
+                $("#preview").attr("src", url);
+            })
+        });
+    }
+    function onFail(message) {
+        ons.notification.alert('Failed because: ' + message);
+
+    }
+
+}
