@@ -1,9 +1,11 @@
 var userData;
 var currentUser;
+var camera;
 ons.ready(function(){
     document.addEventListener('init', function (event) {
         var page = event.target;
         currentUser = page.data.currentUser;
+        console.log(currentUser)
         if (page.id == "personal") {
             document.querySelector('ons-back-button').hide();
             initUI();
@@ -29,37 +31,11 @@ ons.ready(function(){
                 $('#waist').val(dataUser.health.general.waist);
                 $('#imgFileUpload').attr("src", dataUser.profile.photo);
             })
-            $('#imgFileUpload').onclick(function () {
-                cam();
-            })
+           
         }
     })
 
-    function cam() {
-        navigator.camera.getPicture(onSuccess, onFail, {
-            quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL
-        });
-        function onSuccess(imageURI) {
-            var base64str = imageURI;
-            var binary = atob(base64str.replace(/\s/g, ''));
-            var len = binary.length;
-            var buffer = new ArrayBuffer(len);
-            var view = new Uint8Array(buffer);
-            for (var i = 0; i < len; i++) {
-                view[i] = binary.charCodeAt(i);
-            }
-            var blob = new Blob([view], { type: "image/jpeg" });
-            var userID = "";// UserID 
-            SmartReflex.saveProfilePhoto(blob, currentUser).then(function (message, url) {
-                $('#imgFileUpload').attr("src", url);
-            })
-        }
-        function onFail(message) {
-            ons.notification.alert('Failed because: ' + message);
-        }
-    }
-
+    
     function updateUserData() {
         userData.profile.firstname = $('#fname').val();
         userData.profile.lastname = $('#lname').val();
@@ -119,4 +95,54 @@ ons.ready(function(){
 
     }
 
+    camera = function() {
+        navigator.camera.getPicture(onSuccess, onFail, {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL
+        });
+        function onSuccess(imageURI) {
+            var base64str = imageURI;
+            var binary = atob(base64str.replace(/\s/g, ''));
+            var len = binary.length;
+            var buffer = new ArrayBuffer(len);
+            var view = new Uint8Array(buffer);
+            for (var i = 0; i < len; i++) {
+                view[i] = binary.charCodeAt(i);
+            }
+            var blob = new Blob([view], { type: "image/jpeg" });
+            var userID = "";// UserID 
+            SmartReflex.saveProfilePhoto(blob, currentUser.profile.userid).then(function (message, url) {
+                $('#imgFileUpload').attr("src", url);
+            })
+        }
+        function onFail(message) {
+            ons.notification.alert('Failed because: ' + message);
+        }
+    }
+
 })
+
+/*function camera() {
+    navigator.camera.getPicture(onSuccess, onFail, {
+        quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
+    function onSuccess(imageURI) {
+        var base64str = imageURI;
+        var binary = atob(base64str.replace(/\s/g, ''));
+        var len = binary.length;
+        var buffer = new ArrayBuffer(len);
+        var view = new Uint8Array(buffer);
+        for (var i = 0; i < len; i++) {
+            view[i] = binary.charCodeAt(i);
+        }
+        var blob = new Blob([view], { type: "image/jpeg" });
+        var userID = "";// UserID 
+        SmartReflex.saveProfilePhoto(blob, currentUser.profile.userid).then(function (message, url) {
+            $('#imgFileUpload').attr("src", url);
+        })
+    }
+    function onFail(message) {
+        ons.notification.alert('Failed because: ' + message);
+    }
+}*/
