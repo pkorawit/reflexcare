@@ -40,9 +40,9 @@ ons.ready(function(){
     updateUserData = function() {
         userData.profile.firstname = $('#fname').val();
         userData.profile.lastname = $('#lname').val();
-        userData.profile.height = $('#height').val();
-        userData.profile.weight = $('#weight').val();
-        userData.profile.waist = $('#waist').val();
+        userData.health.general.height = $('#height').val();
+        userData.health.general.weight = $('#weight').val();
+        userData.health.general.waist = $('#waist').val();
         userData.profile.DOB = $('#dob').val();
 
         var gender = document.getElementsByName("gender");
