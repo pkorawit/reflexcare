@@ -34,8 +34,7 @@
         "ANDROID_HOST": " ",
         "ANDROID_PATHPREFIX": "/"
       },
-      "cordova-universal-links-plugin": {},
-      "cordova-plugin-camera": {}
+      "cordova-universal-links-plugin": {}
     },
     "platforms": [
       "browser",
