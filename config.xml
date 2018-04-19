@@ -42,10 +42,5 @@
     </plugin>
     <plugin name="cordova-universal-links-plugin" spec="git+https://github.com/nordnet/cordova-universal-links-plugin.git" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
-<<<<<<< HEAD
-    <engine name="browser" spec="^5.0.3" />
-    <engine name="android" spec="^6.3.0" />
-=======
     <plugin name="cordova-plugin-inappbrowser" spec="git+https://github.com/apache/cordova-plugin-inappbrowser.git" />
->>>>>>> a4e3834a649bd22076bb382d83819f9bf4cade4a
 </widget>

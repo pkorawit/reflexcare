@@ -10,7 +10,7 @@ ons.ready(function () {
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            window.location.replace('home.html?userid=' + mockUserID);
+            window.location.replace('home.html?userid=' + user.email);
         } else {
             window.location.replace('login.html');
         }
