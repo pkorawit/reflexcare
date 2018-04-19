@@ -227,6 +227,11 @@ placholder{
 .logoSize{
     width: 79%;
     height: 79%;
+}
+
+.profileSize{
+    width: 79px;
+    height: 79px;
     border-radius: 50%;
     box-shadow: 0 1px 5px rgba(0,0,0,.3);
 }
