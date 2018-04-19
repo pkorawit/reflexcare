@@ -202,7 +202,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script>   
         var modal = document.querySelector('ons-modal');
-        modal.show();     
+        modal.show();
         //Force android UI
         ons.platform.select('android');
         //Get logged in user id
@@ -213,20 +213,27 @@
         var currentUser;
         SmartReflex.getUser(loggedInUserId).then(function (message, user) {
 
-            //Init left thumbnail on toolbar
-            var thumbnailTemplate = $('#thumbnailTamplate').html();
-            var data = {
-                img: user.profile.photo
-            };
-            currentUser = user;
-            var imgRendered = Mustache.render(thumbnailTemplate, data);
-            $('#thumbnailIMG').html(imgRendered);
-
             var modal = document.querySelector('ons-modal');
-            
+            currentUser = user;
+
+            if (!user.gender) {
+                changeTab('views/personal.html', 'PERSONAL INFO', 3);
+            }
+            else {
+                //Init left thumbnail on toolbar
+                var thumbnailTemplate = $('#thumbnailTamplate').html();
+                var data = {
+                    img: user.profile.photo
+                };
+                
+                var imgRendered = Mustache.render(thumbnailTemplate, data);
+                $('#thumbnailIMG').html(imgRendered);                
+
+                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+            }
+
             modal.hide();
 
-            changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
         });
 
         function changeTab(page, pagename, highlight) {
@@ -240,7 +247,7 @@
             setTabHighlight(highlight);
         }
 
-        function setTabHighlight(tabNo){
+        function setTabHighlight(tabNo) {
             for (var tab = 1; tab <= 4; tab++) {
                 var target = '#tab' + tab;
                 if (tabNo == tab) {
@@ -251,13 +258,13 @@
             }
         }
 
-        function signOut(){
-            SmartReflex.signOut().then(function (){
+        function signOut() {
+            SmartReflex.signOut().then(function () {
                 window.location.replace('login.html');
-            }); 
+            });
         }
 
-        document.addEventListener('show', function(event){
+        document.addEventListener('show', function (event) {
             var page = event.target;
             if (page.matches('#smartReflex') || page.matches('#smartReflexPush')) {
                 setTabHighlight(1);
