@@ -1,6 +1,7 @@
 var userData;
 var currentUser;
 var camera;
+var updateUserData;
 ons.ready(function(){
     document.addEventListener('init', function (event) {
         var page = event.target;
@@ -36,7 +37,7 @@ ons.ready(function(){
     })
 
     
-    function updateUserData() {
+    updateUserData = function() {
         userData.profile.firstname = $('#fname').val();
         userData.profile.lastname = $('#lname').val();
         userData.profile.height = $('#height').val();
@@ -51,9 +52,6 @@ ons.ready(function(){
         else {
             userData.profile.gender = gender[2].value
         }
-
-
-
         SmartReflex.updateUser(userData).then(function (messages) {
             console.log(messages);
             changeTab('views/smartReflex.html')
