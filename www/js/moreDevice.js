@@ -2,10 +2,9 @@
 ons.ready(function () {
     document.addEventListener('init', function (event) {
         var page = event.target;
-        var currentUser = page.data.currentUser;
+        var currentUser = page.data.currentUser;       
         if (page.id == "moreDevice") {
-            $('#charge2').click(function () {
-
+            $('#charge2').click(function () {                
                 console.log('Charge2');
                 var endUrl = "https://smartreflex-2018.firebaseapp.com/fitbit";
                 var url = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CVM2&redirect_uri=https%3A%2F%2Fsmartreflex-2018.firebaseapp.com%2Ffitbit&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight";
@@ -22,18 +21,18 @@ ons.ready(function () {
                         //ons.notification.alert(fitbitCode);   
 
                         //Create mock up score data
-                        SmartReflex.getScore(currentUser.userid).then(function (message, score) {
-                            ons.notification.alert(message);   
+                        SmartReflex.getScore(currentUser.profile.userid).then(function (message, score) {
+                            console.log(currentUser.profile.userid);  
+                            console.log(score);  
                             if(score == null){
                                 //Get mock score template
                                 var mockUserID = "mock@smartreflex.info";
                                 SmartReflex.getScore(mockUserID).then(function (message, mockscore) {
-                                    ons.notification.alert(message);   
-                                    mockscore.userid = currentUser.userid;
+                                    //ons.notification.alert(message);   
+                                    mockscore.userid = currentUser.profile.userid;
                                     SmartReflex.addScore(mockscore).then(function (message, newscore) {
-                                        ons.notification.alert(message);   
-                                        changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-                                        
+                                        //ons.notification.alert(message);   
+                                        changeTab('views/smartReflex.html', 'SMART REFLEX', 1);                                        
                                     });
                                 });
                             }                          

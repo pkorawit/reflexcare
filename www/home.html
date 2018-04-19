@@ -216,7 +216,7 @@
             var modal = document.querySelector('ons-modal');
             currentUser = user;
 
-            if (!user.gender) {
+            if (!user.profile.gender) {
                 changeTab('views/personal.html', 'PERSONAL INFO', 3);
             }
             else {
