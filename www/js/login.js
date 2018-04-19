@@ -15,7 +15,10 @@ ons.ready(function () {
 
             });
         });
+<<<<<<< HEAD
+=======
 
+>>>>>>> f160cbef1074024941bec62d9dc937660f6dc56b
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 window.location.replace('home.html?userid=' + mockUserID);
