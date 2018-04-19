@@ -227,6 +227,8 @@ placholder{
 .logoSize{
     width: 79%;
     height: 79%;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px rgba(0,0,0,.3);
 }
 
 .botton-toolbar-align{
@@ -257,7 +259,7 @@ placholder{
 }
 
 .verticalLine {
-    border-right: 1px solid #3b3b3b47;
+    border-right: 1px solid rgba(59,59,59,.3);
     height: 42px;
 }
 

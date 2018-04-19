@@ -60,46 +60,48 @@ function updateUserData() {
         userData.profile.gender = gender[2].value
     }
 
-    SmartReflex.updateUser(userData).then(function (messages) {
-        console.log(messages);
-        changeTab('views/smartReflex.html')
-    });
-}
 
-function initUI() {
 
-    var elm = document.getElementById('weightdropdown'), // get the select
-        df = document.createDocumentFragment();
-    for (var i = 2; i <= 150; i++) {
-        var option = document.createElement('option');
-        option.value = i;
-        option.appendChild(document.createTextNode(i));
-        df.appendChild(option); // append 
+        SmartReflex.updateUser(userData).then(function (messages) {
+            console.log(messages);
+            changeTab('views/smartReflex.html')
+        });
     }
-    elm.appendChild(df);
 
-    var elm = document.getElementById('heighdropdown'), // get the select
-        df = document.createDocumentFragment();
-    for (var i = 100; i <= 200; i++) {
-        var option = document.createElement('option'); // create the option element
-        option.value = i; // set the value property
-        option.appendChild(document.createTextNode(i));
-        df.appendChild(option); // append
+    function initUI() {
+
+        var elm = document.getElementById('weightdropdown'), // get the select
+            df = document.createDocumentFragment();
+        for (var i = 2; i <= 150; i++) {
+            var option = document.createElement('option');
+            option.value = i;
+            option.appendChild(document.createTextNode(i));
+            df.appendChild(option); // append 
+        }
+        elm.appendChild(df);
+
+        var elm = document.getElementById('heighdropdown'), // get the select
+            df = document.createDocumentFragment();
+        for (var i = 100; i <= 200; i++) {
+            var option = document.createElement('option'); // create the option element
+            option.value = i; // set the value property
+            option.appendChild(document.createTextNode(i));
+            df.appendChild(option); // append
+        }
+        elm.appendChild(df);
+
+        var elm = document.getElementById('waistlinedropdown'), // get the select
+            df = document.createDocumentFragment();
+        for (var i = 20; i <= 80; i++) {
+            var option = document.createElement('option');
+            option.value = i; // set the value property
+            option.appendChild(document.createTextNode(i));
+            df.appendChild(option); // append 
+        }
+        elm.appendChild(df);
+
+
     }
-    elm.appendChild(df);
-
-    var elm = document.getElementById('waistlinedropdown'), // get the select
-        df = document.createDocumentFragment();
-    for (var i = 20; i <= 80; i++) {
-        var option = document.createElement('option');
-        option.value = i; // set the value property
-        option.appendChild(document.createTextNode(i));
-        df.appendChild(option); // append 
-    }
-    elm.appendChild(df);
-
-
-}
 
 function cam() {
     var storage = firebase.storage();
