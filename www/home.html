@@ -216,7 +216,7 @@
             var modal = document.querySelector('ons-modal');
             currentUser = user;
 
-            if (!user.gender) {
+            if (!user.profile.gender) {
                 changeTab('views/personal.html', 'PERSONAL INFO', 3);
             }
             else {
@@ -225,7 +225,6 @@
                 var data = {
                     img: user.profile.photo
                 };
-                
                 var imgRendered = Mustache.render(thumbnailTemplate, data);
                 $('#thumbnailIMG').html(imgRendered);                
 
