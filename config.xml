@@ -27,7 +27,6 @@
         <host name="hmkj8.app.goo.gl" scheme="https" />
         <host name="smartreflex-2018.firebaseapp.com" scheme="https">
             <path url="/__/auth/callback" />
-            <path event="onFitbit" url="/fitbit" />
         </host>
     </universal-links>
     <engine name="browser" spec="^5.0.3" />
