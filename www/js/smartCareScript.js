@@ -1,3 +1,4 @@
+var addConnection;
 document.addEventListener('init', function (event) {
     var page = event.target;
     var currentUser = page.data.currentUser;
@@ -9,6 +10,22 @@ document.addEventListener('init', function (event) {
                     changeTab('views/personal.html', 'PERSONAL INFO', 3);
                 });
             } else {
+                addConnection = function (email, relation) {
+                    var data = {
+                        userid: email,
+                        relation: relation
+                    }
+                    doc.connections.forEach((connection) => {
+                        if (email === connection.userid) {
+                            ons.notification.alert("Already Add")
+                        } else {
+                            SmartReflex.addConnections(data).then(function () {
+                                console.log("Done")
+                            })
+                        }
+                    })
+                }
+                //To render the connection
                 doc.connections.forEach((connections) => {
                     SmartReflex.getScore(connections.userid).then(function (messages, score) {
                         SmartReflex.getUser(connections.userid).then(function (message, data) {

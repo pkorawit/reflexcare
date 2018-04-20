@@ -146,6 +146,23 @@ var SmartReflex = {
         return deferred.promise();
     },
 
+    //Add Connention to Firebase
+    addConnections: function (score) {
+
+        var deferred = new $.Deferred();
+        var docRef = db.collection("users").doc(score.connections);
+        docRef.update(score)
+
+            .then(function () {
+                deferred.resolve("Added");
+            })
+            .catch(function (error) {
+                deferred.resolve("Cannot add connection : " + error);
+            });
+
+        return deferred.promise();
+    },
+
 
     //Get URL parameter
     getUrlParameter: function (sParam) {
