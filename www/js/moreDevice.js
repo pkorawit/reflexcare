@@ -26,6 +26,8 @@ ons.ready(function () {
                     if (evt.url.indexOf(endUrl) == 0) {
                         // close the browser, we are done!
                         browser.close();
+                        var modal = document.querySelector('ons-modal');
+                        modal.show();
                         // TODO: pull the token out and 
                         // use it for further API calls.
                         var fitbitCode = evt.url.split('code=')[1];
@@ -49,6 +51,7 @@ ons.ready(function () {
                                         mockscore.today.steps = SmartReflex.randomIntFromInterval(6000, 12000); 
                                         SmartReflex.addScore(mockscore).then(function (message, newscore) {                                       
                                             SmartReflex.updateUser(updateUser).then(function (message, newuser) {
+                                                modal.hide();
                                                 changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
                                             });                                        
                                         });
@@ -56,6 +59,7 @@ ons.ready(function () {
                                 }
                                 else{                                    
                                     SmartReflex.updateUser(updateUser).then(function (message, newuser) {
+                                        modal.hide();
                                         changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
                                     }); 
                                 }
