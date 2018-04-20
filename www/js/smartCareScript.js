@@ -32,7 +32,7 @@ document.addEventListener('init', function (event) {
                             Mustache.parse(recentlyTemplate);
                             var rendered = Mustache.render(template, connectionData);
                             var recentlyRendered = Mustache.render(recentlyTemplate, connectionData);
-                            $('#family').append(rendered);
+                            //$('#family').append(rendered);
                             $('#recentlyTarget').append(recentlyRendered);
                         })
                     })
