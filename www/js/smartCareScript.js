@@ -11,19 +11,25 @@ document.addEventListener('init', function (event) {
                 });
             } else {
                 addConnection = function (email, relation) {
-                    var data = {
-                        userid: email,
-                        relation: relation
+                    var exist = false;
+                    doc.connections.forEach((connections) => {
+                        console.log(connections.userid);
+                        if (connections.userid == email){
+                            exist = true;                            
+                        }   
+                    });
+
+                    //Not found connection
+                    if (!exist) {
+                        var newconnection = { userid: email, relation: relation }
+                        doc.connections.push(newconnection);
+                        SmartReflex.updateUser(doc).then(function (messages, score) {
+                            ons.notification.toast('Added smart care to ' + email, { timeout: 1000 }).then(function (name) {
+                                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                            });
+                        });
                     }
-                    doc.connections.forEach((connection) => {
-                        if (email === connection.userid) {
-                            ons.notification.alert("Already Add")
-                        } else {
-                            SmartReflex.addConnections(data).then(function () {
-                                console.log("Done")
-                            })
-                        }
-                    })
+
                 }
                 //To render the connection
                 doc.connections.forEach((connections) => {
@@ -51,6 +57,10 @@ document.addEventListener('init', function (event) {
                             var recentlyRendered = Mustache.render(recentlyTemplate, connectionData);
                             //$('#family').append(rendered);
                             $('#recentlyTarget').append(recentlyRendered);
+                            doc.connections.forEach((connections) => {
+                               var remove = "#" + connections.userid.split('@')[0];                               
+                               $(remove).hide();                                                        
+                            });
                         })
                     })
                 })
@@ -64,3 +74,4 @@ document.addEventListener('show', function (event) {
         document.querySelector('ons-back-button').hide();
     }
 })
+

@@ -232,7 +232,7 @@
         });
         function changeTab(page, pagename, highlight) {
             $('#pageTitle').html(pagename);
-            SmartReflex.getUser(currentUser.profile.userid).then(function (message, updateUser) {  
+            SmartReflex.getUser(loggedInUserId).then(function (message, updateUser) {  
 
                 document.querySelector('ons-navigator').resetToPage(page, {
                 data: {
