@@ -2,7 +2,7 @@ var userData;
 var currentUser;
 var camera;
 var updateUserData;
-ons.ready(function(){
+ons.ready(function () {
     document.addEventListener('init', function (event) {
         var page = event.target;
         currentUser = page.data.currentUser;
@@ -23,6 +23,14 @@ ons.ready(function(){
                 document.getElementById("dob").value = date.getFullYear() +
                     "-" + ((date.getMonth() + 1) < 10 ? '0' : '') + ((date.getMonth() + 1)) +
                     "-" + (date.getDate() < 10 ? '0' : '') + date.getDate();
+
+                if (dataUser.profile.lastupdated) {
+                    var lastupdate = new Date(dataUser.profile.lastupdated);
+                    document.getElementById("timestamp").innerHTML = lastupdate.getFullYear() +
+                        "-" + ((lastupdate.getMonth() + 1) < 10 ? '0' : '') + ((lastupdate.getMonth() + 1)) +
+                        "-" + (lastupdate.getDate() < 10 ? '0' : '') + lastupdate.getDate();
+                }
+
                 userData = dataUser;
                 $('#fname').val(dataUser.profile.firstname);
                 $('#lname').val(dataUser.profile.lastname);
@@ -31,18 +39,19 @@ ons.ready(function(){
                 $('#waist').val(dataUser.health.general.waist);
                 $('#imgFileUpload').attr("src", dataUser.profile.photo);
             })
-           
+
         }
     })
 
-    
-    updateUserData = function() {
+
+    updateUserData = function () {
         userData.profile.firstname = $('#fname').val();
         userData.profile.lastname = $('#lname').val();
         userData.health.general.height = $('#height').val();
         userData.health.general.weight = $('#weight').val();
         userData.health.general.waist = $('#waist').val();
         userData.profile.DOB = $('#dob').val();
+        userData.profile.lastupdated = new Date();
 
         var gender = document.getElementsByName("gender");
         if (gender[1].checked) {
@@ -92,7 +101,7 @@ ons.ready(function(){
 
     }
 
-    camera = function() {
+    camera = function () {
         navigator.camera.getPicture(onSuccess, onFail, {
             quality: 50,
             destinationType: Camera.DestinationType.DATA_URL

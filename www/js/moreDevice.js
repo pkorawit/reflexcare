@@ -43,6 +43,10 @@ ons.ready(function () {
                                     var mockUserID = "mock@smartreflex.info";
                                     SmartReflex.getScore(mockUserID).then(function (message, mockscore) {  
                                         mockscore.userid = currentUser.profile.userid;
+                                        mockscore.today.HR = SmartReflex.randomIntFromInterval(70, 85); 
+                                        mockscore.today.calories = SmartReflex.randomIntFromInterval(500, 1000); 
+                                        mockscore.today.distance = SmartReflex.randomIntFromInterval(2000, 3000); 
+                                        mockscore.today.steps = SmartReflex.randomIntFromInterval(6000, 12000); 
                                         SmartReflex.addScore(mockscore).then(function (message, newscore) {                                       
                                             SmartReflex.updateUser(updateUser).then(function (message, newuser) {
                                                 changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
@@ -50,8 +54,10 @@ ons.ready(function () {
                                         });
                                     });
                                 }
-                                else{
-                                    changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                else{                                    
+                                    SmartReflex.updateUser(updateUser).then(function (message, newuser) {
+                                        changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                    }); 
                                 }
                             });
                         });
