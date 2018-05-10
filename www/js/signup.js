@@ -7,8 +7,6 @@ ons.ready(function () {
 
     firebase.initializeApp(config);
 
-    var mockUserID = 'waree@smartreflex.info';
-
     $('#signup').click(function () {
         var username = $('#username').val();
         var password = $('#password').val();
@@ -19,6 +17,9 @@ ons.ready(function () {
             ons.notification.toast(error.message, { timeout: 2000 }).then(function (name) {
             });
         });
+
+        ons.notification.toast(username + " is signed up successful", { timeout: 2000 }).then(function (name) {
+        });
     });
 
     $('#backsignin').click(function () {
@@ -28,7 +29,7 @@ ons.ready(function () {
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            window.location.replace('home.html?userid=' + mockUserID);
+            window.location.replace('login.html');
         }
     });
 });

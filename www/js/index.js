@@ -6,8 +6,6 @@ ons.ready(function () {
     };
     firebase.initializeApp(config);
 
-    var mockUserID = 'waree@smartreflex.info';
-
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             window.location.replace('home.html?userid=' + user.email);
