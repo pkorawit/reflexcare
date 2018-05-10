@@ -6,11 +6,7 @@ document.addEventListener('init', function (event) {
         document.querySelector('ons-back-button').hide();
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {        
                 SmartReflex.getScore(currentUser.profile.userid).then(function (message, user) {
-<<<<<<< HEAD
                     console.log(doc.devices)
-=======
-                    console.log(user.devices)
->>>>>>> a9ea91a4f23ff97d2d64cd1eca2e6ef60bc1fa86
                     if (doc.devices.length === 0) {
                         data = {
                             id: "0",
