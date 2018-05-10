@@ -7,7 +7,7 @@ document.addEventListener('init', function (event) {
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {        
                 SmartReflex.getScore(currentUser.profile.userid).then(function (message, user) {
                     console.log(user.devices)
-                    if (user.devices.length === 0) {
+                    if (doc.devices.length === 0) {
                         data = {
                             id: "0",
                             name: "",
