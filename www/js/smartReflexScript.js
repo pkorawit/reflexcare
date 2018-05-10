@@ -2,20 +2,27 @@ document.addEventListener('init', function (event) {
     var page = event.target;
     var currentUser = page.data.currentUser;
     if (page.id == "smartReflex") {
+        var data;
         document.querySelector('ons-back-button').hide();
-        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
-            if (!doc.profile.gender) {
-                ons.notification.toast('Please fill all the personal infomation', { timeout: 1000 }).then(function (name) {
-                    changeTab('views/personal.html', 'PERSONAL INFO', 3);
-                });
-            } else {
+        SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {        
                 SmartReflex.getScore(currentUser.profile.userid).then(function (message, user) {
-                    if (user == null) {
-                        ons.notification.toast('Please add at least one device', { timeout: 1000 }).then(function (name) {
-                            changeTab('views/moreDevice.html', 'DEVICES', 3);
-                        });
+                    console.log(user.devices)
+                    if (user.devices.length === 0) {
+                        data = {
+                            id: "0",
+                            name: "",
+                            img: "",
+                            meta: 0,
+                            heart: 0,
+                            motion: 0,
+                            step: 0,
+                            cal: 0,
+                            hr: 0,
+                            connections: "",
+                            alert: false
+                            }
                     } else {
-                        var data = {
+                        data = {
                             id: "0",
                             name: currentUser.profile.firstname,
                             img: currentUser.profile.photo,
@@ -28,6 +35,7 @@ document.addEventListener('init', function (event) {
                             connections: doc.connections,
                             alert: user.today.alert
                         }
+                    }
                         //Render profile photo
                         var profileTemplate = $('#profileTamplate').html();
                         var profileRendered = Mustache.render(profileTemplate, data);
@@ -152,11 +160,8 @@ document.addEventListener('init', function (event) {
                             $('#weekbtn').removeClass("gaugeViewButtonSelected");
                             $('#monthbtn').removeClass("gaugeViewButtonSelected");
                             $('#yearbtn').addClass("gaugeViewButtonSelected");
-                        })
-                    }
-                });
-            }
-
+                        })                    
+                });            
         })
 
     }

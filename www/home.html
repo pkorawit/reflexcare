@@ -221,13 +221,11 @@
             };
             var imgRendered = Mustache.render(thumbnailTemplate, data);
             $('#thumbnailIMG').html(imgRendered); 
-            //Check gender
-            if (!user.profile.gender) {
-                changeTab('views/personal.html', 'PERSONAL INFO', 3);
-            }
-            else {                
+           
+            // changeTab
+                           
                 changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-            }
+            
             modal.hide();
         });
         function changeTab(page, pagename, highlight) {

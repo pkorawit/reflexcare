@@ -5,11 +5,6 @@ document.addEventListener('init', function (event) {
     if (page.id == "smartCare") {
         document.querySelector('ons-back-button').hide();
         SmartReflex.getUser(currentUser.profile.userid).then(function (messages, doc) {
-            if (!doc.profile.gender) {
-                ons.notification.toast('Please fill all the personal infomation', { timeout: 1000 }).then(function (name) {
-                    changeTab('views/personal.html', 'PERSONAL INFO', 3);
-                });
-            } else {
                 addConnection = function (email, relation) {
                     var exist = false;
                     doc.connections.forEach((connections) => {
@@ -63,8 +58,7 @@ document.addEventListener('init', function (event) {
                             });
                         })
                     })
-                })
-            }
+                })            
         })
     }
 })
