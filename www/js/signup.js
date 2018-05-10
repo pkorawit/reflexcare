@@ -31,5 +31,4 @@ ons.ready(function () {
             window.location.replace('home.html?userid=' + mockUserID);
         }
     });
-
 });
