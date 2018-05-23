@@ -14,35 +14,43 @@ ons.ready(function () {
             ons.notification.toast(error.message, { timeout: 2000 }).then(function (name) {
 
             });
-        });
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                SmartReflex.getUser(user.email).then(function (message, newuser) {
-                    //New user
-                    if (newuser == null) {
-                        ons.notification.toast('Welcome new user, ' + user.email, { timeout: 3000 }).then(function (name) {
+        }).then((checkVerify) => {
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user.emailVerified) {
+                    console.log(user.emailVerified)
+                    if (user) {
+                        SmartReflex.getUser(user.email).then(function (message, newuser) {
+                            //New user
+                            if (newuser == null) {
+                                ons.notification.toast('Welcome new user, ' + user.email, { timeout: 3000 }).then(function (name) {
     
-                            //Get mockup data 
-                            var mockUserID = "mock@smartreflex.info";
-                            SmartReflex.getUser(mockUserID).then(function (message, mock) {
+                                    //Get mockup data 
+                                    var mockUserID = "mock@smartreflex.info";
+                                    SmartReflex.getUser(mockUserID).then(function (message, mock) {
     
-                                mock.profile.userid = user.email;
-                                    
-                                SmartReflex.addUser(mock).then(function (message, newprofile) {
+                                        mock.profile.userid = user.email;
+    
+                                        SmartReflex.addUser(mock).then(function (message, newprofile) {
+                                            window.location.replace('home.html?userid=' + user.email);
+                                        });
+                                    });
+                                });
+                            }
+                            //Existing user
+                            else {
+                                ons.notification.toast('Welcome, ' + user.displayName, { timeout: 2000 }).then(function (name) {
                                     window.location.replace('home.html?userid=' + user.email);
                                 });
-                            });
+                            }
                         });
                     }
-                    //Existing user
-                    else {
-                        ons.notification.toast('Welcome, ' + user.displayName, { timeout: 2000 }).then(function (name) {
-                            window.location.replace('home.html?userid=' + user.email);
-                        });
-                    }
-                });
-            }
-        });
+                } else {
+                    ons.notification.toast("Please verify your email!!", { timeout: 3000 }).then(function (name) {
+                       
+                    });
+                }
+            });
+        })        
     })
 
     $('#loginFacebook').click(function () {
@@ -96,7 +104,4 @@ ons.ready(function () {
     $('#signup').click(function () {
         window.location.replace('signup.html');
     })
-
-
-    
 });

@@ -7,7 +7,7 @@ ons.ready(function () {
     firebase.initializeApp(config);
 
     firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
+        if (user && user.emailVerified) {
             window.location.replace('home.html?userid=' + user.email);
         } else {
             window.location.replace('login.html');
