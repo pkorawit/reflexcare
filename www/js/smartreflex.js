@@ -79,8 +79,8 @@ var SmartReflex = {
 
                 var docRef = db.collection("users").doc(userid);
                 docRef.update({
-                    "profile.photo": url
-                })
+                        "profile.photo": url
+                    })
                     .then(function () {
                         deferred.resolve("Updated", url);
                     })
@@ -180,9 +180,8 @@ var SmartReflex = {
         }
     },
 
-    randomIntFromInterval: function (min,max)
-    {
-        return Math.floor(Math.random()*(max-min+1)+min);
+    randomIntFromInterval: function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
     },
 
     //Sign Out
@@ -196,6 +195,93 @@ var SmartReflex = {
         }).catch(function (error) {
             deferred.resolve("Cannot sign out");
         });
+
+        return deferred.promise();
+    },
+
+    //Register Fitbit 
+    registerFitbitAccount: function (code, user) {
+
+        var accessCodeRequestURL = "https://api.fitbit.com/oauth2/token?client_id=22CVM2&grant_type=authorization_code&redirect_uri=https://smartreflex-2018.firebaseapp.com/fitbit";
+        accessCodeRequestURL += "&code=" + code;
+        authToken = "MjJDVk0yOmM0NjdhZmIwMmRjZWM3ODAzOWQ5NmIyODhhZGExNTU1";
+
+        var deferred = new $.Deferred();
+
+        fetch(accessCodeRequestURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + authToken
+                }
+            })
+            .then(res => res.json())
+            .then((data) =>  {              
+                // Store Access Token and Refresh Token
+                var docRef = db.collection("users").doc(user.profile.userid);
+                var ds = {
+                    id : "fitbit",
+                    accesstoken : data.access_token,
+                    refreshtoken : data.refresh_token
+                };
+                user.datasources = [];
+                user.datasources.push(ds);
+                docRef.update(user)  
+                deferred.resolve("success", data);
+
+            })
+            .catch((err)=> {                
+                deferred.resolve("error", err);
+            })
+
+        return deferred.promise();
+    },
+
+    //Register Fitbit 
+    registerFitbitAccount: function (code, user) {
+
+        var accessCodeRequestURL = "https://api.fitbit.com/oauth2/token?client_id=22CVM2&grant_type=authorization_code&redirect_uri=https://smartreflex-2018.firebaseapp.com/fitbit";
+        accessCodeRequestURL += "&code=" + code;
+        authToken = "MjJDVk0yOmM0NjdhZmIwMmRjZWM3ODAzOWQ5NmIyODhhZGExNTU1";
+
+        var deferred = new $.Deferred();
+
+        fetch(accessCodeRequestURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + authToken
+                }
+            })
+            .then(res => res.json())
+            .then((data) =>  {              
+                // Store Access Token and Refresh Token
+                var docRef = db.collection("users").doc(user.profile.userid);
+                var ds = {
+                    id : "fitbit",
+                    accesstoken : data.access_token,
+                    refreshtoken : data.refresh_token
+                };
+                user.datasources = [];
+                user.datasources.push(ds);
+                docRef.update(user)  
+                deferred.resolve("success", data);
+
+            })
+            .catch((err)=> {                
+                deferred.resolve("error", err);
+            })
+
+        return deferred.promise();
+    },
+
+    //Register Fitbit 
+    syncFitbitAccount: function (user) {        
+
+        var deferred = new $.Deferred();
+
+        
+        
 
         return deferred.promise();
     },

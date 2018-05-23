@@ -12,9 +12,9 @@ ons.ready(function () {
 
             function addFitbit(device){
 
-                if(currentUser.devices.indexOf(device) != -1){
-                    return;
-                }
+                // if(currentUser.devices.indexOf(device) != -1){
+                //     return;
+                // }
 
                 console.log(device);
                 var endUrl = "https://smartreflex-2018.firebaseapp.com/fitbit";
@@ -31,7 +31,13 @@ ons.ready(function () {
                         // TODO: pull the token out and 
                         // use it for further API calls.
                         var fitbitCode = evt.url.split('code=')[1];
-                        //ons.notification.alert(fitbitCode);   
+                        console.log(fitbitCode);
+
+                        SmartReflex.registerFitbitAccount(fitbitCode, currentUser).then(function (message, data) {
+                            ons.notification.toast('Fitbit account is registered ', { timeout: 2000 }).then(function (name) {
+                                
+                            });
+                        });
 
                         //Create mock up score data
                         SmartReflex.getScore(currentUser.profile.userid).then(function (message, score) {
@@ -65,6 +71,9 @@ ons.ready(function () {
                                 }
                             });
                         });
+
+                        modal.hide();
+
                     }
                 });
             }
