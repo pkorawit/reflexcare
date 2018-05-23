@@ -16,10 +16,16 @@ ons.ready(function () {
             var errorMessage = error.message;
             ons.notification.toast(error.message, { timeout: 2000 }).then(function (name) {
             });
-        });
-
-        ons.notification.toast(username + " is signed up successful", { timeout: 2000 }).then(function (name) {
-        });
+        }).then((sendEmailVerify) => {
+            if (sendEmailVerify === false) {
+                return false
+            } else {
+                firebase.auth().currentUser.sendEmailVerification();
+                ons.notification.toast("Email Verification Sent! Please check your email address.", { timeout: 4000 }).then(function (name) {
+                    window.location.replace('login.html');
+                });
+            }
+        })
     });
 
     $('#backsignin').click(function () {
@@ -27,9 +33,9 @@ ons.ready(function () {
     });
 
 
-    firebase.auth().onAuthStateChanged(function (user) {
+    /*firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            window.location.replace('login.html');
+           
         }
-    });
+    });*/
 });
