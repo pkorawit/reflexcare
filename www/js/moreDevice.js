@@ -3,20 +3,28 @@ ons.ready(function () {
         var page = event.target;
         var currentUser = page.data.currentUser;
         if (page.id == "moreDevice") {
-            
+
             //Control add icons
-            for(var i=0;i<currentUser.devices.length;i++){
+            for (var i = 0; i < currentUser.devices.length; i++) {
                 var device = "#" + currentUser.devices[i];
-                $(device).attr("src","img/yes.png");
+                $(device).attr("src", "img/yes.png");
             }
 
-            function addFitbit(device){
+            function addFitbit(device) {
 
                 // if(currentUser.devices.indexOf(device) != -1){
                 //     return;
                 // }
 
                 console.log(device);
+
+                //Sign out Fitbit
+                // var logoutUrl = "https://www.fitbit.com/logout";
+                // var browser1 = cordova.InAppBrowser.open(logoutUrl, '_blank', 'location=yes');
+                // browser1.addEventListener('loadstart', function (evt) {
+                //     console.log('You have logged out Fitbit successfully.');
+                // });
+
                 var endUrl = "https://smartreflex-2018.firebaseapp.com/fitbit";
                 var url = "https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=22CVM2&redirect_uri=https%3A%2F%2Fsmartreflex-2018.firebaseapp.com%2Ffitbit&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight";
                 var browser = cordova.InAppBrowser.open(url, '_blank', 'location=yes');
@@ -34,8 +42,10 @@ ons.ready(function () {
                         console.log(fitbitCode);
 
                         SmartReflex.registerFitbitAccount(fitbitCode, currentUser).then(function (message, data) {
-                            ons.notification.toast('Fitbit account is registered ', { timeout: 2000 }).then(function (name) {
-                                
+                            ons.notification.toast('Fitbit account is registered ', {
+                                timeout: 2000
+                            }).then(function (name) {
+                                SmartReflex.syncFitbitAccount(currentUser);
                             });
                         });
 
@@ -43,31 +53,30 @@ ons.ready(function () {
                         SmartReflex.getScore(currentUser.profile.userid).then(function (message, score) {
                             console.log(currentUser.profile.userid);
                             console.log(score);
-                            SmartReflex.getUser(currentUser.profile.userid).then(function (message, updateUser) {  
+                            SmartReflex.getUser(currentUser.profile.userid).then(function (message, updateUser) {
                                 currentUser = updateUser;
                                 updateUser.devices.push(device);
                                 if (score == null) {
                                     //Get mock score template
                                     var mockUserID = "mock@smartreflex.info";
-                                    SmartReflex.getScore(mockUserID).then(function (message, mockscore) {  
+                                    SmartReflex.getScore(mockUserID).then(function (message, mockscore) {
                                         mockscore.userid = currentUser.profile.userid;
-                                        mockscore.today.HR = SmartReflex.randomIntFromInterval(70, 85); 
-                                        mockscore.today.calories = SmartReflex.randomIntFromInterval(500, 1000); 
-                                        mockscore.today.distance = SmartReflex.randomIntFromInterval(2000, 3000); 
-                                        mockscore.today.steps = SmartReflex.randomIntFromInterval(6000, 12000); 
-                                        SmartReflex.addScore(mockscore).then(function (message, newscore) {                                       
+                                        mockscore.today.HR = SmartReflex.randomIntFromInterval(70, 85);
+                                        mockscore.today.calories = SmartReflex.randomIntFromInterval(500, 1000);
+                                        mockscore.today.distance = SmartReflex.randomIntFromInterval(2000, 3000);
+                                        mockscore.today.steps = SmartReflex.randomIntFromInterval(6000, 12000);
+                                        SmartReflex.addScore(mockscore).then(function (message, newscore) {
                                             SmartReflex.updateUser(updateUser).then(function (message, newuser) {
                                                 modal.hide();
                                                 changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-                                            });                                        
+                                            });
                                         });
                                     });
-                                }
-                                else{                                    
+                                } else {
                                     SmartReflex.updateUser(updateUser).then(function (message, newuser) {
                                         modal.hide();
                                         changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
-                                    }); 
+                                    });
                                 }
                             });
                         });

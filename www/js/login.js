@@ -1,7 +1,7 @@
 ons.ready(function () {
 
     var provider = new firebase.auth.FacebookAuthProvider();
-    provider.addScope('user_birthday');
+    //provider.addScope('user_birthday');
 
     var mockUserID = 'waree@smartreflex.info';
 
@@ -88,7 +88,7 @@ ons.ready(function () {
                 //Existing user
                 else {
                     ons.notification.toast('Welcome, ' + user.displayName, { timeout: 2000 }).then(function (name) {
-                        window.location.replace('home.html?userid=' + user.email);
+                        window.location.replace('home.html?userid=' + user.email);                                   
                     });
                 }
             });

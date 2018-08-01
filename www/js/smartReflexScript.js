@@ -30,7 +30,7 @@ document.addEventListener('init', function (event) {
                             heart: user.today.scores.heart,
                             motion: user.today.scores.motion,
                             step: user.today.steps,
-                            cal: user.today.distance,
+                            cal: user.today.calories,
                             hr: user.today.HR,
                             connections: doc.connections,
                             alert: user.today.alert
