@@ -262,40 +262,58 @@ var SmartReflex = {
         return deferred.promise();
     },
 
-    //Register Fitbit 
-    syncFitbitAccount: function (user) {
+    //Sync with Fitbit Web API 
+    syncFitbitAccount: async function (user) {
 
         console.log('Start sync fitbit ... ' + user.profile.userid);
 
         var deferred = new $.Deferred();
 
+        //Get activity (steps, calories)
         var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
 
-        fetch(activitySummaryRequestURL, {
+        var activitySummary = await fetch(activitySummaryRequestURL, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + user.datasources[0].accesstoken
             }
-        })
-        .then(res => res.json())
-        .then((data) => {            
-            console.log(data.summary.caloriesBMR);
-            console.log(data.summary.steps);
-            this.getScore(user.profile.userid).then((message, score) => {
-                // Update reflex score
-                score.userid = user.profile.userid;
-                score.today.calories = data.summary.caloriesBMR;
-                score.today.steps = data.summary.steps;
-                this.updateScore(score).then((message) => {
-                    deferred.resolve(message, score);
-                });    
-            });            
-        })
-        .catch((err) => {
-            deferred.resolve("error", err);
-        })
+        });
+        console.log('activitySummary');
+        var activityData = await activitySummary.json();
+        console.log(activityData.summary.caloriesOut);
+        console.log(activityData.summary.steps);
 
+        //Get heartrate
+        var yesterday = moment().add(-1, 'days').format("YYYY-MM-DD");       
+        var heartRateRequestURL = `https://api.fitbit.com/1/user/-/activities/heart/date/${yesterday}/1d.json`;
+        var heartRate = await fetch(heartRateRequestURL, {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + user.datasources[0].accesstoken
+            }
+        });
+        console.log('heartRate');
+        var heartRateData = await heartRate.json();
+        console.log(heartRateData['activities-heart'][0].value.restingHeartRate);
 
+        //Update reflex score
+        var parent = this;        
+        this.getScore(user.profile.userid).then(function(message, score){
+            score.userid = user.profile.userid;
+            score.today.calories = activityData.summary.caloriesOut;
+            score.today.steps = activityData.summary.steps;
+            score.today.distance = activityData.summary.distances[0].distance;
+            score.today.HR = heartRateData['activities-heart'][0].value.restingHeartRate;          
+
+            parent.updateScore(score).then(function(message){
+                console.log(message);
+                //Return promise
+                deferred.resolve(message);
+                console.log('Finished syncing fitbit ... ' + user.profile.userid);               
+            });
+        });
+
+        
         return deferred.promise();
     },
 
