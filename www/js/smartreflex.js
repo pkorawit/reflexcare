@@ -246,6 +246,7 @@ var SmartReflex = {
                 var ds = {
                     id: "fitbit",
                     accessCode: code,
+                    authtoken: authToken,
                     accesstoken: data.access_token,
                     refreshtoken: data.refresh_token
                 };
@@ -265,56 +266,98 @@ var SmartReflex = {
     //Sync with Fitbit Web API 
     syncFitbitAccount: async function (user) {
 
-        console.log('Start sync fitbit ... ' + user.profile.userid);
+            console.log('Start sync fitbit ... ' + user.profile.userid);
 
-        var deferred = new $.Deferred();
+            var deferred = new $.Deferred();
 
-        //Get activity (steps, calories)
-        var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
+            var accessToken = user.datasources[0].accesstoken;
+            var authToken = user.datasources[0].authtoken;
+            var refreshToken = user.datasources[0].refreshToken;
 
-        var activitySummary = await fetch(activitySummaryRequestURL, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + user.datasources[0].accesstoken
+            //Get profile
+            console.log('getProfile');
+            var profileRequestURL = "https://api.fitbit.com/1/user/-/profile.json";
+            var profileData = await this.getFitbitData(profileRequestURL, accessToken);
+
+            //Check Token Expired
+            if (profileData.success == false && profileData.errors[0].errorType === 'expired_token') {
+                var renewData = await this.renewFitbitToken(authToken, refreshToken);
+                if(renewData.success){
+                    accessToken = renewData.accessToken;
+                }
+                else{
+                    deferred.resolve({
+                        success: false,
+                        message: 'Failed to refresh access token'
+                    });
+                    return deferred.promise();
+                }
             }
-        });
-        console.log('activitySummary');
-        var activityData = await activitySummary.json();
-        console.log(activityData.summary.caloriesOut);
-        console.log(activityData.summary.steps);
 
-        //Get heartrate
-        var yesterday = moment().add(-1, 'days').format("YYYY-MM-DD");       
-        var heartRateRequestURL = `https://api.fitbit.com/1/user/-/activities/heart/date/${yesterday}/1d.json`;
-        var heartRate = await fetch(heartRateRequestURL, {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer ' + user.datasources[0].accesstoken
-            }
-        });
-        console.log('heartRate');
-        var heartRateData = await heartRate.json();
-        console.log(heartRateData['activities-heart'][0].value.restingHeartRate);
+            //Get activity (steps, calories)
+            var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
+            var activityData = await this.getFitbitData(activitySummaryRequestURL, accessToken);
+            console.log(activityData.summary.caloriesOut);
+            console.log(activityData.summary.steps);
 
-        //Update reflex score
-        var parent = this;        
-        this.getScore(user.profile.userid).then(function(message, score){
-            score.userid = user.profile.userid;
-            score.today.calories = activityData.summary.caloriesOut;
-            score.today.steps = activityData.summary.steps;
-            score.today.distance = activityData.summary.distances[0].distance;
-            score.today.HR = heartRateData['activities-heart'][0].value.restingHeartRate;          
+            //Get heartrate
+            var yesterday = moment().add(-1, 'days').format("YYYY-MM-DD");
+            var heartRateRequestURL = `https://api.fitbit.com/1/user/-/activities/heart/date/${yesterday}/1d.json`;
+            var heartRateData = await this.getFitbitData(heartRateRequestURL, accessToken);
+            console.log(heartRateData['activities-heart'][0].value.restingHeartRate);
 
-            parent.updateScore(score).then(function(message){
-                console.log(message);
-                //Return promise
-                deferred.resolve(message);
-                console.log('Finished syncing fitbit ... ' + user.profile.userid);               
+            //Update reflex score   
+            var parent = this;  
+            this.getScore(user.profile.userid).then(function (message, score) {
+                score.userid = user.profile.userid;
+                score.today.calories = activityData.summary.caloriesOut;
+                score.today.steps = activityData.summary.steps;
+                score.today.distance = activityData.summary.distances[0].distance;
+                score.today.HR = heartRateData['activities-heart'][0].value.restingHeartRate;
+
+                parent.updateScore(score).then(function (message) {
+                    console.log(message);
+                    //Return promise
+                    deferred.resolve({
+                        success: true,
+                        message: 'Synced with Fitbit'
+                    });
+                    console.log('Finished syncing fitbit ... ' + user.profile.userid);
+                });
             });
-        });
 
-        
-        return deferred.promise();
-    },
+            return deferred.promise();
+        },
+
+        getFitbitData: async function (url, token) {
+
+                var deferred = new $.Deferred();
+                var response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+                var data = await response.json();
+                deferred.resolve(data);
+                return deferred.promise();
+
+            },
+
+            renewFitbitToken: async function (authToken, refreshToken) {
+                var deferred = new $.Deferred();
+                var refreshTokenURL = `https://api.fitbit.com/oauth2/token?grant_type=refresh_token&refresh_token=${refreshToken}`
+                var response = await fetch(refreshTokenURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Basic ' + authToken
+                    }
+                });
+                var data = await response.json();
+                console.log('renewFitbitToken:' + JSON.stringify(data));
+                deferred.resolve(data);
+                return deferred.promise();
+            }
 
 };
