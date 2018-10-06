@@ -272,27 +272,32 @@ var SmartReflex = {
 
             var accessToken = user.datasources[0].accesstoken;
             var authToken = user.datasources[0].authtoken;
-            var refreshToken = user.datasources[0].refreshToken;
+            var refreshToken = user.datasources[0].refreshtoken;
 
-            //Get profile
-            console.log('getProfile');
-            var profileRequestURL = "https://api.fitbit.com/1/user/-/profile.json";
-            var profileData = await this.getFitbitData(profileRequestURL, accessToken);
-
-            //Check Token Expired
-            if (profileData.success == false && profileData.errors[0].errorType === 'expired_token') {
-                var renewData = await this.renewFitbitToken(authToken, refreshToken);
-                if(renewData.success){
-                    accessToken = renewData.accessToken;
-                }
-                else{
+            //Check for token expire
+            var introspecURL = "https://api.fitbit.com/1.1/oauth2/introspect"
+            var introspecData = await this.verifyFitbitToken(introspecURL, accessToken);
+            console.log('Token status:' + JSON.stringify(introspecData));
+            if (introspecData.active == false) {
+                var renewData = await this.renewFitbitToken(user, authToken, refreshToken);
+                if (renewData.success) {
+                    accessToken = renewData.access_token;
+                } else {
                     deferred.resolve({
                         success: false,
                         message: 'Failed to refresh access token'
                     });
                     return deferred.promise();
                 }
-            }
+            }          
+
+            // //Get profile     *** Move to Fitbit register       
+            // var profileRequestURL = "https://api.fitbit.com/1/user/-/profile.json";
+            // var profileData = await this.getFitbitData(profileRequestURL, accessToken);
+            // //Update profile
+            // user.profile.DOB = profileData.user.dateOfBirth
+            // user.profile.gender = profileData.user.gender
+            // user.health.general.height = profileData.user.height
 
             //Get activity (steps, calories)
             var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
@@ -307,7 +312,7 @@ var SmartReflex = {
             console.log(heartRateData['activities-heart'][0].value.restingHeartRate);
 
             //Update reflex score   
-            var parent = this;  
+            var parent = this;
             this.getScore(user.profile.userid).then(function (message, score) {
                 score.userid = user.profile.userid;
                 score.today.calories = activityData.summary.caloriesOut;
@@ -331,12 +336,29 @@ var SmartReflex = {
 
         getFitbitData: async function (url, token) {
 
+            var deferred = new $.Deferred();
+            var response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            });
+            var data = await response.json();
+            deferred.resolve(data);
+            return deferred.promise();
+
+        },
+
+        verifyFitbitToken: async function (url, token) {
+
                 var deferred = new $.Deferred();
                 var response = await fetch(url, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ' + token
-                    }
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: 'token=' + token
                 });
                 var data = await response.json();
                 deferred.resolve(data);
@@ -344,20 +366,38 @@ var SmartReflex = {
 
             },
 
-            renewFitbitToken: async function (authToken, refreshToken) {
-                var deferred = new $.Deferred();
-                var refreshTokenURL = `https://api.fitbit.com/oauth2/token?grant_type=refresh_token&refresh_token=${refreshToken}`
-                var response = await fetch(refreshTokenURL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': 'Basic ' + authToken
-                    }
+        renewFitbitToken: async function (user, authToken, refreshToken) {
+            var deferred = new $.Deferred();
+            console.log('refreshToken:' + refreshToken);
+            var refreshTokenURL = `https://api.fitbit.com/oauth2/token?grant_type=refresh_token&refresh_token=${refreshToken}`
+            var response = await fetch(refreshTokenURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'Basic ' + authToken
+                }
+            });
+            var data = await response.json();
+            if (data.success == false) {
+                deferred.resolve({
+                    success: false,
+                    renewData: data
                 });
-                var data = await response.json();
+            } else {
                 console.log('renewFitbitToken:' + JSON.stringify(data));
-                deferred.resolve(data);
-                return deferred.promise();
+                // Store Access Token and Refresh Token
+                var docRef = db.collection("users").doc(user.profile.userid);
+                var ds = user.datasources[0];
+                ds.accesstoken = data.access_token,
+                    ds.refreshtoken = data.refresh_token
+                docRef.update(user).then(function () {
+                    deferred.resolve({
+                        success: true,
+                        renewData: ds
+                    });
+                    return deferred.promise();
+                });
             }
-
+            return deferred.promise();
+        }
 };

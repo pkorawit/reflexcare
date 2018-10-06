@@ -226,17 +226,23 @@
             $('#thumbnailIMG').html(imgRendered);
 
             // Sync fitbit data
-            if (user.datasources[0].id == 'fitbit') {
-                SmartReflex.syncFitbitAccount(user).then(function (status) {
-                    console.log(status.message);
-                    if (status.success) {                        
-                        // changeTab
-                        changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+            if (user.datasources) {
+                if (user.datasources[0].id == 'fitbit') {
+                    SmartReflex.syncFitbitAccount(user).then(function (status) {
+                        console.log(status.message);
+                        ons.notification.toast(status.message, {
+                            timeout: 2000
+                        }).then(function (name) {
+                            changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
                         modal.hide();
-                    }
-                });
-            }
-            else{                
+                        });                        
+                    });
+                } else {
+                    // changeTab
+                    changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                    modal.hide();
+                }
+            } else {
                 // changeTab
                 changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
                 modal.hide();

@@ -64,6 +64,7 @@ ons.ready(function () {
             // The signed-in user info.
             var user = result.user;
             console.log(user.email);
+            console.log(user.providerData[0].uid);
 
             SmartReflex.getUser(user.email).then(function (message, newuser) {
                 //New user
