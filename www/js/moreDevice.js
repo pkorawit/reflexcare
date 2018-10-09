@@ -7,7 +7,7 @@ ons.ready(function () {
             //Control add icons
             for (var i = 0; i < currentUser.devices.length; i++) {
                 var device = "#" + currentUser.devices[i];
-                $(device).attr("src", "img/yes.png");
+                $(device).attr("src", "img/refresh.png");
             }
 
             function addFitbit(device) {
@@ -88,13 +88,26 @@ ons.ready(function () {
             }
 
             $('#charge2').click(function () {
-                addFitbit('charge2')
+                if($('#charge2').attr('src') == 'img/refresh.png'){
+                    // Sync with Fitbit
+                    if (currentUser.datasources[0].id == 'fitbit') {
+                        var modal = document.querySelector('ons-modal');
+                        modal.show();
+                        SmartReflex.syncFitbitAccount(currentUser).then(function (status) {
+                            console.log(status.message);
+                            ons.notification.toast(status.message, {
+                                timeout: 2000
+                            }).then(function () {
+                                modal.hide();
+                            });                            
+                        });
+                    }
+                }
+                else{
+                    addFitbit('charge2')
+                }
+                
             });
-
-            $('#aria2').click(function () {
-                addFitbit('aria2')
-            });
-
         }
     });
 });
