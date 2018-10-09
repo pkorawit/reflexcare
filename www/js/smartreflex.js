@@ -274,11 +274,19 @@ var SmartReflex = {
             var authToken = user.datasources[0].authtoken;
             var refreshToken = user.datasources[0].refreshtoken;
 
+            var healthData = {
+                caloriesOut : 0,
+                steps : 0,
+                restingHeartRate : 0,
+                distance : 0
+            }
+
             //Check for token expire
             var introspecURL = "https://api.fitbit.com/1.1/oauth2/introspect"
             var introspecData = await this.verifyFitbitToken(introspecURL, accessToken);
             console.log('Token status:' + JSON.stringify(introspecData));
-            if (introspecData.active == false) {
+
+            if (introspecData.active == false || introspecData.success == false) {
                 var renewData = await this.renewFitbitToken(user, authToken, refreshToken);
                 if (renewData.success) {
                     accessToken = renewData.access_token;
@@ -302,23 +310,25 @@ var SmartReflex = {
             //Get activity (steps, calories)
             var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";
             var activityData = await this.getFitbitData(activitySummaryRequestURL, accessToken);
-            console.log(activityData.summary.caloriesOut);
-            console.log(activityData.summary.steps);
+            if(activityData.summary.caloriesOut) healthData.caloriesOut = activityData.summary.caloriesOut;
+            if(activityData.summary.steps) healthData.steps = activityData.summary.steps;
 
             //Get heartrate
             var yesterday = moment().add(-1, 'days').format("YYYY-MM-DD");
             var heartRateRequestURL = `https://api.fitbit.com/1/user/-/activities/heart/date/${yesterday}/1d.json`;
             var heartRateData = await this.getFitbitData(heartRateRequestURL, accessToken);
-            console.log(heartRateData['activities-heart'][0].value.restingHeartRate);
+            if(heartRateData['activities-heart'][0].value.restingHeartRate) healthData.restingHeartRate = heartRateData['activities-heart'][0].value.restingHeartRate;
+
+            console.log(JSON.stringify(healthData));
 
             //Update reflex score   
             var parent = this;
             this.getScore(user.profile.userid).then(function (message, score) {
                 score.userid = user.profile.userid;
-                score.today.calories = activityData.summary.caloriesOut;
-                score.today.steps = activityData.summary.steps;
-                score.today.distance = activityData.summary.distances[0].distance;
-                score.today.HR = heartRateData['activities-heart'][0].value.restingHeartRate;
+                score.today.calories = healthData.caloriesOut;
+                score.today.steps = healthData.steps;
+                score.today.distance = healthData.distance;
+                score.today.HR = healthData.restingHeartRate;
 
                 parent.updateScore(score).then(function (message) {
                     console.log(message);
