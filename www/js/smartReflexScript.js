@@ -18,7 +18,7 @@ document.addEventListener('init', function (event) {
                             step: 0,
                             cal: 0,
                             hr: 0,
-                            connections: "",
+                            connections: [],
                             alert: false
                             }
                     } else {

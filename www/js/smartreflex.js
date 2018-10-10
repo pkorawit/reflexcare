@@ -300,12 +300,20 @@ var SmartReflex = {
             }          
 
             // //Get profile     *** Move to Fitbit register       
-            // var profileRequestURL = "https://api.fitbit.com/1/user/-/profile.json";
-            // var profileData = await this.getFitbitData(profileRequestURL, accessToken);
-            // //Update profile
-            // user.profile.DOB = profileData.user.dateOfBirth
-            // user.profile.gender = profileData.user.gender
-            // user.health.general.height = profileData.user.height
+            var profileRequestURL = "https://api.fitbit.com/1/user/-/profile.json";
+            var profileData = await this.getFitbitData(profileRequestURL, accessToken);
+            //Update profile
+            user.profile.DOB = profileData.user.dateOfBirth
+            if(user.profile.gender == 'MALE'){
+                user.profile.gender = 'M';
+            }
+            else{
+                user.profile.gender = 'F';
+            }            
+            user.health.general.height = profileData.user.height
+            this.updateUser(user).then(function (message) {
+                console.log(message);                
+            });
 
             //Get activity (steps, calories)
             var activitySummaryRequestURL = "https://api.fitbit.com/1/user/-/activities/date/today.json";

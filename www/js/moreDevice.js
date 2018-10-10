@@ -39,15 +39,7 @@ ons.ready(function () {
                         // TODO: pull the token out and 
                         // use it for further API calls.
                         var fitbitCode = evt.url.split('code=')[1];
-                        console.log(fitbitCode);
-
-                        SmartReflex.registerFitbitAccount(fitbitCode, currentUser).then(function (message, data) {
-                            ons.notification.toast('Fitbit account is registered ', {
-                                timeout: 2000
-                            }).then(function (name) {
-                                SmartReflex.syncFitbitAccount(currentUser);
-                            });
-                        });
+                        console.log(fitbitCode);                       
 
                         //Create mock up score data
                         SmartReflex.getScore(currentUser.profile.userid).then(function (message, score) {
@@ -61,14 +53,28 @@ ons.ready(function () {
                                     var mockUserID = "mock@smartreflex.info";
                                     SmartReflex.getScore(mockUserID).then(function (message, mockscore) {
                                         mockscore.userid = currentUser.profile.userid;
-                                        mockscore.today.HR = SmartReflex.randomIntFromInterval(70, 85);
-                                        mockscore.today.calories = SmartReflex.randomIntFromInterval(500, 1000);
-                                        mockscore.today.distance = SmartReflex.randomIntFromInterval(2000, 3000);
-                                        mockscore.today.steps = SmartReflex.randomIntFromInterval(6000, 12000);
+                                        mockscore.today.HR = 0;
+                                        mockscore.today.calories = 0;
+                                        mockscore.today.distance = 0;
+                                        mockscore.today.steps = 0;
                                         SmartReflex.addScore(mockscore).then(function (message, newscore) {
                                             SmartReflex.updateUser(updateUser).then(function (message, newuser) {
-                                                modal.hide();
-                                                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                                SmartReflex.registerFitbitAccount(fitbitCode, currentUser).then(function (message, data) {
+                                                    ons.notification.toast('Fitbit account is registered ', {
+                                                        timeout: 2000
+                                                    }).then(function (name) {
+                                                        SmartReflex.syncFitbitAccount(currentUser).then(function (status) {
+                                                            console.log(status.message);
+                                                            ons.notification.toast(status.message, {
+                                                                timeout: 2000
+                                                            }).then(function (name) {
+                                                                modal.hide();
+                                                                changeTab('views/smartReflex.html', 'SMART REFLEX', 1);
+                                                            });                        
+                                                        });
+                                                    });
+                                                });
+                                                
                                             });
                                         });
                                     });

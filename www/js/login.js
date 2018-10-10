@@ -78,7 +78,7 @@ ons.ready(function () {
                             mock.profile.userid = user.email;
                             mock.profile.firstname = user.displayName.split(' ')[0];
                             mock.profile.lastname = user.displayName.split(' ')[1];
-                            mock.profile.photo = user.photoURL;
+                            mock.profile.photo = user.photoURL + '?type=large&width=720&height=720';
 
                             SmartReflex.addUser(mock).then(function (message, newprofile) {
                                 window.location.replace('home.html?userid=' + user.email);
